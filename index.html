@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<div style="text-align:center;font-size:0.6rem;color:#6b7f6e;margin-top:4px;">
+  Swipe → to explore menu
+</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Mauli Family Paan House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1b5e2f;
+  --green-mid:#2a7a42;
+  --green-lt:#3da058;
+  --gold:#c9952a;
+  --gold-lt:#e8b84b;
+  --gold-pale:#fdf3d8;
+  --white:#ffffff;
+  --bg:#ffffff;
+  --surface:#f8f9f5;
+  --text:#1a2e1e;
+  --muted:#6b7f6e;
+  --border:#e4ede6;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;padding-bottom:110px;}
+
+/* HEADER */
+.header{
+  background:#fff;
+  padding:1rem 1rem 0.6rem;
+  display:flex;flex-direction:column;align-items:center;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:80;
+}
+.header-logo img{
+  width:160px;height:auto;display:block;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+  transition:transform 0.3s ease;
+}
+.header-logo img:hover{transform:scale(1.05);}
+.header-tagline{
+  font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--green-mid);margin-top:0.4rem;margin-bottom:0.6rem;
+  font-weight:700;
+}
+.brand-text{
+  font-family:'Playfair Display',serif;
+  font-size:2.3rem;font-weight:900;
+  letter-spacing:0.05em;
+  color:#1c6831;
+  margin-bottom:0.15rem;
+}
+.brand-sub{
+  font-size:0.8rem;letter-spacing:0.14em;
+  color:var(--green-dark);font-weight:600;
+  margin-top:0.2rem;
+}
+
+/* TAB NAV */
+.tab-nav{
+  display:flex;width:100%;overflow-x:auto;scrollbar-width:none;
+  border-top:1px solid var(--border);margin-top:0.5rem;
+  -webkit-overflow-scrolling:touch;
+}
+.tab-nav::-webkit-scrollbar{display:none;}
+.tab-btn{
+  flex:0 0 auto;padding:0.65rem 1.1rem;
+  font-size:0.7rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;
+  color:var(--muted);border:none;background:none;cursor:pointer;
+  border-bottom:2.5px solid transparent;white-space:nowrap;
+  transition:color 0.2s,border-color 0.2s;
+}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);}
+
+/* USP BAR */
+.usp-bar{
+  background:linear-gradient(135deg,rgba(11,91,44,0.95),rgba(21,77,44,0.95));
+  display:flex;justify-content:space-around;align-items:center;gap:0.6rem;overflow-x:auto;
+  scrollbar-width:none;padding:0.6rem 0.7rem;border-radius:12px;margin:0.35rem 0.7rem 0.4rem;
+  border:1px solid rgba(255,255,255,0.15);box-shadow:0 6px 16px rgba(0,0,0,0.12);
+  -webkit-overflow-scrolling:touch;
+}
+.usp-bar::-webkit-scrollbar{display:none;}
+.usp-highlight{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:0.4rem 0.6rem;
+  text-align:center;
+  flex:0 0 auto;
+}
+.usp-icon{
+  font-size:1.8rem;line-height:1;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+.usp-text{
+  font-size:0.55rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
+  color:rgba(255,255,255,0.92);white-space:nowrap;line-height:1.1;
+}
+
+/* SECTION */
+.sec{padding:1rem 0.9rem 0.5rem;scroll-margin-top:100px;}
+
+/* GRID */
+.card-grid{display:flex;flex-direction:column;gap:0.65rem;}
+
+/* MENU CARD */
+.card{
+  background:#fff;border:1px solid var(--border);border-radius:14px;
+  display:flex;align-items:flex-start;overflow:hidden;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04);
+  transition:box-shadow 0.2s;
+  min-height:102px;
+}
+.card:active{box-shadow:0 2px 12px rgba(27,94,47,0.1);}
+.card-img{
+  width:100px;height:100px;flex-shrink:0;
+  background:var(--surface);
+  position:relative;overflow:hidden;
+}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.card-img-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;
+  background:linear-gradient(135deg,var(--surface),#e8f0ea);
+}
+.card-body{flex:1;padding:0.8rem 0.9rem;display:flex;flex-direction:column;justify-content:space-between;}
+
+.card-name{
+  font-weight:700;font-size:0.95rem;color:var(--text);
+  margin-bottom:4px;line-height:1.35;
+}
+.card-desc{font-size:0.78rem;color:var(--muted);line-height:1.5;margin-bottom:0.6rem;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;}
+.card-price{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:800;color:var(--green);
+}
+.card-badge{
+  font-size:0.5rem;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--gold-pale);color:var(--gold);
+  border:1px solid rgba(201,149,42,0.3);
+  padding:2px 7px;border-radius:99px;font-weight:600;
+}
+.veg-dot{
+  width:10px;height:10px;border-radius:2px;
+  border:1.5px solid #22a55b;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.veg-dot::after{content:'';width:5px;height:5px;border-radius:50%;background:#22a55b;}
+
+/* MAKE YOUR OWN — special card */
+.myo-card{
+  background:linear-gradient(135deg,var(--green) 0%,var(--green-mid) 100%);
+  border-radius:14px;padding:1rem 1rem;
+  position:relative;overflow:hidden;margin-bottom:0.6rem;
+}
+.myo-card::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:180px;height:180px;
+  background:radial-gradient(circle,rgba(255,255,255,0.07),transparent 70%);
+  border-radius:50%;
+}
+.myo-eyebrow{
+  font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.55);margin-bottom:4px;
+}
+.myo-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:6px;
+}
+.myo-rule{font-size:0.68rem;color:rgba(255,255,255,0.65);line-height:1.5;margin-bottom:1rem;}
+.myo-steps{display:flex;gap:0.5rem;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+.myo-steps::-webkit-scrollbar{display:none;}
+.myo-step{
+  flex:0 0 auto;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);
+  border-radius:9px;padding:0.45rem 0.65rem;
+  display:flex;align-items:center;gap:5px;
+}
+.myo-step-n{
+  width:16px;height:16px;border-radius:50%;
+  background:var(--gold-lt);
+  font-size:0.52rem;font-weight:700;color:var(--green);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.myo-step-txt{font-size:0.6rem;color:rgba(255,255,255,0.8);font-weight:500;white-space:nowrap;}
+.myo-footer{
+  display:flex;align-items:center;justify-content:space-between;margin-top:1rem;
+}
+.myo-stats{display:flex;gap:1rem;}
+.myo-stat{text-align:center;}
+.myo-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gold-lt);line-height:1;}
+.myo-lbl{font-size:0.52rem;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.45);margin-top:2px;}
+.myo-price-badge{
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  color:var(--green);font-weight:700;font-size:0.85rem;
+  padding:0.45rem 1rem;border-radius:99px;
+  font-family:'Playfair Display',serif;
+  box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* OUR PRODUCTS */
+
+.prod-row{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:1.4rem;}
+.prod-card{
+  background:linear-gradient(135deg, rgba(226, 179, 85, 0.18), rgba(255, 255, 255, 0.9));
+  border:1px solid rgba(171, 138, 69, 0.35);
+  border-radius:16px;padding:1rem;
+  box-shadow:0 10px 22px rgba(26, 58, 26, 0.13);
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.prod-card:hover{transform:translateY(-2px);box-shadow:0 16px 28px rgba(26, 58, 26, 0.2);}
+.prod-tag{font-size:0.52rem;text-transform:uppercase;letter-spacing:0.1em;color:#a3731f;font-weight:700;margin-bottom:6px;}
+.prod-name{font-weight:700;font-size:0.8rem;color:var(--text);margin-bottom:3px;line-height:1.3;}
+.prod-desc{
+  font-size:0.65rem;
+  color:var(--muted);
+  line-height:1.4;
+  min-height:38px; /* KEY FIX */
+}
+.prod-size{font-size:0.55rem;color:var(--muted);}
+.prod-price{
+  text-align:right;
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;
+  font-weight:700;
+  color:var(--green);
+  line-height:1.1;
+  white-space:nowrap;
+  flex-shrink:0;   /* IMPORTANT */
+}
+.prod-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:8px;
+}
+.prod-text{
+  flex:1;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+.prod-img{
+  width:100%;
+  aspect-ratio: 16 / 9;   /* KEY FIX */
+  border-radius:12px;
+  overflow:hidden;
+  margin-top:0.6rem;
+  background:#f3f5f2;
+  position:relative;
+}
+.prod-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.prod-card:hover .prod-img img{
+  transform:scale(1.05);
+}
+
+
+/* LEAF TYPES ROW */
+.leaf-row{
+  display:flex;gap:0.5rem;margin:0.4rem 0 1.4rem;
+}
+.leaf-pill{
+  flex:1;background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:0.5rem;text-align:center;
+}
+.leaf-name{font-size:0.75rem;font-weight:600;color:var(--green);}
+.leaf-type{font-size:0.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:1px;}
+
+/* STICKY */
+.sticky-order{
+  position:fixed;bottom:0;left:0;right:0;z-index:99;
+  background:#fff;border-top:1px solid var(--border);
+  padding:0.75rem 1.4rem;padding-bottom:max(0.75rem,env(safe-area-inset-bottom));
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.06);
+}
+.sticky-txt{font-size:0.78rem;font-weight:600;color:var(--text);}
+.sticky-sub{font-size:0.6rem;color:var(--muted);margin-top:1px;}
+.sticky-btn{
+  background:var(--green);color:#fff;
+  font-size:0.7rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
+  padding:0.6rem 1.2rem;border-radius:99px;border:none;
+  white-space:nowrap;
+}
+
+/* FOOTER */
+footer{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--green);padding:1rem 1.5rem 1rem;text-align:center;box-shadow:0 -3px 10px rgba(0,0,0,0.2);}
+.ft-name{font-family:'Playfair Display',serif;font: size 1.35rem;font-weight:800;color:#fff;margin-bottom:5px;}
+.ft-detail{font-size:0.65rem;color:rgba(255,255,255,0.5);line-height:1.9;}
+.ft-detail a{color:rgba(232,184,75,0.8);text-decoration:none;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.card,.myo-card,.prod-card{opacity:0;animation:fadeUp 0.4s ease forwards;}
+.card:nth-child(1){animation-delay:0.05s;}
+.card:nth-child(2){animation-delay:0.1s;}
+.card:nth-child(3){animation-delay:0.15s;}
+.card:nth-child(4){animation-delay:0.2s;}
+.card:nth-child(5){animation-delay:0.25s;}
+.card:nth-child(6){animation-delay:0.3s;}
+
+/* SECTION VISIBILITY */
+.sec{display:none;}
+.sec.active{display:block;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-logo">
+    <img src="mauli_logo.png" alt="Mauli Family Paan House logo" onerror="this.src='https://via.placeholder.com/180x70?text=Mauli+Paan'">
+  </div>
+  <div class="header-tagline">Authentic paan, made fresh daily</div>
+</header>
+
+<!-- USP BAR -->
+<section class="usp-bar">
+  <div class="usp-highlight">
+    <div class="usp-icon">🚫</div>
+    <div class="usp-text">No Tobacco</div>
+  </div>
+  <div class="usp-highlight">
+    <div class="usp-icon">✨</div>
+    <div class="usp-text">Supari Free</div>
+  </div>
+  <div class="usp-highlight">
+    <div class="usp-icon">💧</div>
+    <div class="usp-text">Spit Free</div>
+  </div>
+  <div class="usp-highlight">
+    <div class="usp-icon">🌿</div>
+    <div class="usp-text">Aids Digestion</div>
+  </div>
+</section>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showSec('myo', this)">BYOP</button>
+  <button class="tab-btn" onclick="showSec('classic', this)">Classic</button>
+  <button class="tab-btn" onclick="showSec('choco', this)">Choco</button>
+  <button class="tab-btn" onclick="showSec('royals', this)">Royals</button>
+  <button class="tab-btn" onclick="showSec('experience', this)">Experience</button>
+  <button class="tab-btn" onclick="showSec('beverages', this)">Beverages</button>
+  <button class="tab-btn" onclick="showSec('products', this)">Our Products</button>
+</nav>
+
+<!-- MAKE YOUR OWN -->
+<section class="sec active" id="sec-myo">
+  <div class="sec-header">
+    
+  </div>
+
+  <div class="myo-card">
+    <div class="myo-eyebrow">Fully Customisable</div>
+    <div class="myo-title">Build Your Own Paan</div>
+    <div class="myo-rule"><strong>Choose any combination</strong><br>Paan, Chutney, Filling, Flavour, & Topping.<br><br>Crafted from 18 condiments & 16 ayurvedic herbs.</div>
+
+    <div class="myo-steps">
+      <div class="myo-step"><span class="myo-step-n">1</span><span class="myo-step-txt">Choose Leaf</span></div>
+      <div class="myo-step"><span class="myo-step-n">2</span><span class="myo-step-txt">Add Chutney</span></div>
+      <div class="myo-step"><span class="myo-step-n">3</span><span class="myo-step-txt">Pick Filling</span></div>
+      <div class="myo-step"><span class="myo-step-n">4</span><span class="myo-step-txt">Add Fruit Crush</span></div>
+      <div class="myo-step"><span class="myo-step-n">5</span><span class="myo-step-txt">Finish Toppings</span></div>
+    </div>
+
+    <div class="myo-footer">
+      <div class="myo-stats">
+        <div class="myo-stat">
+          <div class="myo-num">16</div>
+          <div class="myo-lbl">Herbs</div>
+        </div>
+        <div class="myo-stat">
+          <div class="myo-num">18</div>
+          <div class="myo-lbl">Condiments</div>
+        </div>
+        <div class="myo-stat">
+          <div class="myo-num">20</div>
+          <div class="myo-lbl">Flavours</div>
+        </div>
+      </div>
+      <div class="myo-price-badge">Rs. 120</div>
+    </div>
+  </div>
+
+  <div style="margin-top:0.6rem;">
+    <p style="font-size:0.6rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.6rem;">Paan Leaf Types</p>
+    <div class="leaf-row">
+      <div class="leaf-pill"><div class="leaf-name">Banarasi</div><div class="leaf-type">Spicy</div></div>
+      <div class="leaf-pill"><div class="leaf-name">Calcutti</div><div class="leaf-type">Sweet</div></div>
+      <div class="leaf-pill"><div class="leaf-name">Maghai</div><div class="leaf-type">Royal</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSICS -->
+<section class="sec" id="sec-classic">
+  <div class="card-grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1600718374662-0483d2b9da44?w=200&q=80" alt="Meetha Gulab" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🌹</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Meetha Gulab</div>
+        <div class="card-desc">Signature masala paan with a drizzle of red rose syrup</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 60</div>
+          </div>
+          <div class="card-badge">Signature</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200&q=80" alt="Gulkand Classic" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🌸</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Gulkand Classic</div>
+        <div class="card-desc">Kesar gulkand finished with red rose syrup drizzle</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 80</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&q=80" alt="Flavour Splash" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🍊</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Flavour Splash</div>
+        <div class="card-desc">Pick from 20 signature fruit crush flavours</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=200&q=80" alt="Jelly Jewel" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>💎</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Jelly Jewel</div>
+        <div class="card-desc">Sweet jellies folded inside Mauli masala paan</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&q=80" alt="Chutney Burst" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🌶</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Chutney Burst</div>
+        <div class="card-desc">Tangy chutneys, signature masala, silver varkh</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ROYALS -->
+<section class="sec" id="sec-royals">
+  <div class="card-grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=200&q=80" alt="Rampyari Royale" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>👑</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Rampyari Royale</div>
+        <div class="card-desc">Royal masala, kesar gulkand, dates crunch, gold chutney, silver varkh</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 120</div>
+          </div>
+          <div class="card-badge">Gold</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=200&q=80" alt="Royal Maghai" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🌿</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Royal Maghai</div>
+        <div class="card-desc">Authentic Maghai Jodi Paan, heritage masala, silver varakh — 2 pcs</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 120</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&q=80" alt="Royal Dry Fruit Paan" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🥜</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Royal Dry Fruit Paan</div>
+        <div class="card-desc">Chocolate paan with royal dry fruits — regular or crunchy</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 150</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="sec-experience">
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=200&q=80" alt="Fire Paan" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🔥</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Fire Paan</div>
+        <div class="card-desc">The legendary flaming paan experience</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 150</div>
+          </div>
+          <div class="card-badge">Must Try</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=200&q=80" alt="Ice Cream Paan" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🍦</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ice Cream Paan</div>
+        <div class="card-desc">Paan served with a generous scoop of ice cream</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 150</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Choco -->
+<section class="sec" id="sec-choco">
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1548940740-204726a19be3?w=200&q=80" alt="Dark Chocolate" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🍫</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Dark Chocolate</div>
+        <div class="card-desc">Paan dipped in rich dark chocolate</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 120</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?w=200&q=80" alt="Milk Chocolate" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🍫</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Milk Chocolate</div>
+        <div class="card-desc">Paan dipped in creamy milk chocolate</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 120</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=200&q=80" alt="White Chocolate" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🤍</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">White Chocolate</div>
+        <div class="card-desc">Paan dipped in rich white chocolate</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 120</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=200&q=80" alt="Choco Nutella" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🍫</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Choco Nutella</div>
+        <div class="card-desc">Paan dipped in creamy Nutella chocolate</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 150</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=200&q=80" alt="Lotus Biscoff" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🍪</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Lotus Biscoff</div>
+        <div class="card-desc">Paan dipped in exclusive Biscoff spread</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 150</div>
+          </div>
+          <div class="card-badge">Popular</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&q=80" alt="Kunafa Pistachio" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🌰</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Kunafa Pistachio</div>
+        <div class="card-desc">Paan dipped in dreamy pistachio kunafa</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 150</div>
+          </div>
+          <div class="card-badge">Special</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEVERAGES -->
+<section class="sec" id="sec-beverages">
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=200&q=80" alt="Paan Sparkle" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>🥤</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Paan Sparkle</div>
+        <div class="card-desc">Paan drink with lemon and mint soda</div>
+        <div class="card-footer">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="veg-dot"></div>
+            <div class="card-price">Rs. 150</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PRODUCTS -->
+<section class="sec" id="sec-products">
+  <div class="prod-row">
+
+    <!-- PRODUCT 1 -->
+    <div class="prod-card">
+
+      <div class="prod-top">
+        <div class="prod-text">
+          <div class="prod-tag">Ayurvedic</div>
+          <div class="prod-name">Digestive Ayurvedic Powder</div>
+          <div class="prod-desc">The secret behind our masala<br>16 Ayurvedic herbs</div>
+        </div>
+
+        <div class="prod-price">
+          ₹99<br><span class="prod-size">/ 10 gm</span>
+        </div>
+      </div>
+
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80" 
+             alt="Digestive Powder"
+             onerror="this.src='https://via.placeholder.com/400x250/f3f5f2/1b5e2f?text=Mauli+Product'">
+      </div>
+
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="prod-card">
+
+      <div class="prod-top">
+        <div class="prod-text">
+          <div class="prod-tag">Premix</div>
+          <div class="prod-name">Sweet Paan Premix</div>
+          <div class="prod-desc">Our signature sweet blend<br>18 condiments</div>
+        </div>
+
+        <div class="prod-price">
+          ₹149<br><span class="prod-size">/ 100 gm</span>
+        </div>
+      </div>
+
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1617191519105-d07b98b10de6?auto=format&fit=crop&w=600&q=80" 
+     alt="Paan Premix"
+     onerror="this.src='https://via.placeholder.com/400x250/f3f5f2/1b5e2f?text=Mauli+Product'">
+      </div>
+
+    </div>
+
+  </div>
+
+  <p style="font-size:0.68rem;color:var(--muted);text-align:center;padding:0.5rem 0 1rem;">
+    Ask at the counter to take home
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;font-size:0.8rem;color:rgba(255,255,255,0.85);">
+
+  <div style="display:flex;align-items:center;gap:6px;">
+    <!-- WhatsApp Icon SVG -->
+    <span style="display: flex; align-items: center;">
+      <svg xmlns="http://www.w3.org" width="16" height="16" fill="#25D366" viewBox="0 0 16 16">
+        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+      </svg>
+    </span>
+    <span>+91 78018 79290</span>
+  </div>
+
+  <span style="opacity:0.4;">•</span>
+
+  <div style="display:flex;align-items:center;gap:6px;">
+    <span style="display:flex;align-items:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle cx="17.5" cy="6.5" r="1.5"></circle>
+      </svg>
+    </span>
+    <span>mauli_ahmedabad</span>
+  </div>
+</div>
+</footer>
+
+<script>
+const sections = ['myo','classic','royals','experience','choco','beverages','products'];
+let currentSectionIdx = 0;
+let touchStartX = 0;
+let touchEndX = 0;
+
+function showSec(id, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  btn.classList.add('active');
+  currentSectionIdx = sections.indexOf(id);
+  // re-trigger card animations
+  document.querySelectorAll('#sec-' + id + ' .card, #sec-' + id + ' .myo-card, #sec-' + id + ' .prod-card').forEach((c,i) => {
+    c.style.animation = 'none';
+    c.offsetHeight;
+    c.style.animation = '';
+    c.style.animationDelay = (i * 0.05) + 's';
+  });
+  // scroll btn into view on tab nav
+  btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Swipe gesture handler
+document.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, false);
+
+function handleSwipe() {
+  const diff = touchStartX - touchEndX;
+  const threshold = 50;
+  
+  if (diff > threshold && currentSectionIdx < sections.length - 1) {
+    const nextBtn = document.querySelector(`[onclick="showSec('${sections[currentSectionIdx + 1]}', this)"]`);
+    if (nextBtn) nextBtn.click();
+  } else if (diff < -threshold && currentSectionIdx > 0) {
+    const prevBtn = document.querySelector(`[onclick="showSec('${sections[currentSectionIdx - 1]}', this)"]`);
+    if (prevBtn) prevBtn.click();
+  }
+}
+</script>
+</body>
+</html>
