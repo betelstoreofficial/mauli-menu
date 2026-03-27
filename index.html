@@ -151,7 +151,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
 }
 .card:active{box-shadow:0 2px 12px rgba(27,94,47,0.1);}
 .card-img{
-  width:110px;height:110px;flex-shrink:0;
+  width:110px;
+  aspect-ratio:1/1;
+  height:auto;
+  flex-shrink:0;
   background:#f3f5f2;
   position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:center;
@@ -160,7 +163,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
   width:100%;
   height:100%;
   object-fit:cover;        /* KEY FIX */
-  object-position:center;
+  object-position:30% center;
   display:block;
 }
 .card-img-placeholder{
