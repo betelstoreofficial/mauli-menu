@@ -101,11 +101,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
   display:flex;
   justify-content:space-evenly;
   align-items:center;
-  gap:0.6rem;
-  overflow-x:auto;
-  padding:0.85rem 0.7rem;
+  gap:0.5rem;
+  padding:0.9rem 1rem;
   border-radius:12px;
   margin:0.6rem 0.7rem 0.6rem;
+  flex-wrap:nowrap;
 }
 .usp-bar::-webkit-scrollbar{display:none;}
 .usp-highlight{
@@ -117,8 +117,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
   line-height:1;
 }
 .usp-icon img{
-  width:20px;
-  height:20px;
+  width:clamp(18px, 2.5vw, 24px);
+  height:clamp(18px, 2.5vw, 24px);
   object-fit:contain;
   filter: brightness(0) invert(1);
 }
@@ -129,10 +129,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
   min-width:20px;
 }
 .usp-text{
-  font-size:0.62rem;
+  font-size:clamp(0.6rem, 1.2vw, 0.75rem);
   font-weight:600;
-  letter-spacing:0.05em;
+  letter-spacing:0.04em;
   color:rgba(255,255,255,0.95);
+  white-space:nowrap;
 }
 
 /* BEHAVIORAL INSTRUCTION */
