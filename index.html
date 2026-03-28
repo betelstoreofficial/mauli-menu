@@ -976,11 +976,12 @@ footer{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--green)
 </footer>
 
 <script>
-// Updated section order: classic is now first, myo is 4th
-const sections = ['classic','choco','royals','myo','experience','beverages','products'];
+const sections = ['classic','choco','royals','experience','beverages','products','myo'];
 let currentSectionIdx = 0;
 let touchStartX = 0;
+let touchStartY = 0;
 let touchEndX = 0;
+let touchEndY = 0;
 
 function showSec(id, btn) {
   document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
@@ -1000,20 +1001,27 @@ function showSec(id, btn) {
 
 document.addEventListener('touchstart', e => {
   touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
 }, false);
 
 document.addEventListener('touchend', e => {
   touchEndX = e.changedTouches[0].screenX;
+  touchEndY = e.changedTouches[0].screenY;
   handleSwipe();
 }, false);
 
 function handleSwipe() {
-  const diff = touchStartX - touchEndX;
-  const threshold = 50;
-  if (diff > threshold && currentSectionIdx < sections.length - 1) {
+  const diffX = touchStartX - touchEndX;
+  const diffY = touchStartY - touchEndY;
+
+  // Ignore if vertical scroll is dominant
+  if (Math.abs(diffY) > Math.abs(diffX)) return;
+
+  const threshold = 60;
+  if (diffX > threshold && currentSectionIdx < sections.length - 1) {
     const nextBtn = document.querySelector(`[onclick="showSec('${sections[currentSectionIdx + 1]}', this)"]`);
     if (nextBtn) nextBtn.click();
-  } else if (diff < -threshold && currentSectionIdx > 0) {
+  } else if (diffX < -threshold && currentSectionIdx > 0) {
     const prevBtn = document.querySelector(`[onclick="showSec('${sections[currentSectionIdx - 1]}', this)"]`);
     if (prevBtn) prevBtn.click();
   }
