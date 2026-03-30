@@ -461,6 +461,11 @@ img{display:block;}
 .leaf-name{font-size:0.72rem;font-weight:700;color:var(--g500);}
 .leaf-type{font-size:0.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;}
 
+/* Divider between premium items and experience items */
+.section-divider{display:flex;align-items:center;gap:var(--sp3);margin:var(--sp6) 0 var(--sp5);}
+.section-divider-line{flex:1;height:1px;background:var(--border);}
+.section-divider-label{font-size:0.56rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+
 /* ══════════════════════════════
    FOOTER BAR
 ══════════════════════════════ */
@@ -507,15 +512,14 @@ img{display:block;}
   <!-- FIX: one-word pills, single scrollable row -->
   <div class="entry-chips">
     <div class="entry-chip glass-dark" onclick="scrollToSection('after-dinner')">Digestive</div>
-    <div class="entry-chip glass-dark" onclick="scrollToSection('sweet')">Indulgent</div>
+    <div class="entry-chip glass-dark" onclick="scrollToSection('sweet')">Dessert</div>
     <div class="entry-chip glass-dark" onclick="scrollToSection('royal')">Premium</div>
-    <div class="entry-chip glass-dark" onclick="scrollToSection('action')">Adventurous</div>
+    <div class="entry-chip glass-dark" onclick="scrollToSection('take-home')">Adventurous</div>
     <div class="entry-chip glass-dark" onclick="scrollToSection('craft')">Custom</div>
   </div>
 </div>
 
 <!-- ══════════ QUICK PICKS ══════════ -->
-<!-- FIX: added Paan Sparkle -->
 <div class="rec-strip glass-warm">
   <span class="rec-label">Quick Picks</span>
   <a class="rec-chip" href="#after-dinner">
@@ -568,11 +572,6 @@ img{display:block;}
       <span>Premium</span>
     </button>
 
-    <button class="nav-btn" onclick="navTo('action',this)">
-      <!-- Flame / spark -->
-      <svg viewBox="0 0 24 24"><path d="M12 2c0 4-3 6-3 10a3 3 0 0 0 6 0c0-4-3-6-3-10zM8 19a4 4 0 0 0 8 0"/></svg>
-      <span>Experience</span>
-    </button>
 
     <button class="nav-btn" onclick="navTo('beverages',this)">
       <!-- Cup / drink -->
@@ -666,7 +665,7 @@ img{display:block;}
   <div class="section-header">
     <div class="section-eyebrow">Indulgent <div class="section-eyebrow-line"></div></div>
     <h2 class="section-title">Treats</h2>
-    <p class="section-sub">Paan meets confectionery - for those who want more</p>
+    <p class="section-sub">Paan meets confectionery - for choco lovers</p>
   </div>
 
   <div class="card-featured fade-in">
@@ -718,16 +717,14 @@ img{display:block;}
     <div class="card fade-in"><div class="card-img"><img src="images/maghai.webp" alt="Royal Maghai" loading="lazy"></div><div class="card-body"><div class="card-name">Royal Maghai</div><div class="card-desc">Authentic Maghai Jodi Paan, heritage premix, silver varakh - 2 pcs</div><div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price mid">₹120</div></div><span class="tag tag-muted">Heritage</span></div></div></div>
     <div class="card fade-in"><div class="card-img"><img src="images/dryfruit.webp" alt="Royal Dry Fruit" loading="lazy"></div><div class="card-body"><div class="card-name">Royal Dry Fruit</div><div class="card-desc">Chocolate paan with select dry fruits - regular or crunchy</div><div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price mid">₹150</div></div><span class="tag tag-gold">Rich</span></div></div></div>
   </div>
-</section>
 
 <!-- ══════════ EXPERIENCE ══════════ -->
-<section id="action" class="section fade-in">
-  <div class="section-header">
-    <div class="section-eyebrow">Theatre <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title">Experience</h2>
-    <p class="section-sub">Watch it happen - made for the curious</p>
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <span class="section-divider-label">Live Theatre</span>
+    <div class="section-divider-line"></div>
   </div>
-
+ <!-- Experience items — now live inside Premium -->  
   <div class="card-featured fade-in">
     <div class="card-featured-img"><img src="images/fire.webp" alt="Fire Paan" loading="lazy"></div>
     <div class="card-featured-body">
@@ -737,7 +734,7 @@ img{display:block;}
       </div>
       <div class="card-featured-bottom">
         <p class="card-featured-desc">A moment of theatre. The legendary flaming paan ritual - worth watching.</p>
-        <div class="card-featured-tag-inline"><span class="tag tag-dark">Must Try</span></div>
+        <div class="card-featured-tag-inline"><span class="tag tag-fire">Must Try</span></div>
       </div>
     </div>
   </div>
@@ -868,7 +865,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ── Section anchors ──
-const anchors = ['after-dinner','sweet','royal','action','beverages','take-home','craft'];
+const anchors = ['after-dinner','sweet','royal','beverages','take-home','craft'];
 const navBtns = document.querySelectorAll('.nav-btn');
 let currentActiveIndex = 0;
 let isScrollingToSection = false;
