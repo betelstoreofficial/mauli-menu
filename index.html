@@ -101,12 +101,13 @@ img{display:block;}
   
 /* MODERN COLLAPSE */
 .collapsible{
-  display:none;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s cubic-bezier(0.22,1,0.36,1);
 }
 
 .collapsible.open{
-  display:flex;
-  flex-direction:column;
+  max-height:2000px; /* large enough */
 }
 
 /* TITLE WITH TOGGLE */
@@ -411,7 +412,7 @@ img{display:block;}
     <h2 class="section-title collapsed" onclick="toggleSection('afterDinnerList', this)">After Dinner</h2>
     <p class="section-sub">Best enjoyed after meals - for a calm, digestive finish</p>
   </div>
-  <div class="card-list collapsible collapsed" id="afterDinnerList">
+  <div class="card-list collapsible" id="afterDinnerList">
     <div class="card fade-in">
       <div class="card-img"><img src="images/flavor.webp" alt="Flavour Splash" loading="lazy"></div>
       <div class="card-body">
@@ -541,10 +542,10 @@ img{display:block;}
 <section id="royal" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Premium <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title collapsed" onclick="toggleSection('afterDinnerList', this)">Signature</h2>
+    <h2 class="section-title collapsed" onclick="toggleSection('signatureList', this)">Signature</h2>
     <p class="section-sub">Heritage recipes - each made to order</p>
   </div>
-  <div class="card-list collapsible collapsed" id="signatureList">
+  <div class="card-list collapsible" id="signatureList">
     <div class="card fade-in">
       <div class="card-img"><img src="images/rampyari.webp" alt="Rampyari Royale" loading="lazy"></div>
       <div class="card-body">
@@ -783,17 +784,31 @@ function updateNav() {
 
 function toggleSection(id, el){
   const section = document.getElementById(id);
+  if(!section) return;
 
   const isOpen = section.classList.contains('open');
 
   if(isOpen){
+    section.style.maxHeight = section.scrollHeight + "px"; // set current height
+    requestAnimationFrame(() => {
+      section.style.maxHeight = "0px";
+    });
+
     section.classList.remove('open');
     el.classList.remove('open');
     el.classList.add('collapsed');
-  }else{
+
+  } else {
     section.classList.add('open');
+    section.style.maxHeight = section.scrollHeight + "px";
+
     el.classList.add('open');
     el.classList.remove('collapsed');
+
+    // reset after animation for flexibility
+    setTimeout(() => {
+      section.style.maxHeight = "none";
+    }, 400);
   }
 }
 
@@ -810,9 +825,20 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.06 });
 fadeEls.forEach(el => obs.observe(el));
+  
 window.addEventListener('load', () => {
-  const el = document.querySelector('[onclick*="afterDinnerList"]');
-  if(el) toggleSection('afterDinnerList', el);
+  const section = document.getElementById('afterDinnerList');
+  const title = document.querySelector('[onclick*="afterDinnerList"]');
+
+  if(section && title){
+    section.classList.add('open');
+    section.style.maxHeight = section.scrollHeight + "px";
+    setTimeout(() => {
+      section.style.maxHeight = "none";
+    }, 400);
+    title.classList.add('open');
+    title.classList.remove('collapsed');
+  }
 });
 </script>
 </body>
