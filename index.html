@@ -343,6 +343,79 @@ img{display:block;}
     padding-right:var(--sp4);
   }
 }
+/* ===== PREMIUM HOME TAG (REPLACES ONLY HOME BADGES) ===== */
+.home-tag{
+  position:absolute;
+  top:8px;
+  left:8px;
+  z-index:5;
+
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+
+  padding:4px 10px;
+  border-radius:999px;
+
+  font-size:0.52rem;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+
+  color:#f0d080;
+
+  background:linear-gradient(145deg, rgba(11,31,17,0.96), rgba(20,53,32,0.92));
+  border:1px solid rgba(212,168,74,0.7);
+
+  box-shadow:
+    0 0 0 0.5px rgba(212,168,74,0.4),
+    0 2px 8px rgba(0,0,0,0.25),
+    inset 0 0 10px rgba(212,168,74,0.1);
+
+  backdrop-filter:blur(6px);
+}
+
+/* GOLD SHIMMER */
+.home-tag::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+
+  background:linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255,215,120,0.35) 50%,
+    transparent 80%
+  );
+
+  opacity:0;
+}
+
+.home-tag:active::after{
+  opacity:1;
+  animation:goldShine 1s ease;
+}
+
+@keyframes goldShine{
+  0%{transform:translateX(-100%);}
+  100%{transform:translateX(100%);}
+}
+
+/* 🌿 LEAF */
+.home-tag .leaf{
+  width:9px;
+  height:9px;
+  background:linear-gradient(135deg,#3da058,#1b5e2f);
+  border-radius:2px 8px 2px 8px;
+  transform:rotate(-35deg);
+  animation:leafFloat 2.6s ease-in-out infinite;
+}
+
+@keyframes leafFloat{
+  0%,100%{transform:rotate(-35deg) translateY(0);}
+  50%{transform:rotate(-35deg) translateY(-2px);}
+}
 </style>
 </head>
 <body>
@@ -640,8 +713,8 @@ img{display:block;}
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/powder.webp" alt="Digestive Powder" loading="lazy">
-        <div class="card-portrait-badge tag-gold">Aids Digestion</div>
       </div>
+      <div class="home-tag"><span class="leaf"></span>Aids Digestion</div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Digestive Powder</div>
 
@@ -657,7 +730,7 @@ img{display:block;}
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/paan-premix.webp" alt="Paan Premix" loading="lazy">
-        <div class="card-portrait-badge tag-gold">Mouth Freshener</div>
+        <div class="home-tag"><span class="leaf"></span>Mouth Freshener</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Sweet Paan Premix</div>
@@ -674,7 +747,7 @@ img{display:block;}
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/gulkandjar.webp" alt="Kesar Gulkand" loading="lazy">
-        <div class="card-portrait-badge tag-gold">Most Loved</div>
+        <div class="home-tag"><span class="leaf"></span>Royal Kesar</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Kesar Gulkand</div>
