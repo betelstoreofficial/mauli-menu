@@ -348,6 +348,49 @@ img{display:block;}
     padding-right:var(--sp4);
   }
 }
+
+/* BASE TAG (default system) */
+.tag{
+  display:inline-flex;
+  align-items:center;
+
+  font-size:0.52rem;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+
+  padding:4px 10px;
+  border-radius:999px;
+
+  backdrop-filter:blur(6px);
+
+  border:1px solid rgba(27,93,47,0.18);
+  background:rgba(27,93,47,0.06);
+  color:var(--g500);
+}
+
+/* HIGH IMPORTANCE (gold hint) */
+.tag-premium{
+  color:var(--au200);
+  border:1px solid rgba(212,168,74,0.5);
+  background:linear-gradient(
+    145deg,
+    rgba(20,53,32,0.85),
+    rgba(11,31,17,0.9)
+  );
+}
+
+/* DARK (for strong callouts like Bestseller) */
+.tag-strong{
+  background:#0b1f11;
+  color:#fff;
+  border:none;
+}
+
+/* SOFT (low priority tags) */
+.tag-soft{
+  opacity:0.7;
+}
 /* ===== PREMIUM HOME TAG (REPLACES ONLY HOME BADGES) ===== */
 .home-tag{
   position:absolute;
@@ -380,6 +423,34 @@ img{display:block;}
   backdrop-filter:blur(8px);
 }
 
+  /* Fire Tag */
+.tag-flame{
+  color:#ffb36b;
+  border:1px solid rgba(255,140,0,0.5);
+
+  background:linear-gradient(
+    145deg,
+    rgba(60,20,0,0.9),
+    rgba(20,10,0,0.9)
+  );
+
+  box-shadow:0 0 8px rgba(255,120,0,0.25);
+}
+
+/*Ice Tag*/
+.tag-chill{
+  color:#bfe9ff;
+  border:1px solid rgba(120,200,255,0.5);
+
+  background:linear-gradient(
+    145deg,
+    rgba(0,30,40,0.9),
+    rgba(0,15,25,0.9)
+  );
+
+  box-shadow:0 0 8px rgba(120,200,255,0.2);
+}
+
 /* GOLD SHIMMER */
 .home-tag::after{
   content:'';
@@ -405,21 +476,6 @@ img{display:block;}
 @keyframes goldShine{
   0%{transform:translateX(-100%);}
   100%{transform:translateX(100%);}
-}
-
-/* 🌿 LEAF */
-.home-tag .leaf{
-  width:9px;
-  height:9px;
-  background:linear-gradient(135deg,#3da058,#1b5e2f);
-  border-radius:2px 8px 2px 8px;
-  transform:rotate(-35deg);
-  animation:leafFloat 2.6s ease-in-out infinite;
-}
-
-@keyframes leafFloat{
-  0%,100%{transform:rotate(-35deg) translateY(0);}
-  50%{transform:rotate(-35deg) translateY(-2px);}
 }
 </style>
 </head>
@@ -508,7 +564,7 @@ img{display:block;}
         <div class="card-desc">15 signature fruit crush flavours - choose your mood</div>
         <div class="card-footer">
           <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div>
-          <span class="tag tag-dark">Must Try</span>
+          <span class="tag">Popular</span>
         </div>
       </div>
     </div>
@@ -519,7 +575,7 @@ img{display:block;}
         <div class="card-desc">Cooling kesar gulkand, softened by a rose syrup finish</div>
         <div class="card-footer">
           <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>80</div></div>
-          <span class="tag tag-green">Recommended</span>
+          <span class="tag tag-soft">Safe</span>
         </div>
       </div>
     </div>
@@ -536,7 +592,7 @@ img{display:block;}
       <div class="card-body">
         <div class="card-name">Chutney Burst</div>
         <div class="card-desc">Tangy chutneys, signature premix, silver varkh - palate cleanser</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div><span class="tag tag-muted">Non Sweet</span></div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div><span class="tag tag-soft">Non Sweet</span></div>
       </div>
     </div>
     <div class="card fade-in">
@@ -544,7 +600,7 @@ img{display:block;}
       <div class="card-body">
         <div class="card-name">Mauli Classic</div>
         <div class="card-desc">Signature premix paan, rose syrup drizzle - the gentlest option</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>60</div></div><span class="tag tag-muted">Light</span></div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>60</div></div><span class="tag tag-soft">Light</span></div>
       </div>
     </div>
   </div>
@@ -561,19 +617,8 @@ img{display:block;}
 
     <div class="card-portrait">
       <div class="card-portrait-img">
-        <img src="images/nutella.webp" alt="Choco Nutella" loading="lazy">
-        <div class="card-portrait-badge tag-dark" style="background:#0b1f11;color:rgba(255,255,255,0.88);">Most Ordered</div>
-      </div>
-      <div class="card-portrait-body">
-        <div class="card-portrait-name">Choco Nutella</div>
-        <div class="card-portrait-price"><span class="price-sym">₹</span>150</div>
-      </div>
-    </div>
-
-    <div class="card-portrait">
-      <div class="card-portrait-img">
         <img src="images/lotus-biscoff.webp" alt="Lotus Biscoff" loading="lazy">
-        <div class="card-portrait-badge tag-gold" style="background:var(--au-bg);color:var(--au400);border:1px solid var(--au-border);">New</div>
+        <div class="card-portrait-badge tag-premium">Trending</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Lotus Biscoff</div>
@@ -584,7 +629,7 @@ img{display:block;}
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/kunafa-pistachio.webp" alt="Kunafa Pistachio" loading="lazy">
-        <div class="card-portrait-badge tag-gold" style="background:var(--au-bg);color:var(--au400);border:1px solid var(--au-border);">Special</div>
+        <div class="card-portrait-badge tag-premium">Limited</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Kunafa Pistachio</div>
@@ -594,8 +639,19 @@ img{display:block;}
 
     <div class="card-portrait">
       <div class="card-portrait-img">
+        <img src="images/nutella.webp" alt="Choco Nutella" loading="lazy">
+        <div class="card-portrait-badge tag-strong">Bestseller</div>
+      </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Choco Nutella</div>
+        <div class="card-portrait-price"><span class="price-sym">₹</span>150</div>
+      </div>
+    </div>
+    
+    <div class="card-portrait">
+      <div class="card-portrait-img">
         <img src="images/dark-chocolate.webp" alt="Dark Chocolate" loading="lazy">
-        <div class="card-portrait-badge tag-green" style="background:rgba(27,94,47,0.1);color:var(--g500);border:1px solid rgba(27,94,47,0.18);">Must Try</div>
+        <div class="card-portrait-badge tag">Intense</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Dark Chocolate</div>
@@ -606,6 +662,7 @@ img{display:block;}
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/milk-chocolate.webp" alt="Milk Chocolate" loading="lazy">
+        <div class="card-portrait-badge tag-soft">Classic</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Milk Chocolate</div>
@@ -616,6 +673,7 @@ img{display:block;}
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/white-chocolate.webp" alt="White Chocolate" loading="lazy">
+        <div class="card-portrait-badge tag-soft">Sweet</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">White Chocolate</div>
@@ -638,24 +696,24 @@ img{display:block;}
       <div class="card-img"><img src="images/rampyari.webp" alt="Rampyari Royale" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Rampyari Royale</div>
-        <div class="card-desc">Royal premix, kesar gulkand, dates crunch, gold chutney, silver varkh</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div><span class="tag tag-gold">Premium</span></div>
+        <div class="card-desc">Premix + Gulkand, various chutney, dates crunch, kesar supari, silver varkh</div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div><span class="tag tag-premium">Signature</span></div>
       </div>
     </div>
     <div class="card fade-in">
       <div class="card-img"><img src="images/maghai.webp" alt="Royal Maghai" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Royal Maghai</div>
-        <div class="card-desc">Authentic Maghai Jodi Paan, heritage premix, silver varakh - 2 pcs</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div><span class="tag tag-muted">Heritage</span></div>
+        <div class="card-desc">Authentic Maghai Jodi Paan, heritage premix, various chutneys, silver varakh - 2 pcs</div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div><span class="tag tag">Heritage</span></div>
       </div>
     </div>
     <div class="card fade-in">
       <div class="card-img"><img src="images/dryfruit.webp" alt="Royal Dry Fruit" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Royal Dry Fruit</div>
-        <div class="card-desc">Chocolate paan with select dry fruits - regular or crunchy</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-gold">Rich</span></div>
+        <div class="card-desc">Chocolate paan with variety of dry fruits - heavy + crunchy</div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-premium">Loaded</span></div>
       </div>
     </div>
   </div>
@@ -672,7 +730,7 @@ img{display:block;}
       <div class="card-body">
         <div class="card-name">Fire Paan</div>
         <div class="card-desc">The legendary flaming paan ritual - a moment of theatre</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-dark">Must Try</span></div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-flame">Flame</span></div>
       </div>
     </div>
     <div class="card fade-in">
@@ -680,7 +738,7 @@ img{display:block;}
       <div class="card-body">
         <div class="card-name">Ice Cream Paan</div>
         <div class="card-desc">Paan's warmth meets a fresh scoop of ice cream</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-muted">Dessert</span></div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-chill">Chill</span></div>
       </div>
     </div>
   </div>
