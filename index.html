@@ -59,100 +59,84 @@ img{display:block;}
 .hero-tagline{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;line-height:1.35;margin-bottom:var(--sp5);letter-spacing:-0.01em;}
 .hero-tagline em{color:var(--au100);font-style:normal;}
 
-/* ULTRA PREMIUM USP */
+/* CLEAN PREMIUM USP */
 .usp-strip{
-  position:relative;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:18px;
+  gap:14px;
 
-  margin-top:10px;
-  padding:8px 18px;
+  margin-top:8px;
+  padding:6px 14px;
 
   border-radius:999px;
 
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(212,168,74,0.22);
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(212,168,74,0.18);
 
-  backdrop-filter:blur(14px);
+  backdrop-filter:blur(10px);
 
-  box-shadow:
-    inset 0 0 30px rgba(212,168,74,0.05),
-    0 8px 30px rgba(0,0,0,0.35);
-}
-
-/* GOLD FLOW LINE */
-.usp-strip::before{
-  content:'';
-  position:absolute;
-  left:10%;
-  right:10%;
-  top:-1px;
-  height:1px;
-
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(240,208,128,0.8),
-    transparent
-  );
-
-  opacity:0.7;
+  font-size:0.58rem;
+  letter-spacing:0.08em;
 }
 
 /* TEXT */
 .usp-strip span{
-  position:relative;
-  font-size:0.6rem;
-  font-weight:500;
-  letter-spacing:0.1em;
-  color:rgba(255,255,255,0.7);
+  color:rgba(255,255,255,0.65);
   white-space:nowrap;
 }
 
 /* DOT */
 .usp-strip span:not(:last-child)::after{
   content:'•';
-  margin-left:18px;
-  color:rgba(212,168,74,0.7);
+  margin-left:14px;
+  color:rgba(212,168,74,0.5);
 }
 
-/* PRIMARY USP */
+/* LAST USP HIGHLIGHT */
 .usp-strip span:last-child{
   color:var(--au100);
   font-weight:600;
 }
-
-/* SUBTLE SHIMMER */
-@keyframes uspGlow{
-  0%{opacity:0.4;}
-  50%{opacity:1;}
-  100%{opacity:0.4;}
-}
-.usp-strip::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  background:radial-gradient(circle at 50% 0%, rgba(240,208,128,0.15), transparent 70%);
-  animation:uspGlow 4s ease-in-out infinite;
-  pointer-events:none;
-}
-/* COLLAPSIBLE */
+  
+/* MODERN COLLAPSE */
 .collapsible{
-  overflow:hidden;
-  transition:max-height 0.4s ease;
+  display:none;
 }
 
-.collapsible.collapsed{
-  max-height:260px; /* shows ~2 cards */
-  mask-image:linear-gradient(to bottom, black 70%, transparent 100%);
+.collapsible.open{
+  display:flex;
+  flex-direction:column;
 }
 
-.collapsible.expanded{
-  max-height:2000px;
-  mask-image:none;
+/* TITLE WITH TOGGLE */
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  cursor:pointer;
+  position:relative;
+}
+
+/* RIGHT ARROW */
+.section-title::after{
+  content:'›';
+  font-size:1.4rem;
+  color:var(--au300);
+  transform:rotate(90deg);
+  transition:transform 0.25s ease, opacity 0.2s;
+  opacity:0.7;
+}
+
+/* COLLAPSED STATE */
+.section-title.collapsed::after{
+  transform:rotate(0deg);
+  opacity:0.5;
+}
+
+/* ACTIVE (OPEN) GOLD GLOW */
+.section-title.open{
+  text-shadow:0 0 12px rgba(240,208,128,0.25);
 }
 
 /* clickable title */
@@ -363,7 +347,6 @@ img{display:block;}
   <div class="usp-strip">
   <span>No Tobacco</span>
   <span>Supari Free</span>
-  <span>Spit Free</span>
   <span>Supports Digestion</span>
 </div>
 </header>
@@ -425,7 +408,7 @@ img{display:block;}
 <section id="after-dinner" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Start Here <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title" onclick="toggleSection('afterDinnerList', this)">After Dinner ▾</h2>
+    <h2 class="section-title collapsed" onclick="toggleSection('afterDinnerList', this)">After Dinner</h2>
     <p class="section-sub">Best enjoyed after meals - for a calm, digestive finish</p>
   </div>
   <div class="card-list collapsible collapsed" id="afterDinnerList">
@@ -558,7 +541,7 @@ img{display:block;}
 <section id="royal" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Premium <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title" onclick="toggleSection('signatureList', this)">Signature ▾</h2>
+    <h2 class="section-title collapsed" onclick="toggleSection('afterDinnerList', this)">Signature</h2>
     <p class="section-sub">Heritage recipes - each made to order</p>
   </div>
   <div class="card-list collapsible collapsed" id="signatureList">
@@ -801,14 +784,16 @@ function updateNav() {
 function toggleSection(id, el){
   const section = document.getElementById(id);
 
-  if(section.classList.contains('collapsed')){
-    section.classList.remove('collapsed');
-    section.classList.add('expanded');
-    el.innerHTML = el.innerHTML.replace('▾','▴');
+  const isOpen = section.classList.contains('open');
+
+  if(isOpen){
+    section.classList.remove('open');
+    el.classList.remove('open');
+    el.classList.add('collapsed');
   }else{
-    section.classList.add('collapsed');
-    section.classList.remove('expanded');
-    el.innerHTML = el.innerHTML.replace('▴','▾');
+    section.classList.add('open');
+    el.classList.add('open');
+    el.classList.remove('collapsed');
   }
 }
 
@@ -825,6 +810,10 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.06 });
 fadeEls.forEach(el => obs.observe(el));
+window.addEventListener('load', () => {
+  const el = document.querySelector('[onclick*="afterDinnerList"]');
+  if(el) toggleSection('afterDinnerList', el);
+});
 </script>
 </body>
 </html>
