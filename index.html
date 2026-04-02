@@ -58,73 +58,106 @@ img{display:block;}
 .hero-line{width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--au200),transparent);margin:0 auto var(--sp3);}
 .hero-tagline{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;line-height:1.35;margin-bottom:var(--sp5);letter-spacing:-0.01em;}
 .hero-tagline em{color:var(--au100);font-style:normal;}
-.hero-usps{display:flex;gap:6px;flex-wrap:nowrap;justify-content:space-between;width:100%;}
-.usp-pill{
-  flex:1; /* equal width */
-  min-width:0; /* allow shrinking */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
 
-  padding:6px 6px;
-  border-radius:999px;
-
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(212,168,74,0.35);
-
-  position:relative;
-
-  box-shadow:
-    0 0 0 0.5px rgba(212,168,74,0.2),
-    inset 0 0 10px rgba(212,168,74,0.06);
-}
-.usp-pill img{width:14px;height:14px;filter:brightness(0) invert(1);opacity:0.75;}
-.usp-pill-txt{font-size:0.58rem;font-weight:600;letter-spacing:0.05em;color:rgba(255,255,255,0.72);white-space:nowrap;}
-/* APPLE STYLE USP STRIP */
+/* ULTRA PREMIUM USP */
 .usp-strip{
+  position:relative;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:14px;
+  gap:18px;
 
-  margin-top:8px;
-  padding:6px 14px;
+  margin-top:10px;
+  padding:8px 18px;
 
   border-radius:999px;
 
-  /* glass + gold hint */
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(212,168,74,0.25);
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(212,168,74,0.22);
 
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(14px);
 
   box-shadow:
-    inset 0 0 20px rgba(212,168,74,0.06),
-    0 4px 20px rgba(0,0,0,0.25);
+    inset 0 0 30px rgba(212,168,74,0.05),
+    0 8px 30px rgba(0,0,0,0.35);
+}
+
+/* GOLD FLOW LINE */
+.usp-strip::before{
+  content:'';
+  position:absolute;
+  left:10%;
+  right:10%;
+  top:-1px;
+  height:1px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(240,208,128,0.8),
+    transparent
+  );
+
+  opacity:0.7;
 }
 
 /* TEXT */
 .usp-strip span{
   position:relative;
-  font-size:0.62rem;
+  font-size:0.6rem;
   font-weight:500;
-  letter-spacing:0.08em;
-  color:rgba(255,255,255,0.75);
+  letter-spacing:0.1em;
+  color:rgba(255,255,255,0.7);
   white-space:nowrap;
 }
 
-/* DOT SEPARATOR */
+/* DOT */
 .usp-strip span:not(:last-child)::after{
   content:'•';
-  margin-left:14px;
-  color:rgba(212,168,74,0.6);
+  margin-left:18px;
+  color:rgba(212,168,74,0.7);
 }
 
-/* HIGHLIGHT KEY USP */
+/* PRIMARY USP */
 .usp-strip span:last-child{
   color:var(--au100);
   font-weight:600;
+}
+
+/* SUBTLE SHIMMER */
+@keyframes uspGlow{
+  0%{opacity:0.4;}
+  50%{opacity:1;}
+  100%{opacity:0.4;}
+}
+.usp-strip::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:radial-gradient(circle at 50% 0%, rgba(240,208,128,0.15), transparent 70%);
+  animation:uspGlow 4s ease-in-out infinite;
+  pointer-events:none;
+}
+/* COLLAPSIBLE */
+.collapsible{
+  overflow:hidden;
+  transition:max-height 0.4s ease;
+}
+
+.collapsible.collapsed{
+  max-height:260px; /* shows ~2 cards */
+  mask-image:linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+.collapsible.expanded{
+  max-height:2000px;
+  mask-image:none;
+}
+
+/* clickable title */
+.section-title{
+  cursor:pointer;
 }
 /* ENTRY HOOK */
 .entry-hook{background:linear-gradient(135deg,#0b1f11 0%,#143520 100%);padding:var(--sp4) var(--sp4) var(--sp5);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
@@ -392,10 +425,10 @@ img{display:block;}
 <section id="after-dinner" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Start Here <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title">After Dinner</h2>
+    <h2 class="section-title" onclick="toggleSection('afterDinnerList', this)">After Dinner ▾</h2>
     <p class="section-sub">Best enjoyed after meals - for a calm, digestive finish</p>
   </div>
-  <div class="card-list">
+  <div class="card-list collapsible collapsed" id="afterDinnerList">
     <div class="card fade-in">
       <div class="card-img"><img src="images/flavor.webp" alt="Flavour Splash" loading="lazy"></div>
       <div class="card-body">
@@ -525,10 +558,10 @@ img{display:block;}
 <section id="royal" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Premium <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title">Signature</h2>
+    <h2 class="section-title" onclick="toggleSection('signatureList', this)">Signature ▾</h2>
     <p class="section-sub">Heritage recipes - each made to order</p>
   </div>
-  <div class="card-list">
+  <div class="card-list collapsible collapsed" id="signatureList">
     <div class="card fade-in">
       <div class="card-img"><img src="images/rampyari.webp" alt="Rampyari Royale" loading="lazy"></div>
       <div class="card-body">
@@ -763,6 +796,20 @@ function updateNav() {
   if (window.scrollY < 60) closestIndex = 0;
   if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 5) closestIndex = anchors.length - 1;
   setActive(closestIndex);
+}
+
+function toggleSection(id, el){
+  const section = document.getElementById(id);
+
+  if(section.classList.contains('collapsed')){
+    section.classList.remove('collapsed');
+    section.classList.add('expanded');
+    el.innerHTML = el.innerHTML.replace('▾','▴');
+  }else{
+    section.classList.add('collapsed');
+    section.classList.remove('expanded');
+    el.innerHTML = el.innerHTML.replace('▴','▾');
+  }
 }
 
 let ticking = false;
