@@ -151,9 +151,8 @@ img{display:block;}
 }
 
 /* clickable title */
-.section-title{
-  cursor:pointer;
-}
+.section-title{cursor:pointer;}
+
 /* ENTRY HOOK */
 .entry-hook{background:linear-gradient(135deg,#0b1f11 0%,#143520 100%);padding:var(--sp4) var(--sp4) var(--sp5);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
 .entry-hook::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,74,0.1),transparent 70%);pointer-events:none;}
@@ -203,7 +202,7 @@ img{display:block;}
 .card-list{display:flex;flex-direction:column;gap:var(--sp3);padding:0 var(--sp4);}
 .card{border-radius:var(--r-md);border:1px solid var(--border);background:#fff;display:flex;align-items:stretch;overflow:hidden;min-height:90px;box-shadow:0 1px 4px rgba(0,0,0,0.03);transition:transform 0.15s,background 0.15s;position:relative;}
 .card:active{transform:scale(0.97);background:rgba(27,93,47,0.025);}
-.card-img{width:92px;flex-shrink:0;background:var(--surface2);overflow:hidden;align-self:stretch;}
+.card-img{width:92px;flex-shrink:0;background:var(--surface2);position:relative;overflow:hidden;align-self:stretch;}
 .card-img img{width:100%;height:100%;object-fit:cover;}
 .card-body{flex:1;padding:var(--sp3) var(--sp3) var(--sp3) var(--sp3);display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;}
 .card-name{font-weight:700;font-size:0.87rem;color:var(--text);line-height:1.3;}
@@ -270,11 +269,35 @@ img{display:block;}
 .section-divider-label{font-size:0.55rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
 
 /* VARIANT PRICING */
-.variant-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2);margin-top:var(--sp4);}
-.variant{border:1.5px solid var(--border);border-radius:var(--r-md);background:#fff;padding:var(--sp3) var(--sp2);display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;min-height:76px;justify-content:center;}
-.variant-center{border-color:var(--au300);background:linear-gradient(145deg,var(--au-bg),#fff);transform:scaleY(1.04);box-shadow:0 3px 12px rgba(185,130,40,0.16);}
-.variant-price{font-size:0.92rem;font-weight:700;color:var(--g500);line-height:1;letter-spacing:-0.01em;}
-.variant-label{font-size:0.55rem;font-weight:600;color:var(--text2);line-height:1.2;}
+.variant-row{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
+.variant{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:6px 8px;
+  border-radius:8px;
+
+  background:transparent;
+  border:none;
+
+  font-size:0.68rem;
+  font-weight:600;
+}
+.variant-center{
+  background:rgba(212,168,74,0.12);
+  border-radius:8px;
+}
+.variant-label{
+  font-size:0.68rem;
+  color:var(--text2);
+}
+
+.variant-price{
+  font-size:0.9rem;
+  font-weight:700;
+  color:var(--g500);
+}
 .variant-size{font-size:0.49rem;color:var(--faint);}
 .variant-center .variant-label{color:var(--au400);font-weight:700;}
 .variant:not(.variant-center) .variant-price{opacity:0.72;}
@@ -311,7 +334,53 @@ img{display:block;}
 
 /* LEAF PILLS */
 .leaf-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2);margin:var(--sp4) var(--sp4) var(--sp10);}
-.leaf-pill{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:var(--sp2);text-align:center;}
+.leaf-pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  background:var(--surface);
+  border:1px solid var(--border);
+
+  border-radius:10px;
+  padding:10px 12px;
+
+  justify-content:flex-start;
+}
+
+.leaf-icon{
+  width:18px;
+  height:18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  opacity:0.7;
+}
+
+.leaf-icon svg{
+  width:100%;
+  height:100%;
+
+  stroke:var(--g500);
+  stroke-width:1.6;
+  fill:none;
+
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.leaf-pill.spicy .leaf-icon svg{
+  stroke:#2f7a3f; /* deeper green */
+}
+
+.leaf-pill.sweet .leaf-icon svg{
+  stroke:#3da058; /* lighter green */
+}
+
+.leaf-pill.royal .leaf-icon svg{
+  stroke:#c9952a; /* gold hint */
+}
 .leaf-name{font-size:0.72rem;font-weight:700;color:var(--g500);}
 .leaf-type{font-size:0.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;}
 
@@ -341,6 +410,12 @@ img{display:block;}
   .h-scroll-row{
     padding-left:var(--sp4);
     padding-right:var(--sp4);
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation:none !important;
+    transition:none !important;
   }
 }
 
@@ -417,85 +492,29 @@ img{display:block;}
 
   backdrop-filter:blur(8px);
 }
+/*Fire*/
+.card-fire{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,120,0,0.08),
+      rgba(255,80,0,0.03) 40%,
+      #ffffff 70%
+    );
 
-/*Fire tag*/
-.tag-flame{
-  position:relative;
-  color:#ffd2a6;
-
-  background:linear-gradient(
-    145deg,
-    #2a0f00,
-    #120500
-  );
-
-  border:1px solid transparent;
-
-  box-shadow:
-    0 0 10px rgba(255,120,0,0.35),
-    inset 0 0 8px rgba(255,80,0,0.25);
+  border:1px solid rgba(255,120,0,0.18);
 }
+/*Ice*/
+.card-ice{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(120,200,255,0.10),
+      rgba(180,240,255,0.05) 40%,
+      #ffffff 70%
+    );
 
-/* FIRE BORDER GLOW */
-.tag-flame::before{
-  content:'';
-  position:absolute;
-  inset:-1px;
-  border-radius:inherit;
-  padding:1px;
-
-  background:linear-gradient(
-    120deg,
-    #ff6a00,
-    #ffb347,
-    #ff3d00
-  );
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-}
-
-/*Ice Tag*/
-.tag-chill{
-  position:relative;
-  color:#d8f3ff;
-
-  background:linear-gradient(
-    145deg,
-    #001f2a,
-    #000c14
-  );
-
-  border:1px solid transparent;
-
-  box-shadow:
-    0 0 10px rgba(120,200,255,0.35),
-    inset 0 0 8px rgba(120,200,255,0.2);
-}
-
-/* ICE BORDER */
-.tag-chill::before{
-  content:'';
-  position:absolute;
-  inset:-1px;
-  border-radius:inherit;
-  padding:1px;
-
-  background:linear-gradient(
-    120deg,
-    #7fe3ff,
-    #c9f6ff,
-    #4fc3f7
-  );
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  border:1px solid rgba(120,200,255,0.22);
 }
 
 /* GOLD SHIMMER */
@@ -769,20 +788,20 @@ img{display:block;}
     <div class="section-divider-line"></div>
   </div>
   <div class="card-list">
-    <div class="card fade-in">
+    <div class="card fade-in card-fire">
       <div class="card-img"><img src="images/fire.webp" alt="Fire Paan" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Fire Paan</div>
         <div class="card-desc">The legendary flaming paan ritual - a moment of theatre</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-flame">Flame</span></div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div></div>
       </div>
     </div>
-    <div class="card fade-in">
+    <div class="card fade-in card-ice">
       <div class="card-img"><img src="images/icecream.webp" alt="Ice Cream Paan" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Ice Cream Paan</div>
         <div class="card-desc">Paan's warmth meets a fresh scoop of ice cream</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-chill">Chill</span></div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div></div>
       </div>
     </div>
   </div>
@@ -800,7 +819,7 @@ img{display:block;}
       <div class="card-body">
         <div class="card-name">Paan Sparkle</div>
         <div class="card-desc">Paan drink with lemon and mint soda - light, refreshing, digestive</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-green">Refreshing</span></div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag">Refreshing</span></div>
       </div>
     </div>
   </div>
@@ -825,10 +844,21 @@ img{display:block;}
       <div class="card-portrait-body">
         <div class="card-portrait-name">Ayu Digest</div>
 
-        <div style="font-size:0.6rem;color:var(--muted);line-height:1.4;margin-top:2px;">
-          10g · ₹79<br>
-          50g · ₹249<br>
-          100g · ₹449
+        <div class="variant-row">
+          <div class="variant">
+            <div class="variant-label">10g</div>
+            <div class="variant-price">₹79</div>
+          </div>
+        
+          <div class="variant variant-center">
+            <div class="variant-label">50g</div>
+            <div class="variant-price">₹249</div>
+          </div>
+        
+          <div class="variant">
+            <div class="variant-label">100g</div>
+            <div class="variant-price">₹449</div>
+          </div>
         </div>
       </div>
     </div>
@@ -837,15 +867,26 @@ img{display:block;}
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/paan-premix.webp" alt="Paan Premix" loading="lazy">
-        <div class="home-tag"></span>Mouth Freshener</div>
+        <div class="home-tag">Mouth Freshener</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Sweet Premix</div>
-
-        <div style="font-size:0.6rem;color:var(--muted);line-height:1.4;margin-top:2px;">
-          100g · ₹149<br>
-          250g · ₹299<br>
-          500g · ₹549
+        
+        <div class="variant-row">
+          <div class="variant">
+            <div class="variant-label">100g</div>
+            <div class="variant-price">₹149</div>
+          </div>
+        
+          <div class="variant variant-center">
+            <div class="variant-label">250g</div>
+            <div class="variant-price">₹299</div>
+          </div>
+        
+          <div class="variant">
+            <div class="variant-label">500g</div>
+            <div class="variant-price">₹549</div>
+          </div>
         </div>
       </div>
     </div>
@@ -854,14 +895,25 @@ img{display:block;}
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/gulkandjar.webp" alt="Kesar Gulkand" loading="lazy">
-        <div class="home-tag"></span>Cooling</div>
+        <div class="home-tag">Cooling</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Kesar Gulkand</div>
-        <div style="font-size:0.6rem;color:var(--muted);line-height:1.4;margin-top:2px;">
-          200g · ₹189<br>
-          500g · ₹449<br>
-          1kg · ₹859
+        <div class="variant-row">
+          <div class="variant">
+            <div class="variant-label">200g</div>
+            <div class="variant-price">₹189</div>
+          </div>
+        
+          <div class="variant variant-center">
+            <div class="variant-label">500g</div>
+            <div class="variant-price">₹449</div>
+          </div>
+        
+          <div class="variant">
+            <div class="variant-label">1 kg</div>
+            <div class="variant-price">₹859</div>
+          </div>
         </div>
       </div>
     </div>
@@ -902,9 +954,31 @@ img{display:block;}
     <p style="font-size:0.57rem;color:rgba(255,255,255,0.35);text-align:center;margin-top:var(--sp4);font-style:italic;">Ask at the counter for recommended combinations</p>
   </div>
   <div class="leaf-row">
-    <div class="leaf-pill"><div class="leaf-name">Banarasi</div><div class="leaf-type">Spicy</div></div>
-    <div class="leaf-pill"><div class="leaf-name">Calcutti</div><div class="leaf-type">Sweet</div></div>
-    <div class="leaf-pill"><div class="leaf-name">Maghai</div><div class="leaf-type">Royal</div></div>
+      <div class="leaf-name">Banarasi</div><div class="leaf-type">Spicy</div></div>
+    <div class="leaf-pill spicy">
+      <span class="leaf-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 13C4 7 10 3 20 4C19 14 15 20 9 20C6 20 4 18 4 15Z"/>
+          <path d="M4 15C8 14 12 12 18 6"/>
+        </svg>
+      </span>
+      <div class="leaf-name">Calcutti</div><div class="leaf-type">Sweet</div></div>
+    <div class="leaf-pill sweet">
+      <span class="leaf-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 13C4 7 10 3 20 4C19 14 15 20 9 20C6 20 4 18 4 15Z"/>
+          <path d="M4 15C8 14 12 12 18 6"/>
+        </svg>
+      </span>
+      <div class="leaf-name">Maghai</div><div class="leaf-type">Royal</div></div>
+    <div class="leaf-pill">
+      <span class="leaf-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 13C4 7 10 3 20 4C19 14 15 20 9 20C6 20 4 18 4 15Z"/>
+          <path d="M4 15C8 14 12 12 18 6"/>
+        </svg>
+      </span>
+    </div>
   </div>
 </section>
 
