@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+
 :root {
   --g900:#071409; --g800:#0b1f11; --g700:#143520;
   --g600:#1b4d2c; --g500:#1b5e2f; --g400:#2a7a42; --g300:#3da058;
@@ -21,137 +22,48 @@
   --glass-light-bg:rgba(255,255,255,0.08);
   --glass-light-border:rgba(255,255,255,0.14);
   --glass-light-shadow:inset 0 1px 0 rgba(255,255,255,0.16);
-  --glass-white-bg:rgba(255,255,255,0.82);
-  --glass-white-border:rgba(255,255,255,0.5);
   --sp1:4px;--sp2:8px;--sp3:12px;--sp4:16px;--sp5:20px;
   --sp6:24px;--sp8:32px;--sp10:40px;
   --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;
 }
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;font-size:16px;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;padding-bottom:88px;-webkit-font-smoothing:antialiased;}
 img{display:block;}
 
-/* SCROLL PROGRESS */
 .scroll-progress{position:fixed;top:0;left:0;z-index:999;height:2px;width:0%;background:linear-gradient(90deg,var(--au400),var(--au100),var(--au400));transition:width 0.1s linear;border-radius:0 99px 99px 0;}
 
-/* GLASS */
-.glass-dark{background:rgba(11,25,17,0.85);border:1px solid rgba(255,255,255,0.1);}
+.glass-dark{background:rgba(11,25,17,0.88);border:1px solid rgba(255,255,255,0.1);}
 @supports(backdrop-filter:blur(1px)){
   .glass-dark{background:var(--glass-light-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border:1px solid var(--glass-light-border);box-shadow:var(--glass-light-shadow);}
 }
-.glass-white{background:rgba(255,255,255,0.96);border-top:1px solid rgba(255,255,255,0.9);box-shadow:0 -1px 0 rgba(27,93,47,0.06),0 -8px 32px rgba(0,0,0,0.08),inset 0 1px 0 rgba(255,255,255,1);}
+.glass-white{background:rgba(255,255,255,0.96);border-top:1px solid rgba(255,255,255,0.9);box-shadow:0 -1px 0 rgba(27,93,47,0.06),0 -8px 32px rgba(0,0,0,0.08),inset 0 1px 0 #fff;}
 @supports(backdrop-filter:blur(1px)){
-  .glass-white{background:linear-gradient(180deg,rgba(255,255,255,0.92) 0%,rgba(245,250,246,0.88) 100%);backdrop-filter:saturate(220%) blur(28px);-webkit-backdrop-filter:saturate(220%) blur(28px);border-top:1px solid rgba(255,255,255,0.95);box-shadow:0 -1px 0 rgba(27,93,47,0.08),0 -12px 40px rgba(0,0,0,0.1),0 -4px 16px rgba(27,93,47,0.04),inset 0 1px 0 rgba(255,255,255,1),inset 0 0 0 0.5px rgba(255,255,255,0.6);}
+  .glass-white{background:linear-gradient(180deg,rgba(255,255,255,0.92) 0%,rgba(245,250,246,0.88) 100%);backdrop-filter:saturate(220%) blur(28px);-webkit-backdrop-filter:saturate(220%) blur(28px);border-top:1px solid rgba(255,255,255,0.95);box-shadow:0 -1px 0 rgba(27,93,47,0.08),0 -12px 40px rgba(0,0,0,0.1),0 -4px 16px rgba(27,93,47,0.04),inset 0 1px 0 #fff,inset 0 0 0 0.5px rgba(255,255,255,0.6);}
 }
 .glass-warm{background:rgba(250,245,232,0.97);border-top:1px solid var(--au-border);border-bottom:1px solid var(--au-border);}
 @supports(backdrop-filter:blur(1px)){
   .glass-warm{background:rgba(250,245,232,0.88);backdrop-filter:saturate(200%) blur(16px);-webkit-backdrop-filter:saturate(200%) blur(16px);}
 }
 
-/* HERO */
 .hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 140% 80% at 85% -10%,rgba(212,168,74,0.22) 0%,transparent 55%),radial-gradient(ellipse 100% 70% at 5% 30%,rgba(61,160,88,0.15) 0%,transparent 55%),linear-gradient(158deg,#060f08 0%,#0b1f11 28%,#143520 62%,#1e5830 100%);padding:calc(env(safe-area-inset-top) + var(--sp8)) var(--sp6) var(--sp6);display:flex;flex-direction:column;align-items:center;text-align:center;isolation:isolate;}
 .hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.042'/%3E%3C/svg%3E");mix-blend-mode:overlay;}
 .hero>*{position:relative;z-index:2;}
 .hero-logo{width:180px;height:auto;filter:drop-shadow(0 4px 18px rgba(0,0,0,0.45));margin-bottom:var(--sp5);}
 .hero-since{font-size:0.57rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-bottom:var(--sp3);}
 .hero-line{width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--au200),transparent);margin:0 auto var(--sp3);}
-.hero-tagline{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;line-height:1.35;margin-bottom:var(--sp5);letter-spacing:-0.01em;}
+.hero-tagline{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;line-height:1.35;margin-bottom:var(--sp2);letter-spacing:-0.01em;}
 .hero-tagline em{color:var(--au100);font-style:normal;}
+.hero-promise{font-size:0.62rem;letter-spacing:0.06em;color:rgba(255,255,255,0.4);margin-bottom:var(--sp4);font-style:italic;}
+.usp-strip{display:flex;justify-content:center;align-items:center;gap:14px;padding:6px 16px;border-radius:99px;background:rgba(255,255,255,0.04);border:1px solid rgba(212,168,74,0.2);font-size:0.57rem;letter-spacing:0.08em;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.usp-strip::-webkit-scrollbar{display:none;}
+.usp-strip span{color:rgba(255,255,255,0.6);white-space:nowrap;flex-shrink:0;}
+.usp-strip span:not(:last-child)::after{content:'·';margin-left:14px;color:rgba(212,168,74,0.45);}
+.usp-strip span:last-child{color:var(--au100);font-weight:600;}
 
-/* CLEAN PREMIUM USP */
-.usp-strip{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:14px;
 
-  margin-top:8px;
-  padding:6px 14px;
 
-  border-radius:999px;
-
-  background:rgba(255,255,255,0.03);
-  border:1px solid rgba(212,168,74,0.18);
-
-  font-size:0.58rem;
-  letter-spacing:0.08em;
-}
-
-/* TEXT */
-.usp-strip span{
-  color:rgba(255,255,255,0.65);
-  white-space:nowrap;
-}
-
-/* DOT */
-.usp-strip span:not(:last-child)::after{
-  content:'•';
-  margin-left:14px;
-  color:rgba(212,168,74,0.5);
-}
-
-/* LAST USP HIGHLIGHT */
-.usp-strip span:last-child{
-  color:var(--au100);
-  font-weight:600;
-}
-  
-/* MODERN COLLAPSE */
-.collapsible{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height 0.4s cubic-bezier(0.22,1,0.36,1);
-}
-
-.collapsible.open{
-  max-height:2000px; /* large enough */
-}
-
-/* TITLE WITH TOGGLE */
-.section-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  cursor:pointer;
-  position:relative;
-}
-
-/* RIGHT ARROW */
-.section-title.collapsed::after,
-.section-title.open::after{
-  content:'›';
-  font-size:1.4rem;
-  color:var(--au300);
-  transition:transform 0.25s ease, opacity 0.2s;
-}
-
-/* rotation logic */
-.section-title.collapsed::after{
-  transform:rotate(0deg);
-  opacity:0.5;
-}
-
-.section-title.open::after{
-  transform:rotate(90deg);
-  opacity:0.7;
-}
-
-/* COLLAPSED STATE */
-.section-title.collapsed::after{
-  transform:rotate(0deg);
-  opacity:0.5;
-}
-
-/* ACTIVE (OPEN) GOLD GLOW */
-.section-title.open{
-  text-shadow:0 0 12px rgba(240,208,128,0.25);
-}
-
-/* clickable title */
-.section-title{cursor:pointer;}
-
-/* ENTRY HOOK */
 .entry-hook{background:linear-gradient(135deg,#0b1f11 0%,#143520 100%);padding:var(--sp4) var(--sp4) var(--sp5);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
 .entry-hook::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,74,0.1),transparent 70%);pointer-events:none;}
 .entry-hook-label{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,208,128,0.6);margin-bottom:var(--sp2);font-weight:600;}
@@ -162,7 +74,6 @@ img{display:block;}
 .entry-chip{flex:0 0 auto;display:inline-flex;align-items:center;border-radius:99px;padding:8px 16px;font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.85);cursor:pointer;transition:all 0.18s ease;white-space:nowrap;}
 .entry-chip:active{transform:scale(0.96);}
 
-/* QUICK PICKS */
 .rec-strip{padding:var(--sp3) var(--sp4);display:flex;align-items:center;gap:var(--sp3);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 .rec-strip::-webkit-scrollbar{display:none;}
 .rec-label{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--au400);white-space:nowrap;flex-shrink:0;}
@@ -170,19 +81,16 @@ img{display:block;}
 .rec-chip:active{transform:scale(0.96);}
 .rec-chip-img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:var(--surface);}
 .rec-chip-name{font-size:0.68rem;font-weight:600;color:var(--text);white-space:nowrap;}
-.rec-chip-price{font-size:0.63rem;color:var(--g500);font-weight:700;margin-left:2px;}
 
-/* NAV */
 .sticky-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;border-top:1px solid rgba(0,0,0,0.07);padding:6px 4px;padding-bottom:max(6px,env(safe-area-inset-bottom));}
 .nav-scroll{display:flex;flex-direction:row;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 6px;width:100%;justify-content:space-between;}
 .nav-scroll::-webkit-scrollbar{display:none;}
-.nav-btn{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 4px;border-radius:10px;font-size:0.58rem;font-weight:600;letter-spacing:0.02em;color:var(--muted);border:none;background:transparent;cursor:pointer;transition:all 0.18s ease;-webkit-tap-highlight-color:transparent;}
+.nav-btn{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 4px;border-radius:10px;font-size:0.55rem;font-weight:600;letter-spacing:0.02em;color:var(--muted);border:none;background:transparent;cursor:pointer;transition:all 0.18s ease;-webkit-tap-highlight-color:transparent;}
 .nav-btn:active{transform:scale(0.9);}
-.nav-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke 0.18s;}
+.nav-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
 .nav-btn.active{color:var(--g500);background:linear-gradient(145deg,rgba(27,94,47,0.12) 0%,rgba(27,94,47,0.06) 100%);border:1px solid rgba(27,94,47,0.18);box-shadow:inset 0 1px 0 rgba(255,255,255,0.8),0 1px 4px rgba(27,94,47,0.12);}
 .nav-btn.active svg{stroke:var(--g500);}
 
-/* SECTION */
 .section{padding:var(--sp5) 0 var(--sp6);border-bottom:6px solid var(--surface);scroll-margin-top:20px;}
 .section:last-of-type{border-bottom:none;}
 .section-header{padding:0 var(--sp4);margin-bottom:var(--sp4);}
@@ -190,128 +98,65 @@ img{display:block;}
 .section.just-entered{animation:sectionPulse 0.5s ease forwards;}
 .section-eyebrow{font-size:0.56rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--au400);margin-bottom:var(--sp1);display:flex;align-items:center;gap:var(--sp2);}
 .section-eyebrow-line{height:1px;flex:1;background:linear-gradient(to right,var(--au-border),transparent);}
-.section-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:800;color:var(--text);letter-spacing:-0.02em;line-height:1.15;}
+.section-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:800;color:var(--text);letter-spacing:-0.02em;line-height:1.15;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;}
+.section-title::after{content:'›';font-size:1.4rem;color:var(--au300);transition:transform 0.25s ease,opacity 0.2s;font-family:sans-serif;font-weight:300;}
+.section-title.collapsed::after{transform:rotate(0deg);opacity:0.4;}
+.section-title.open::after{transform:rotate(90deg);opacity:0.7;}
+.section-title.static{cursor:default;}
+.section-title.static::after{display:none;}
 .section-sub{font-size:0.67rem;color:var(--muted);margin-top:3px;font-style:italic;}
+.collapsible{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.22,1,0.36,1);}
+.collapsible.open{max-height:2000px;}
 
-/* ══════════════════════════════
-   OPTION C - STANDARD CARD LIST
-   No featured card. Badge signals best seller.
-══════════════════════════════ */
+.tag{display:inline-flex;align-items:center;font-size:0.49rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:99px;padding:3px 9px;white-space:nowrap;line-height:1;background:rgba(27,94,47,0.07);color:var(--g500);border:1px solid rgba(27,94,47,0.16);}
+.tag-premium{color:var(--au200);border:1px solid rgba(212,168,74,0.5);background:linear-gradient(145deg,rgba(20,53,32,0.85),rgba(11,31,17,0.9));}
+.tag-strong{background:var(--g800);color:#fff;border:none;}
+.tag-soft{opacity:0.62;}
+.tag-season{background:rgba(201,149,42,0.1);color:var(--au400);border:1px solid rgba(201,149,42,0.3);}
+
 .card-list{display:flex;flex-direction:column;gap:var(--sp3);padding:0 var(--sp4);}
 .card{border-radius:var(--r-md);border:1px solid var(--border);background:#fff;display:flex;align-items:stretch;overflow:hidden;min-height:90px;box-shadow:0 1px 2px rgba(0,0,0,0.025);transition:transform 0.15s,background 0.15s;position:relative;}
 .card:active{transform:scale(0.97);background:rgba(27,93,47,0.025);}
-.card-img{width:92px;flex-shrink:0;background:var(--surface2);position:relative;overflow:hidden;align-self:stretch;}
+.card-fire{background:linear-gradient(135deg,rgba(255,120,0,0.1),rgba(255,80,0,0.04) 40%,#fff 70%);border:1px solid rgba(255,120,0,0.16);}
+.card-ice{background:linear-gradient(135deg,rgba(120,200,255,0.12),rgba(180,240,255,0.05) 40%,#fff 70%);border:1px solid rgba(120,200,255,0.2);}
+.card-img{width:92px;flex-shrink:0;background:var(--surface2);overflow:hidden;align-self:stretch;}
 .card-img img{width:100%;height:100%;object-fit:cover;}
-.card-body{flex:1;padding:var(--sp3) var(--sp3) var(--sp3) var(--sp3);display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;}
+.card-body{flex:1;padding:var(--sp3);display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;}
 .card-name{font-weight:700;font-size:0.87rem;color:var(--text);line-height:1.3;}
 .card-desc{font-size:0.68rem;color:var(--muted);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:var(--sp2);}
-.card-footer .tag{margin-left:auto;}
-.card-portrait-badge{display:inline-flex;align-items:center;}
 .card-price-row{display:flex;align-items:center;gap:6px;}
 .veg{width:11px;height:11px;border-radius:2px;border:1.5px solid #22a55b;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .veg::after{content:'';width:5px;height:5px;border-radius:50%;background:#22a55b;}
 .card-price{font-size:0.95rem;font-weight:700;color:var(--g500);letter-spacing:-0.01em;}
 .price-sym{font-size:0.7em;font-weight:500;opacity:0.72;vertical-align:0.08em;margin-right:1px;}
 
-/* ══════════════════════════════
-   OPTION D - HORIZONTAL SCROLL ROW
-   Compact portrait cards in a side-scroll row.
-   Used for sections with many items (Treats).
-══════════════════════════════ */
-.h-scroll-row{
-  display:flex;
-  gap:var(--sp3);
-  overflow-x:auto;
-  scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
-  padding:0 var(--sp4) var(--sp1);
-}
+.h-scroll-row{display:flex;gap:var(--sp3);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 var(--sp4) var(--sp1);}
 .h-scroll-row::-webkit-scrollbar{display:none;}
-
-/* Portrait card - used in h-scroll-row */
-.card-portrait{
-  flex:0 0 auto;
-  width:140px;
-  border-radius:var(--r-lg);
-  border:1px solid var(--border);
-  background:#fff;
-  overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
-  transition:transform 0.15s;
-  display:flex;
-  flex-direction:column;
-}
+.card-portrait{flex:0 0 auto;width:140px;border-radius:var(--r-lg);border:1px solid var(--border);background:#fff;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:transform 0.15s;display:flex;flex-direction:column;}
 .card-portrait:active{transform:scale(0.97);}
 .card-portrait-img{width:100%;aspect-ratio:1/1;overflow:hidden;background:var(--surface2);position:relative;flex-shrink:0;}
 .card-portrait-img img{width:100%;height:100%;object-fit:cover;}
+.card-portrait-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.15),transparent 60%);}
 .card-portrait-body{padding:var(--sp2) var(--sp2) var(--sp3);display:flex;flex-direction:column;gap:3px;flex:1;}
 .card-portrait-name{font-weight:700;font-size:0.75rem;color:var(--text);line-height:1.25;}
 .card-portrait-price{font-size:0.82rem;font-weight:700;color:var(--g500);letter-spacing:-0.01em;margin-top:auto;padding-top:4px;}
-.card-portrait-img::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,0.15), transparent 60%);
-}
-/* Badge pinned top-left of portrait card image */
-.card-portrait-badge{
-  position:absolute;top:6px;left:6px;z-index:2;
-  font-size:0.42rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-  border-radius:99px;padding:2px 7px;white-space:nowrap;line-height:1;
-}
+.card-portrait-badge{position:absolute;top:6px;left:6px;z-index:3;font-size:0.42rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:99px;padding:3px 8px;white-space:nowrap;line-height:1;}
 
-/* SECTION DIVIDER */
 .section-divider{display:flex;align-items:center;gap:var(--sp3);margin:var(--sp5) var(--sp4) var(--sp4);}
 .section-divider-line{flex:1;height:1px;background:var(--border);}
 .section-divider-label{font-size:0.55rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
 
-/* VARIANT PRICING */
 .variant-row{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
-.variant{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:6px 8px;
-  border-radius:8px;
-
-  background:transparent;
-  border:none;
-
-  font-size:0.68rem;
-  font-weight:600;
-}
-.variant-center{
-  background:rgba(212,168,74,0.12);
-  border-radius:8px;
-}
-.variant-label{
-  font-size:0.68rem;
-  color:var(--text2);
-}
-
-.variant-price{
-  font-size:0.9rem;
-  font-weight:700;
-  color:var(--g500);
-}
-.variant-size{font-size:0.49rem;color:var(--faint);}
+.variant{display:flex;align-items:center;justify-content:space-between;width:100%;padding:6px 10px;border-radius:7px;background:transparent;}
+.variant-center{background:rgba(212,168,74,0.1);}
+.variant-label{font-size:0.65rem;color:var(--text2);font-weight:500;}
 .variant-center .variant-label{color:var(--au400);font-weight:700;}
+.variant-price{font-size:0.88rem;font-weight:700;color:var(--g500);text-align:right;}
 .variant:not(.variant-center) .variant-price{opacity:0.72;}
 
-/* PRODUCT CARDS */
-.prod-card{border:1px solid var(--au-border);border-radius:var(--r-lg);background:linear-gradient(160deg,#fffdf2 0%,#fff 60%);overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.04);margin:0 var(--sp4) var(--sp4);}
-.prod-top{padding:var(--sp4) var(--sp4) 0;display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp3);}
-.prod-text{flex:1;}
-.prod-tag{font-size:0.49rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--au400);margin-bottom:var(--sp1);}
-.prod-name{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:800;color:var(--text);line-height:1.25;margin-bottom:3px;}
-.prod-desc{font-size:0.65rem;color:var(--muted);line-height:1.5;}
-.prod-img{width:100%;aspect-ratio:16/6;overflow:hidden;background:var(--surface);margin-top:var(--sp4);}
-.prod-img img{width:100%;height:100%;object-fit:cover;}
-.prod-variants{padding:var(--sp4);}
+.home-tag{position:absolute;top:10px;left:10px;z-index:5;padding:5px 12px;border-radius:99px;font-size:0.5rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--au100);background:linear-gradient(145deg,rgba(11,31,17,0.92),rgba(20,53,32,0.88));border:1px solid rgba(212,168,74,0.55);box-shadow:0 2px 10px rgba(0,0,0,0.25);}
 
-/* CRAFT CARD */
 .craft-card{background:linear-gradient(148deg,var(--g800) 0%,var(--g700) 50%,var(--g600) 100%);border-radius:var(--r-xl);padding:var(--sp6) var(--sp5);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.06);margin:0 var(--sp4) var(--sp4);}
 .craft-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(185,130,40,0.12),transparent 70%);pointer-events:none;}
 .craft-card::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(30,92,50,0.22),transparent 70%);pointer-events:none;}
@@ -329,267 +174,112 @@ img{display:block;}
 .craft-num{font-size:1.4rem;font-weight:700;color:var(--au100);line-height:1;letter-spacing:-0.02em;}
 .craft-lbl{font-size:0.49rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.32);margin-top:3px;}
 .craft-price{background:linear-gradient(135deg,var(--au400),var(--au200));color:var(--g800);font-size:0.88rem;font-weight:700;padding:8px 18px;border-radius:99px;box-shadow:0 4px 14px rgba(185,130,40,0.28);letter-spacing:-0.01em;}
+.craft-counter-note{font-size:0.58rem;color:rgba(255,255,255,0.38);text-align:center;margin-top:var(--sp4);font-style:italic;line-height:1.5;}
 
-/* LEAF PILLS */
-.leaf-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2);margin:var(--sp4) var(--sp4) var(--sp10);}
-.leaf-pill{
-  display:flex;
-  align-items:center;
-  gap:8px;
+.events-hero{background:linear-gradient(180deg,#0f2e18 0%,#1b4d2c 100%);padding:var(--sp8) var(--sp4) var(--sp6);position:relative;overflow:hidden;text-align:center;}
+.events-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,74,0.12),transparent 70%);pointer-events:none;}
+.events-hero>*{position:relative;z-index:1;}
+.events-eyebrow{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,208,128,0.55);margin-bottom:var(--sp2);font-weight:600;}
+.events-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:var(--sp3);}
+.events-title em{color:var(--au100);font-style:normal;}
+.events-sub{font-size:0.7rem;color:rgba(255,255,255,0.48);line-height:1.6;max-width:280px;margin:0 auto var(--sp5);}
+.events-occasions{display:flex;gap:var(--sp2);flex-wrap:wrap;justify-content:center;}
+.occasion-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.11);border-radius:99px;padding:7px 14px;font-size:0.65rem;font-weight:600;color:rgba(255,255,255,0.75);white-space:nowrap;}
+.events-offer-wrap{background:var(--g800);padding:var(--sp5) var(--sp4) var(--sp4);}
+.events-offer-label{font-size:0.55rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,208,128,0.45);font-weight:700;text-align:center;margin-bottom:var(--sp3);}
+.events-offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2);}
+.events-offer-item{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:var(--r-md);padding:var(--sp3);text-align:center;}
+.events-offer-name{font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.78);line-height:1.3;}
+.events-offer-note{font-size:0.56rem;color:rgba(255,255,255,0.32);margin-top:3px;}
+.events-cta-card{background:linear-gradient(145deg,#fff,#faf5e8);border:1px solid var(--au-border);border-radius:var(--r-xl);margin:var(--sp5) var(--sp4) 0;padding:var(--sp5) var(--sp4);box-shadow:0 8px 28px rgba(0,0,0,0.1);}
+.events-cta-label{font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--au400);font-weight:700;margin-bottom:var(--sp2);}
+.events-cta-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:var(--sp2);line-height:1.25;}
+.events-cta-desc{font-size:0.67rem;color:var(--muted);line-height:1.55;margin-bottom:var(--sp5);}
+.events-btn-group{display:flex;flex-direction:column;gap:var(--sp2);}
+.events-btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:99px;padding:13px 20px;font-size:0.75rem;font-weight:700;letter-spacing:0.03em;text-decoration:none;transition:transform 0.15s;cursor:pointer;border:none;width:100%;}
+.events-btn:active{transform:scale(0.97);}
+.events-btn-primary{background:linear-gradient(135deg,var(--g600),var(--g500));color:#fff;box-shadow:0 4px 16px rgba(27,94,47,0.3);}
+.events-btn-secondary{background:transparent;border:1.5px solid var(--au300);color:var(--au400);}
+.events-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.events-btn-primary svg{stroke:#fff;}
+.events-min-note{text-align:center;font-size:0.6rem;color:var(--muted);margin-top:var(--sp4);font-style:italic;padding:var(--sp2) var(--sp4) var(--sp2);}
 
-  background:var(--surface);
-  border:1px solid var(--border);
-
-  border-radius:10px;
-  padding:10px 12px;
-
-  justify-content:flex-start;
-}
-
-.leaf-icon{
-  width:18px;
-  height:18px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  opacity:0.7;
-}
-
-.leaf-icon svg{
-  width:100%;
-  height:100%;
-
-  stroke:var(--g500);
-  stroke-width:1.6;
-  fill:none;
-
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-.leaf-pill.spicy .leaf-icon svg{
-  stroke:#2f7a3f; /* deeper green */
-}
-
-.leaf-pill.sweet .leaf-icon svg{
-  stroke:#3da058; /* lighter green */
-}
-
-.leaf-pill.royal .leaf-icon svg{
-  stroke:#c9952a; /* gold hint */
-}
-.leaf-name{font-size:0.72rem;font-weight:700;color:var(--g500);}
-.leaf-type{font-size:0.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;}
-
-/* FOOTER */
-.footer-bar{position:fixed;bottom:0;left:0;right:0;z-index:90;background:var(--g800);border-top:1px solid rgba(255,255,255,0.06);padding:12px 20px;padding-bottom:max(12px,env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;}
-.footer-contact{display:flex;align-items:center;gap:16px;}
-.footer-link{display:flex;align-items:center;gap:5px;font-size:0.65rem;color:rgba(255,255,255,0.52);text-decoration:none;font-weight:500;transition:color 0.2s;}
-.footer-link:hover{color:rgba(255,255,255,0.82);}
-.footer-location{font-size:0.56rem;color:rgba(255,255,255,0.24);text-align:right;line-height:1.5;}
-
-/* FADE-IN */
 .fade-in{opacity:0;transform:translateY(12px);transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.22,1,0.36,1);}
 .fade-in.visible{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 
-@media(min-width:600px){
-  .card-list,
-  .section-header,
-  .prod-card,
-  .craft-card,
-  .leaf-row,
-  .section-divider{
-    max-width:100%;
-    margin-left:0;
-    margin-right:0;
-  }
+#events{border-bottom:none !important;margin-bottom:0;padding-bottom:0;}
 
-  .h-scroll-row{
-    padding-left:var(--sp4);
-    padding-right:var(--sp4);
-  }
-}
-@media (prefers-reduced-motion: reduce){
-  *{
-    animation:none !important;
-    transition:none !important;
-  }
-}
-
-/* BASE TAG (default system) */
-.tag{
-  display:inline-flex;
-  align-items:center;
-
-  font-size:0.52rem;
-  font-weight:700;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-
-  padding:4px 10px;
-  border-radius:999px;
-
-  border:1px solid rgba(27,93,47,0.18);
-  background:rgba(27,93,47,0.06);
-  color:var(--g500);
-}
-
-/* HIGH IMPORTANCE (gold hint) */
-.tag-premium{
-  color:var(--au200);
-  border:1px solid rgba(212,168,74,0.5);
-  background:linear-gradient(
-    145deg,
-    rgba(20,53,32,0.85),
-    rgba(11,31,17,0.9)
-  );
-}
-
-/* DARK (for strong callouts like Bestseller) */
-.tag-strong{
-  background:#0b1f11;
-  color:#fff;
-  border:none;
-}
-
-/* SOFT (low priority tags) */
-.tag-soft{
-  opacity:0.7;
-}
-/* ===== PREMIUM HOME TAG (REPLACES ONLY HOME BADGES) ===== */
-.home-tag{
-  position:absolute;
-  top:10px;
-  left:10px;
-  z-index:5;
-
-  padding:5px 12px;
-  border-radius:999px;
-
-  font-size:0.5rem;
-  font-weight:600;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-
-  color:#f0d080;
-
-  background:linear-gradient(
-    145deg,
-    rgba(11,31,17,0.92),
-    rgba(20,53,32,0.88)
-  );
-
-  border:1px solid rgba(212,168,74,0.6);
-
-  box-shadow:
-    0 2px 10px rgba(0,0,0,0.25),
-    inset 0 0 8px rgba(212,168,74,0.12);
-
-  backdrop-filter:none;
-}
-/*Fire*/
-.card-fire{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,120,0,0.12),
-      rgba(255,80,0,0.05) 40%,
-      #ffffff 70%
-    );
-
-  border:1px solid rgba(255,120,0,0.18);
-}
-/*Ice*/
-.card-ice{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(120,200,255,0.14),
-      rgba(180,240,255,0.06) 40%,
-      #ffffff 70%
-    );
-
-  border:1px solid rgba(120,200,255,0.22);
-}
-.card-fire .card-body,
-.card-ice .card-body{
-  background:transparent;
-}
-/* GOLD SHIMMER */
-.home-tag::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-
-  background:linear-gradient(
-    120deg,
-    transparent 20%,
-    rgba(255,215,120,0.35) 50%,
-    transparent 80%
-  );
-
-  opacity:0;
-}
-
-.home-tag:active::after{
-  opacity:1;
-  animation:goldShine 1s ease;
-}
-
-@keyframes goldShine{
-  0%{transform:translateX(-100%);}
-  100%{transform:translateX(100%);}
-}
 </style>
 </head>
 <body>
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- HERO -->
 <header class="hero">
+  <div style="position:absolute;top:calc(env(safe-area-inset-top) + 12px);left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;z-index:10;">
+    <!-- Instagram left -->
+    <a href="https://instagram.com/mauli_ahmedabad" target="_blank"
+      style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background 0.2s;"
+      onmouseenter="this.style.background='rgba(255,255,255,0.18)'"
+      onmouseleave="this.style.background='rgba(255,255,255,0.1)'">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1.2" fill="rgba(255,255,255,0.85)" stroke="none"/>
+      </svg>
+    </a>
+    <!-- WhatsApp right -->
+    <a href="https://wa.me/917801879290" target="_blank"
+      style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background 0.2s;"
+      onmouseenter="this.style.background='rgba(255,255,255,0.18)'"
+      onmouseleave="this.style.background='rgba(255,255,255,0.1)'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 32 32">
+        <path fill="rgba(255,255,255,0.85)" d="M16 2C8.28 2 2 8.28 2 16c0 2.49.66 4.82 1.8 6.84L2 30l7.38-1.78A13.93 13.93 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm0 25.5a11.45 11.45 0 0 1-5.83-1.59l-.42-.25-4.38 1.05 1.09-4.26-.27-.44A11.47 11.47 0 0 1 4.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.29-8.53c-.34-.17-2.03-.99-2.34-1.1-.31-.12-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.45-.53-2.76-1.69-1.02-.9-1.71-2.02-1.91-2.36-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.86-1.06-2.55-.28-.67-.56-.58-.77-.59-.2-.01-.43-.01-.66-.01-.23 0-.6.09-.91.43-.31.34-1.19 1.16-1.19 2.83s1.22 3.28 1.39 3.51c.17.23 2.4 3.67 5.82 5.14.81.35 1.45.56 1.94.72.82.26 1.56.22 2.15.13.65-.09 2.01-.82 2.29-1.62.29-.79.29-1.47.2-1.62-.09-.14-.32-.23-.66-.4z"/>
+      </svg>
+    </a>
+  </div>
   <img class="hero-logo" src="images/tlogo.webp" alt="Mauli Family Paan House" onerror="this.style.opacity='0'">
   <div class="hero-since">Est. 1990 · Frizbee Food Park, Ahmedabad</div>
   <div class="hero-line"></div>
   <h1 class="hero-tagline">Crafted paan<em> Fresh every time</em></h1>
+  <p class="hero-promise">Every paan made to order, right in front of you.</p>
   <div class="usp-strip">
-  <span>No Tobacco</span>
-  <span>Supari Free</span>
-  <span>Supports Digestion</span>
-</div>
+    <span>No Tobacco, No Supari</span>
+    <span>100% safe ingredients</span>
+    <span>Aids Digestion</span>
+  </div>
 </header>
 
-<!-- ENTRY HOOK -->
+<!-- CHANGE #1: Playfair numbers + brand-toned sub-labels -->
+
 <div class="entry-hook">
   <div class="entry-hook-label">First time here?</div>
   <div class="entry-hook-title">What's your <em>mood?</em></div>
   <div class="entry-chips">
+    <div class="entry-chip glass-dark" onclick="scrollToSection('craft')">Customize</div>
     <div class="entry-chip glass-dark" onclick="scrollToSection('after-dinner')">Digestive</div>
-    <div class="entry-chip glass-dark" onclick="scrollToSection('sweet')">Dessert</div>
-    <div class="entry-chip glass-dark" onclick="scrollToSection('royal')">Premium</div>
-    <div class="entry-chip glass-dark" onclick="scrollToSection('take-home')">Take Home</div>
-    <div class="entry-chip glass-dark" onclick="scrollToSection('craft')">Custom</div>
+    <div class="entry-chip glass-dark" onclick="scrollToSection('beverages')">Drinks</div>    
+    <div class="entry-chip glass-dark" onclick="scrollToSection('take-home')">Take Home</div>    
+    <div class="entry-chip glass-dark" onclick="scrollToSection('events')">Book Events</div>
   </div>
 </div>
 
-<!-- QUICK PICKS -->
+<!-- CHANGE #8: Quick picks reordered -->
 <div class="rec-strip glass-warm">
   <span class="rec-label">Quick Picks</span>
-  <a class="rec-chip" href="#after-dinner"><img class="rec-chip-img" src="images/gulkand.webp" alt=""><span class="rec-chip-name">Gulkand Classic</span></a>
-  <a class="rec-chip" href="#sweet"><img class="rec-chip-img" src="images/nutella.webp" alt=""><span class="rec-chip-name">Choco Nutella</span></a>
   <a class="rec-chip" href="#royal"><img class="rec-chip-img" src="images/rampyari.webp" alt=""><span class="rec-chip-name">Rampyari Royale</span></a>
   <a class="rec-chip" href="#royal"><img class="rec-chip-img" src="images/fire.webp" alt=""><span class="rec-chip-name">Fire Paan</span></a>
-  <a class="rec-chip" href="#beverages"><img class="rec-chip-img" src="images/sparkle.webp" alt=""><span class="rec-chip-name">Paan Sparkle</span></a>
+  <a class="rec-chip" href="#beverages"><img class="rec-chip-img" src="images/gulkandshake.webp" alt=""><span class="rec-chip-name">Gulkand Shake</span></a>
+  <a class="rec-chip" href="#sweet"><img class="rec-chip-img" src="images/nutella.webp" alt=""><span class="rec-chip-name">Choco Nutella</span></a>
+  <a class="rec-chip" href="#take-home"><img class="rec-chip-img" src="images/kesargulkand.webp" alt=""><span class="rec-chip-name">Kesar Gulkand</span></a>
 </div>
 
-<!-- NAV -->
 <nav class="sticky-nav glass-white">
   <div class="nav-scroll">
     <button class="nav-btn active" onclick="navTo('after-dinner')">
       <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2c0 5.523 4.477 10 10 10-1.657 3.857-5.514 6.5-10 6.5V22z"/></svg>
-      <span>Start</span>
+      <span>Digestive</span>
     </button>
     <button class="nav-btn" onclick="navTo('sweet')">
       <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><rect x="5" y="12" width="14" height="9" rx="1"/><path d="M12 8V21M8 8c0-2 1.5-4 4-4s4 2 4 4"/></svg>
@@ -601,27 +291,30 @@ img{display:block;}
     </button>
     <button class="nav-btn" onclick="navTo('beverages')">
       <svg viewBox="0 0 24 24"><path d="M8 2h8l1 7H7L8 2z"/><path d="M7 9c0 5 2 8 5 8s5-3 5-8"/><path d="M10 17v3M14 17v3M8 20h8"/></svg>
-      <span>Refresh</span>
-    </button>
-    <button class="nav-btn" onclick="navTo('take-home')">
-      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span>Home</span>
+      <span>Drinks</span>
     </button>
     <button class="nav-btn" onclick="navTo('craft')">
       <svg viewBox="0 0 24 24"><path d="M15 4l5 5-10 10H5v-5L15 4z"/><path d="M3 21l3-3M19 3l2 2"/></svg>
       <span>Craft</span>
     </button>
+    <button class="nav-btn" onclick="navTo('take-home')">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Take Away</span>
+    </button>
+    <button class="nav-btn" onclick="navTo('events')">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01"/></svg>
+      <span>Bookings</span>
+    </button>
   </div>
 </nav>
 
-<!-- ══════════ AFTER DINNER - Option C: vertical list, no featured card ══════════ -->
 <section id="after-dinner" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Start Here <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title collapsed" onclick="toggleSection('afterDinnerList', this)">After Dinner</h2>
+    <h2 class="section-title open" onclick="toggleSection('afterDinnerList',this)">After Dinner</h2>
     <p class="section-sub">Best enjoyed after meals - for a calm, digestive finish</p>
   </div>
-  <div class="card-list collapsible" id="afterDinnerList">
+  <div class="card-list collapsible open" id="afterDinnerList" style="max-height:none;">
     <div class="card fade-in">
       <div class="card-img"><img src="images/flavor.webp" alt="Flavour Splash" loading="lazy"></div>
       <div class="card-body">
@@ -629,7 +322,7 @@ img{display:block;}
         <div class="card-desc">15 signature fruit crush flavours - choose your mood</div>
         <div class="card-footer">
           <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div>
-          <span class="tag">Popular</span>
+          <span class="tag">Best Seller</span>
         </div>
       </div>
     </div>
@@ -638,10 +331,7 @@ img{display:block;}
       <div class="card-body">
         <div class="card-name">Gulkand Classic</div>
         <div class="card-desc">Cooling kesar gulkand, softened by a rose syrup finish</div>
-        <div class="card-footer">
-          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>80</div></div>
-          <span class="tag tag-soft">Safe</span>
-        </div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div></div>
       </div>
     </div>
     <div class="card fade-in">
@@ -657,109 +347,103 @@ img{display:block;}
       <div class="card-body">
         <div class="card-name">Chutney Burst</div>
         <div class="card-desc">Tangy chutneys, signature premix, silver varkh - palate cleanser</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div><span class="tag tag-soft">Non Sweet</span></div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div>
+          <span class="tag tag-soft">Non Sweet</span>
+        </div>
       </div>
     </div>
     <div class="card fade-in">
       <div class="card-img"><img src="images/meetha-gulab.webp" alt="Mauli Classic" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Mauli Classic</div>
-        <div class="card-desc">Signature premix paan, rose syrup drizzle - the gentlest option</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>60</div></div><span class="tag tag-soft">Daily</span></div>
+        <div class="card-desc">Signature premix paan, rose syrup drizzle - the gentlest start</div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>60</div></div>
+          <span class="tag tag-soft">Light</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ TREATS - Option D: horizontal scroll row ══════════ -->
 <section id="sweet" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Indulgent <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title">Treats</h2>
-    <p class="section-sub">Paan meets confectionery - for choco lovers</p>
+    <h2 class="section-title static">Treats</h2>
+    <p class="section-sub">Dessert replacement · Sweet craving for choco lovers</p>
   </div>
   <div class="h-scroll-row fade-in">
-
-    <div class="card-portrait">
-      <div class="card-portrait-img">
-        <img src="images/lotus-biscoff.webp" alt="Lotus Biscoff" loading="lazy">
-        <div class="card-portrait-badge tag tag-premium">Trending</div>
-      </div>
-      <div class="card-portrait-body">
-        <div class="card-portrait-name">Lotus Biscoff</div>
-        <div class="card-portrait-price"><span class="price-sym">₹</span>150</div>
-      </div>
-    </div>
-
-    <div class="card-portrait">
-      <div class="card-portrait-img">
-        <img src="images/kunafa-pistachio.webp" alt="Kunafa Pistachio" loading="lazy">
-      </div>
-      <div class="card-portrait-body">
-        <div class="card-portrait-name">Kunafa Pistachio</div>
-        <div class="card-portrait-price"><span class="price-sym">₹</span>150</div>
-      </div>
-    </div>
-
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/nutella.webp" alt="Choco Nutella" loading="lazy">
-        <div class="card-portrait-badge tag tag-strong">Bestseller</div>
+        <div class="card-portrait-badge tag-strong">Best Seller</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Choco Nutella</div>
         <div class="card-portrait-price"><span class="price-sym">₹</span>150</div>
       </div>
     </div>
-    
     <div class="card-portrait">
       <div class="card-portrait-img">
-        <img src="images/dark-chocolate.webp" alt="Dark Chocolate" loading="lazy">
-        <div class="card-portrait-badge tag">Intense</div>
+        <img src="images/lotus-biscoff.webp" alt="Lotus Biscoff" loading="lazy">
+        <div class="card-portrait-badge tag-season">Seasonal</div>
       </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Lotus Biscoff</div>
+        <div class="card-portrait-price"><span class="price-sym">₹</span>150</div>
+      </div>
+    </div>
+    <div class="card-portrait">
+      <div class="card-portrait-img">
+        <img src="images/kunafa-pistachio.webp" alt="Kunafa Pistachio" loading="lazy">
+        <div class="card-portrait-badge tag-premium">Special</div>
+      </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Kunafa Pistachio</div>
+        <div class="card-portrait-price"><span class="price-sym">₹</span>150</div>
+      </div>
+    </div>
+    <div class="card-portrait">
+      <div class="card-portrait-img"><img src="images/dark-chocolate.webp" alt="Dark Chocolate" loading="lazy"></div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Dark Chocolate</div>
         <div class="card-portrait-price"><span class="price-sym">₹</span>120</div>
       </div>
     </div>
-
     <div class="card-portrait">
-      <div class="card-portrait-img">
-        <img src="images/milk-chocolate.webp" alt="Milk Chocolate" loading="lazy">
-      </div>
+      <div class="card-portrait-img"><img src="images/milk-chocolate.webp" alt="Milk Chocolate" loading="lazy"></div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Milk Chocolate</div>
         <div class="card-portrait-price"><span class="price-sym">₹</span>120</div>
       </div>
     </div>
-
     <div class="card-portrait">
-      <div class="card-portrait-img">
-        <img src="images/white-chocolate.webp" alt="White Chocolate" loading="lazy">
-      </div>
+      <div class="card-portrait-img"><img src="images/white-chocolate.webp" alt="White Chocolate" loading="lazy"></div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">White Chocolate</div>
         <div class="card-portrait-price"><span class="price-sym">₹</span>120</div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════ PREMIUM - Option C: vertical list ══════════ -->
 <section id="royal" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Premium <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title collapsed" onclick="toggleSection('signatureList', this)">Signature</h2>
+    <h2 class="section-title open" onclick="toggleSection('signatureList',this)">Signature</h2>
     <p class="section-sub">Heritage recipes - each made to order</p>
   </div>
-  <div class="card-list collapsible" id="signatureList">
+  <div class="card-list collapsible open" id="signatureList" style="max-height:none;">
     <div class="card fade-in">
       <div class="card-img"><img src="images/rampyari.webp" alt="Rampyari Royale" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Rampyari Royale</div>
         <div class="card-desc">Premix + Gulkand, various chutney, dates crunch, kesar supari, silver varkh</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div><span class="tag tag-premium">Signature</span></div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div>
+          <span class="tag tag-premium">Perfect after meals</span>
+        </div>
       </div>
     </div>
     <div class="card fade-in">
@@ -767,7 +451,10 @@ img{display:block;}
       <div class="card-body">
         <div class="card-name">Royal Maghai</div>
         <div class="card-desc">Authentic Maghai Jodi Paan, heritage premix, various chutneys, silver varakh - 2 pcs</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div><span class="tag tag">Heritage</span></div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div>
+          <span class="tag">Special Cravings</span>
+        </div>
       </div>
     </div>
     <div class="card fade-in">
@@ -775,27 +462,33 @@ img{display:block;}
       <div class="card-body">
         <div class="card-name">Royal Dry Fruit</div>
         <div class="card-desc">Chocolate paan with variety of dry fruits - heavy + crunchy</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag tag-premium">Loaded</span></div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div>
+          <span class="tag tag-premium">Loaded</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Live Theatre sub-section inside Premium -->
   <div class="section-divider">
     <div class="section-divider-line"></div>
     <span class="section-divider-label">Live Theatre</span>
     <div class="section-divider-line"></div>
   </div>
+
   <div class="card-list">
-    <div class="card fade-in card-fire">
+    <div class="card card-fire fade-in">
       <div class="card-img"><img src="images/fire.webp" alt="Fire Paan" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Fire Paan</div>
         <div class="card-desc">The legendary flaming paan ritual - a moment of theatre</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div></div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div>
+          <span class="tag tag-season">Worth trying once</span>
+        </div>
       </div>
     </div>
-    <div class="card fade-in card-ice">
+    <div class="card card-ice fade-in">
       <div class="card-img"><img src="images/icecream.webp" alt="Ice Cream Paan" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Ice Cream Paan</div>
@@ -806,134 +499,50 @@ img{display:block;}
   </div>
 </section>
 
-<!-- ══════════ REFRESH ══════════ -->
+<!-- CHANGE #2 + #3: Beverages -->
 <section id="beverages" class="section fade-in">
   <div class="section-header">
-    <div class="section-eyebrow">Refresh <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title">Drinks</h2>
+    <div class="section-eyebrow">Drinks <div class="section-eyebrow-line"></div></div>
+    <h2 class="section-title static">Refresh</h2>
+    <p class="section-sub">A paan drink - only here, nowhere else.</p>
   </div>
   <div class="card-list">
+    <!-- CHANGE #3: Updated Paan Sparkle description -->
     <div class="card fade-in">
       <div class="card-img"><img src="images/sparkle.webp" alt="Paan Sparkle" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Paan Sparkle</div>
-        <div class="card-desc">Paan drink with lemon and mint soda - light, refreshing, digestive</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div><span class="tag">Refreshing</span></div>
+        <div class="card-desc">Refreshing paan drink with lemon, mint and Ayu Digest</div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div>
+          <span class="tag tag-premium">First of its kind</span>
+        </div>
+      </div>
+    </div>
+    <!-- CHANGE #2: New Gulkand Shake -->
+    <div class="card fade-in">
+      <div class="card-img"><img src="images/gulkandshake.webp" alt="Gulkand Shake" loading="lazy"></div>
+      <div class="card-body">
+        <div class="card-name">Gulkand Shake</div>
+        <div class="card-desc">Refreshing shake with gulkand, rose, dry fruits, Ayu Digest and seeds</div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div>
+          <span class="tag">New</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ HOME - Option D: horizontal scroll row for products ══════════ -->
-<section id="take-home" class="section fade-in">
-  <div class="section-header">
-    <div class="section-eyebrow">Retail <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title">Home</h2>
-    <p class="section-sub">Bring the Mauli ritual home</p>
-  </div>
-
-  <div class="h-scroll-row fade-in">
-
-    <!-- Ayurvedic Powder -->
-    <div class="card-portrait">
-      <div class="card-portrait-img">
-        <img src="images/powder.webp" alt="Digestive Powder" loading="lazy">
-        <div class="home-tag">Helps Digestion</div>
-      </div>
-      <div class="card-portrait-body">
-        <div class="card-portrait-name">Ayu Digest</div>
-
-        <div class="variant-row">
-          <div class="variant">
-            <div class="variant-label">10g</div>
-            <div class="variant-price">₹79</div>
-          </div>
-        
-          <div class="variant variant-center">
-            <div class="variant-label">50g</div>
-            <div class="variant-price">₹249</div>
-          </div>
-        
-          <div class="variant">
-            <div class="variant-label">100g</div>
-            <div class="variant-price">₹449</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Paan Premix -->
-    <div class="card-portrait">
-      <div class="card-portrait-img">
-        <img src="images/paan-premix.webp" alt="Paan Premix" loading="lazy">
-        <div class="home-tag">Mouth Freshener</div>
-      </div>
-      <div class="card-portrait-body">
-        <div class="card-portrait-name">Sweet Premix</div>
-        
-        <div class="variant-row">
-          <div class="variant">
-            <div class="variant-label">100g</div>
-            <div class="variant-price">₹149</div>
-          </div>
-        
-          <div class="variant variant-center">
-            <div class="variant-label">250g</div>
-            <div class="variant-price">₹299</div>
-          </div>
-        
-          <div class="variant">
-            <div class="variant-label">500g</div>
-            <div class="variant-price">₹549</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Gulkand -->
-    <div class="card-portrait">
-      <div class="card-portrait-img">
-        <img src="images/gulkandjar.webp" alt="Kesar Gulkand" loading="lazy">
-        <div class="home-tag">Cooling</div>
-      </div>
-      <div class="card-portrait-body">
-        <div class="card-portrait-name">Kesar Gulkand</div>
-        <div class="variant-row">
-          <div class="variant">
-            <div class="variant-label">200g</div>
-            <div class="variant-price">₹189</div>
-          </div>
-        
-          <div class="variant variant-center">
-            <div class="variant-label">500g</div>
-            <div class="variant-price">₹449</div>
-          </div>
-        
-          <div class="variant">
-            <div class="variant-label">1 kg</div>
-            <div class="variant-price">₹859</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <p style="font-size:0.64rem;color:var(--muted);text-align:center;padding:var(--sp2) var(--sp4) var(--sp4);letter-spacing:0.04em;font-style:italic;">
-    Packed fresh · Ask at counter
-  </p>
-</section>
-
-<!-- CRAFT -->
-<section id="craft" class="section fade-in" style="border-bottom:none;">
+<section id="craft" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Custom <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title">Craft Your Paan</h2>
+    <h2 class="section-title static">Craft Your Paan</h2>
     <p class="section-sub">Your choices. Our masala.</p>
   </div>
   <div class="craft-card fade-in">
     <div class="craft-eyebrow">Fully Customisable · Starting at</div>
-    <div class="craft-title">Build Your Own Paan</div>
+    <div class="craft-title">Build Your Own<br>Paan</div>
     <div class="craft-rule">Choose any combination - Leaf, Chutney, Filling, Flavour, &amp; Topping.<br><strong>Drawn from 18 condiments and 16 Ayurvedic herbs.</strong></div>
     <div class="craft-steps">
       <div class="craft-step"><span class="craft-step-n">1</span><span class="craft-step-txt">Choose Leaf</span></div>
@@ -950,66 +559,165 @@ img{display:block;}
       </div>
       <div class="craft-price"><span class="price-sym" style="opacity:0.6;">₹</span>120</div>
     </div>
-    <p style="font-size:0.57rem;color:rgba(255,255,255,0.35);text-align:center;margin-top:var(--sp4);font-style:italic;">Ask at the counter for recommended combinations</p>
+    <p class="craft-counter-note">Tell us your last paan - we'll craft your next one.</p>
   </div>
-  <div class="leaf-row">
-
-    <div class="leaf-pill spicy">
-      <span class="leaf-icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M4 13C4 7 10 3 20 4C19 14 15 20 9 20C6 20 4 18 4 15Z"/>
-          <path d="M4 15C8 14 12 12 18 6"/>
-        </svg>
-      </span>
-      <div>
-        <div class="leaf-name">Banarasi</div>
-        <div class="leaf-type">Spicy</div>
-      </div>
-    </div>
-  
-    <div class="leaf-pill sweet">
-      <span class="leaf-icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M4 13C4 7 10 3 20 4C19 14 15 20 9 20C6 20 4 18 4 15Z"/>
-          <path d="M4 15C8 14 12 12 18 6"/>
-        </svg>
-      </span>
-      <div>
-        <div class="leaf-name">Calcutti</div>
-        <div class="leaf-type">Sweet</div>
-      </div>
-    </div>
-  
-    <div class="leaf-pill royal">
-      <span class="leaf-icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M4 13C4 7 10 3 20 4C19 14 15 20 9 20C6 20 4 18 4 15Z"/>
-          <path d="M4 15C8 14 12 12 18 6"/>
-        </svg>
-      </span>
-      <div>
-        <div class="leaf-name">Maghai</div>
-        <div class="leaf-type">Royal</div>
-      </div>
-    </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 16px 24px;">
     
+    <div class="card-portrait" style="width:auto;">
+      <div class="card-portrait-img">
+        <img src="images/banarasileaf.webp" alt="Banarasi Leaf" loading="lazy">
+        <div class="home-tag">Spicy</div>
+      </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Banarasi</div>
+        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;font-style:italic;">Bold · Traditional</div>
+      </div>
+    </div>
+
+    <div class="card-portrait" style="width:auto;">
+      <div class="card-portrait-img">
+        <img src="images/calcuttileaf.webp" alt="Calcutti Leaf" loading="lazy">
+        <div class="home-tag">Sweet</div>
+      </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Calcutti</div>
+        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;font-style:italic;">Mild · Tender</div>
+      </div>
+    </div>
+
+    <div class="card-portrait" style="width:auto;">
+      <div class="card-portrait-img">
+        <img src="images/maghaileaf.webp" alt="Maghai Leaf" loading="lazy">
+        <div class="home-tag" style="border-color:rgba(201,149,42,0.7);color:#f0d080;">Royal</div>
+      </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Maghai</div>
+        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;font-style:italic;">Premium · Heritage</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer-bar">
-  <div class="footer-contact">
-    <a class="footer-link" href="https://wa.me/917801879290">
-      <svg width="15" height="15" fill="#25D366" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-      78018 79290
-    </a>
-    <a class="footer-link" href="https://instagram.com/mauli_ahmedabad">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.52)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="rgba(255,255,255,0.52)" stroke="none"/></svg>
-      mauli_ahmedabad
-    </a>
+<!-- CHANGE #4 #5 #6: Take Home — Paan Premix renamed, Maghai Premix added, descriptions updated -->
+<section id="take-home" class="section fade-in">
+  <div class="section-header">
+    <div class="section-eyebrow">Retail <div class="section-eyebrow-line"></div></div>
+    <h2 class="section-title static">Home</h2>
+    <p class="section-sub">Bring the Mauli ritual home.</p>
   </div>
-  <div class="footer-location">Frizbee Food Park<br>SBR, Ahmedabad</div>
-</footer>
+  <div class="h-scroll-row fade-in">
+
+    <div class="card-portrait">
+      <div class="card-portrait-img">
+        <img src="images/kesargulkand.webp" alt="Kesar Gulkand" loading="lazy" onerror="this.src='images/gulkandjar.png'">
+        <div class="home-tag">Cooling</div>
+      </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Kesar Gulkand</div>
+        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;margin-bottom:4px;font-style:italic;">Special Saffron rose gulkand</div>
+        <div class="variant-row">
+          <div class="variant"><div class="variant-label">200g</div><div class="variant-price"><span class="price-sym">₹</span>189</div></div>
+          <div class="variant variant-center"><div class="variant-label">500g</div><div class="variant-price"><span class="price-sym">₹</span>449</div></div>
+          <div class="variant"><div class="variant-label">1 kg</div><div class="variant-price"><span class="price-sym">₹</span>859</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-portrait">
+      <div class="card-portrait-img">
+        <img src="images/ayudigest.webp" alt="Ayu Digest" loading="lazy">
+        <div class="home-tag">Aids Digestion</div>
+      </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Ayu Digest</div>
+        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;margin-bottom:4px;font-style:italic;">16 Ayurvedic Herbs</div>
+        <div class="variant-row">
+          <div class="variant"><div class="variant-label">10g</div><div class="variant-price"><span class="price-sym">₹</span>79</div></div>
+          <div class="variant variant-center"><div class="variant-label">50g</div><div class="variant-price"><span class="price-sym">₹</span>249</div></div>
+          <div class="variant"><div class="variant-label">100g</div><div class="variant-price"><span class="price-sym">₹</span>449</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHANGE #4 + #6: New Maghai Premix -->
+    <div class="card-portrait">
+      <div class="card-portrait-img">
+        <img src="images/maghaipremix.webp" alt="Maghai Premix" loading="lazy" onerror="this.src='images/paan-premix.webp'">
+        <div class="home-tag">Royal Blend</div>
+      </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Maghai Premix</div>
+        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;margin-bottom:4px;font-style:italic;">For paan or as mukhwass</div>
+        <div class="variant-row">
+          <div class="variant"><div class="variant-label">100g</div><div class="variant-price"><span class="price-sym">₹</span>149</div></div>
+          <div class="variant variant-center"><div class="variant-label">250g</div><div class="variant-price"><span class="price-sym">₹</span>299</div></div>
+          <div class="variant"><div class="variant-label">500g</div><div class="variant-price"><span class="price-sym">₹</span>549</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHANGE #5 + #6: Sweet Premix → Paan Premix, mukhwass description -->
+    <div class="card-portrait">
+      <div class="card-portrait-img">
+        <img src="images/paanpremix.webp" alt="Paan Premix" loading="lazy">
+        <div class="home-tag">Mouth Freshener</div>
+      </div>
+      <div class="card-portrait-body">
+        <div class="card-portrait-name">Paan Premix</div>
+        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;margin-bottom:4px;font-style:italic;">For paan or as mukhwass</div>
+        <div class="variant-row">
+          <div class="variant"><div class="variant-label">100g</div><div class="variant-price"><span class="price-sym">₹</span>149</div></div>
+          <div class="variant variant-center"><div class="variant-label">250g</div><div class="variant-price"><span class="price-sym">₹</span>299</div></div>
+          <div class="variant"><div class="variant-label">500g</div><div class="variant-price"><span class="price-sym">₹</span>549</div></div>
+        </div>
+      </div>
+    </div> 
+  </div>
+  <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.72rem;color:var(--text2);text-align:center;padding:var(--sp5) var(--sp4) var(--sp2);line-height:1.5;">"The paan that started in 1990 -<br>now yours to take home."</p>
+  <p style="font-size:0.58rem;color:var(--muted);text-align:center;padding:0 var(--sp4) var(--sp2);letter-spacing:0.04em;">Packed fresh · Ask at counter</p>
+</section>
+
+<div style="height:40px;background:linear-gradient(180deg,#ffffff 0%,#0f2e18 100%);margin:0;padding:0;display:block;"></div>
+
+<section id="events" class="section fade-in" style="padding:0;margin-top:0;border-top:none;">
+  <div class="events-hero">
+    <div class="events-eyebrow">Catering &amp; Bulk Orders</div>
+    <h2 class="events-title">Paan for your<br><em>every occasion</em></h2>
+    <p class="events-sub">Weddings, corporate gatherings, family functions, birthday parties - we bring Mauli to you.</p>
+    <div class="events-occasions">
+      <div class="occasion-chip">💍 Weddings</div>
+      <div class="occasion-chip">🎂 Birthdays</div>
+      <div class="occasion-chip">🏢 Corporate</div>
+      <div class="occasion-chip">🎉 Functions</div>
+    </div>
+  </div>
+  <div class="events-offer-wrap">
+    <div class="events-offer-label">What we offer</div>
+    <div class="events-offer-grid">
+      <div class="events-offer-item"><div class="events-offer-name">Live Paan Counter</div><div class="events-offer-note">At your venue</div></div>
+      <div class="events-offer-item"><div class="events-offer-name">Pre-packed Boxes</div><div class="events-offer-note">Gifting &amp; favours</div></div>
+      <div class="events-offer-item"><div class="events-offer-name">Custom Menu</div><div class="events-offer-note">Pick your items</div></div>
+      <div class="events-offer-item"><div class="events-offer-name">Take-Home Products</div><div class="events-offer-note">Premix, Gulkand &amp; more</div></div>
+    </div>
+  </div>
+  <div class="events-cta-card">
+    <div class="events-cta-label">Get in touch</div>
+    <h3 class="events-cta-title">Tell us about your event - we'll handle the paan.</h3>
+    <p class="events-cta-desc">Share your date, guest count, and occasion. We'll put together a menu and quote within 24 hours. No commitment needed to enquire.</p>
+    <div class="events-btn-group">
+      <a class="events-btn events-btn-primary" href="https://wa.me/917801879290?text=Hi%20Mauli%2C%20I%27m%20interested%20in%20paan%20catering%20for%20an%20event.%20Can%20you%20share%20details%3F" target="_blank">
+        <!-- CHANGE #7: Clean WhatsApp SVG icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="#fff" d="M16 2C8.28 2 2 8.28 2 16c0 2.49.66 4.82 1.8 6.84L2 30l7.38-1.78A13.93 13.93 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm0 25.5a11.45 11.45 0 0 1-5.83-1.59l-.42-.25-4.38 1.05 1.09-4.26-.27-.44A11.47 11.47 0 0 1 4.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.29-8.53c-.34-.17-2.03-.99-2.34-1.1-.31-.12-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.45-.53-2.76-1.69-1.02-.9-1.71-2.02-1.91-2.36-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.86-1.06-2.55-.28-.67-.56-.58-.77-.59-.2-.01-.43-.01-.66-.01-.23 0-.6.09-.91.43-.31.34-1.19 1.16-1.19 2.83s1.22 3.28 1.39 3.51c.17.23 2.4 3.67 5.82 5.14.81.35 1.45.56 1.94.72.82.26 1.56.22 2.15.13.65-.09 2.01-.82 2.29-1.62.29-.79.29-1.47.2-1.62-.09-.14-.32-.23-.66-.4z"/></svg>
+        WhatsApp us about your event
+      </a>
+      <a class="events-btn events-btn-secondary" href="tel:+917801879290">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call +91 78018 79290
+      </a>
+    </div>
+  </div>
+  <p class="events-min-note">Minimum 50 paans for catering · Advance booking recommended</p>
+</section>
 
 <script>
 const progressBar = document.getElementById('scrollProgress');
@@ -1018,7 +726,7 @@ window.addEventListener('scroll', () => {
   progressBar.style.width = Math.min(pct, 100) + '%';
 }, { passive: true });
 
-const anchors = ['after-dinner','sweet','royal','beverages','take-home','craft'];
+const anchors = ['after-dinner','sweet','royal','beverages','craft','take-home','events'];
 const navBtns = document.querySelectorAll('.nav-btn');
 let currentActiveIndex = 0;
 let isScrollingToSection = false;
@@ -1032,7 +740,6 @@ function scrollToSection(id) {
   if (idx !== -1) setActive(idx);
   setTimeout(() => { isScrollingToSection = false; }, 900);
 }
-
 function navTo(id) { scrollToSection(id); }
 
 function setActive(idx) {
@@ -1040,7 +747,11 @@ function setActive(idx) {
   currentActiveIndex = idx;
   navBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
   const section = document.getElementById(anchors[idx]);
-  if (section) { section.classList.remove('just-entered'); void section.offsetWidth; section.classList.add('just-entered'); }
+  if (section) {
+    section.classList.remove('just-entered');
+    void section.offsetWidth;
+    section.classList.add('just-entered');
+  }
   navBtns[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 }
 
@@ -1051,87 +762,45 @@ function updateNav() {
   anchors.forEach((id, i) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const distance = Math.abs(el.getBoundingClientRect().top - offset);
-    if (distance < minDistance) { minDistance = distance; closestIndex = i; }
+    const d = Math.abs(el.getBoundingClientRect().top - offset);
+    if (d < minDistance) { minDistance = d; closestIndex = i; }
   });
   if (window.scrollY < 60) closestIndex = 0;
   if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 5) closestIndex = anchors.length - 1;
   setActive(closestIndex);
 }
-
-function toggleSection(id, el){
-  const section = document.getElementById(id);
-  if(!section) return;
-
-  const isOpen = section.classList.contains('open');
-
-  if(isOpen){
-    section.style.maxHeight = section.scrollHeight + "px"; // set current height
-    requestAnimationFrame(() => {
-      section.style.maxHeight = "0px";
-    });
-
-    section.classList.remove('open');
-    el.classList.remove('open');
-    el.classList.add('collapsed');
-
-  } else {
-    section.classList.add('open');
-    section.style.maxHeight = section.scrollHeight + "px";
-
-    el.classList.add('open');
-    el.classList.remove('collapsed');
-
-    // reset after animation for flexibility
-    setTimeout(() => {
-      section.style.maxHeight = "none";
-    }, 400);
-  }
-}
-
 let ticking = false;
 window.addEventListener('scroll', () => {
   if (!ticking) { requestAnimationFrame(() => { updateNav(); ticking = false; }); ticking = true; }
 }, { passive: true });
 updateNav();
 
+function toggleSection(id, titleEl) {
+  const list = document.getElementById(id);
+  if (!list) return;
+  const isOpen = list.classList.contains('open');
+  if (isOpen) {
+    list.style.maxHeight = list.scrollHeight + 'px';
+    requestAnimationFrame(() => { list.style.maxHeight = '0px'; });
+    list.classList.remove('open');
+    titleEl.classList.remove('open');
+    titleEl.classList.add('collapsed');
+  } else {
+    list.classList.add('open');
+    list.style.maxHeight = list.scrollHeight + 'px';
+    titleEl.classList.add('open');
+    titleEl.classList.remove('collapsed');
+    setTimeout(() => { list.style.maxHeight = 'none'; }, 420);
+  }
+}
+
 const fadeEls = document.querySelectorAll('.fade-in');
 const obs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
+  entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
   });
 }, { threshold: 0.06 });
 fadeEls.forEach(el => obs.observe(el));
-  
-window.addEventListener('load', () => {
-
-  // AFTER DINNER
-  const after = document.getElementById('afterDinnerList');
-  const afterTitle = document.querySelector('[onclick*="afterDinnerList"]');
-
-  if(after && afterTitle){
-    after.classList.add('open');
-    after.style.maxHeight = after.scrollHeight + "px";
-    setTimeout(() => after.style.maxHeight = "none", 400);
-
-    afterTitle.classList.add('open');
-    afterTitle.classList.remove('collapsed');
-  }
-
-  // SIGNATURE (NEW)
-  const signature = document.getElementById('signatureList');
-  const signatureTitle = document.querySelector('[onclick*="signatureList"]');
-
-  if(signature && signatureTitle){
-    signature.classList.add('open');
-    signature.style.maxHeight = signature.scrollHeight + "px";
-    setTimeout(() => signature.style.maxHeight = "none", 400);
-
-    signatureTitle.classList.add('open');
-    signatureTitle.classList.remove('collapsed');
-  }
-
-});
 </script>
 </body>
 </html>
