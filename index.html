@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
+/* ── TOKENS ─────────────────────────────────── */
 :root {
   --g900:#071409; --g800:#0b1f11; --g700:#143520;
   --g600:#1b4d2c; --g500:#1b5e2f; --g400:#2a7a42; --g300:#3da058;
@@ -17,23 +18,28 @@
   --au200:#d4a84a; --au100:#f0d080;
   --au-bg:#faf5e8; --au-border:rgba(180,135,50,0.2);
   --bg:#ffffff; --surface:#f7f9f6; --surface2:#eff3f0;
-  --border:rgba(27,93,47,0.1); --border2:rgba(27,93,47,0.06);
-  --text:#111c14; --text2:#3a4f3d; --muted:#6b7f6e; --faint:#9aae9d;
+  --border:rgba(27,93,47,0.1);
+  --text:#111c14; --text2:#3a4f3d; --muted:#6b7f6e;
   --glass-light-bg:rgba(255,255,255,0.08);
   --glass-light-border:rgba(255,255,255,0.14);
   --glass-light-shadow:inset 0 1px 0 rgba(255,255,255,0.16);
   --sp1:4px;--sp2:8px;--sp3:12px;--sp4:16px;--sp5:20px;
   --sp6:24px;--sp8:32px;--sp10:40px;
   --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;
+  /* FIX: consistent section-hero gradient, matches hero + craft */
+  --section-dark-bg: linear-gradient(148deg, #060f08 0%, #0b1f11 30%, #143520 65%, #1b4d2c 100%);
 }
 
+/* ── RESET ───────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;font-size:16px;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;padding-bottom:88px;-webkit-font-smoothing:antialiased;}
 img{display:block;}
 
+/* ── SCROLL PROGRESS ─────────────────────────── */
 .scroll-progress{position:fixed;top:0;left:0;z-index:999;height:2px;width:0%;background:linear-gradient(90deg,var(--au400),var(--au100),var(--au400));transition:width 0.1s linear;border-radius:0 99px 99px 0;}
 
+/* ── GLASS SYSTEM ────────────────────────────── */
 .glass-dark{background:rgba(11,25,17,0.88);border:1px solid rgba(255,255,255,0.1);}
 @supports(backdrop-filter:blur(1px)){
   .glass-dark{background:var(--glass-light-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border:1px solid var(--glass-light-border);box-shadow:var(--glass-light-shadow);}
@@ -47,6 +53,7 @@ img{display:block;}
   .glass-warm{background:rgba(250,245,232,0.88);backdrop-filter:saturate(200%) blur(16px);-webkit-backdrop-filter:saturate(200%) blur(16px);}
 }
 
+/* ── HERO ────────────────────────────────────── */
 .hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 140% 80% at 85% -10%,rgba(212,168,74,0.22) 0%,transparent 55%),radial-gradient(ellipse 100% 70% at 5% 30%,rgba(61,160,88,0.15) 0%,transparent 55%),linear-gradient(158deg,#060f08 0%,#0b1f11 28%,#143520 62%,#1e5830 100%);padding:calc(env(safe-area-inset-top) + var(--sp8)) var(--sp6) var(--sp6);display:flex;flex-direction:column;align-items:center;text-align:center;isolation:isolate;}
 .hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.042'/%3E%3C/svg%3E");mix-blend-mode:overlay;}
 .hero>*{position:relative;z-index:2;}
@@ -62,8 +69,7 @@ img{display:block;}
 .usp-strip span:not(:last-child)::after{content:'·';margin-left:14px;color:rgba(212,168,74,0.45);}
 .usp-strip span:last-child{color:var(--au100);font-weight:600;}
 
-
-
+/* ── ENTRY HOOK ──────────────────────────────── */
 .entry-hook{background:linear-gradient(135deg,#0b1f11 0%,#143520 100%);padding:var(--sp4) var(--sp4) var(--sp5);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
 .entry-hook::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,74,0.1),transparent 70%);pointer-events:none;}
 .entry-hook-label{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,208,128,0.6);margin-bottom:var(--sp2);font-weight:600;}
@@ -74,6 +80,7 @@ img{display:block;}
 .entry-chip{flex:0 0 auto;display:inline-flex;align-items:center;border-radius:99px;padding:8px 16px;font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.85);cursor:pointer;transition:all 0.18s ease;white-space:nowrap;}
 .entry-chip:active{transform:scale(0.96);}
 
+/* ── QUICK PICKS ─────────────────────────────── */
 .rec-strip{padding:var(--sp3) var(--sp4);display:flex;align-items:center;gap:var(--sp3);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 .rec-strip::-webkit-scrollbar{display:none;}
 .rec-label{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--au400);white-space:nowrap;flex-shrink:0;}
@@ -82,17 +89,115 @@ img{display:block;}
 .rec-chip-img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:var(--surface);}
 .rec-chip-name{font-size:0.68rem;font-weight:600;color:var(--text);white-space:nowrap;}
 
-.sticky-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;border-top:1px solid rgba(0,0,0,0.07);padding:6px 4px;padding-bottom:max(6px,env(safe-area-inset-bottom));}
-.nav-scroll{display:flex;flex-direction:row;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 6px;width:100%;justify-content:space-between;}
-.nav-scroll::-webkit-scrollbar{display:none;}
-.nav-btn{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 4px;border-radius:10px;font-size:0.55rem;font-weight:600;letter-spacing:0.02em;color:var(--muted);border:none;background:transparent;cursor:pointer;transition:all 0.18s ease;-webkit-tap-highlight-color:transparent;}
-.nav-btn:active{transform:scale(0.9);}
-.nav-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
-.nav-btn.active{color:var(--g500);background:linear-gradient(145deg,rgba(27,94,47,0.12) 0%,rgba(27,94,47,0.06) 100%);border:1px solid rgba(27,94,47,0.18);box-shadow:inset 0 1px 0 rgba(255,255,255,0.8),0 1px 4px rgba(27,94,47,0.12);}
-.nav-btn.active svg{stroke:var(--g500);}
+/* ══════════════════════════════════════════════
+   FIX #1 — MODERN BOTTOM NAV
+   Pill active indicator, clean line icons, no clipping
+══════════════════════════════════════════════ */
+.sticky-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 0 8px;
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+.nav-inner {
+  display: flex;
+  background: rgba(255,255,255,0.97);
+  border: 1px solid rgba(27,93,47,0.1);
+  border-radius: 20px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.06);
+}
+@supports(backdrop-filter:blur(1px)){
+  .nav-inner {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: saturate(220%) blur(28px);
+    -webkit-backdrop-filter: saturate(220%) blur(28px);
+  }
+}
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 10px 2px 9px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-family: 'DM Sans', sans-serif;
+  transition: color 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+.nav-btn:active { transform: scale(0.9); }
+/* Icon wrapper — clean 20×20 stroke icons */
+.nav-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.18s ease;
+  flex-shrink: 0;
+}
+/* Active pill highlight */
+.nav-btn.active {
+  color: var(--g500);
+}
+.nav-btn.active::before {
+  content: '';
+  position: absolute;
+  inset: 5px 3px;
+  background: linear-gradient(145deg, rgba(27,94,47,0.13), rgba(27,94,47,0.07));
+  border-radius: 12px;
+  border: 1px solid rgba(27,94,47,0.18);
+}
+.nav-btn.active svg { stroke: var(--g500); }
+.nav-btn span { position: relative; z-index: 1; }
 
-.section{padding:var(--sp5) 0 var(--sp6);border-bottom:none;scroll-margin-top:20px;}
-.section:last-of-type{border-bottom:none;}
+/* ══════════════════════════════════════════════
+   FIX #3 — SECTION DIVIDER: gold rule with label
+   Restored between every section
+══════════════════════════════════════════════ */
+.section {
+  padding: var(--sp5) 0 var(--sp6);
+  scroll-margin-top: 20px;
+  /* Classy bottom rule between white sections */
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(to right, transparent, rgba(180,135,50,0.25) 20%, rgba(180,135,50,0.25) 80%, transparent) 1;
+  position: relative;
+}
+/* Extra ornamental divider row between sections */
+.section::after {
+  content: '◆';
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7px;
+  color: rgba(180,135,50,0.35);
+  background: var(--bg);
+  padding: 0 6px;
+  line-height: 1;
+  letter-spacing: 0;
+  z-index: 1;
+}
+/* Dark-bg sections don't need the white ornament */
+.section-dark::after { display: none; }
+.section-dark { border-bottom: none; }
+
+.section:last-of-type::after { display: none; }
+.section:last-of-type { border-bottom: none; }
+
 .section-header{padding:0 var(--sp4);margin-bottom:var(--sp4);}
 @keyframes sectionPulse{0%{background:rgba(27,93,47,0.03);}100%{background:transparent;}}
 .section.just-entered{animation:sectionPulse 0.5s ease forwards;}
@@ -108,12 +213,14 @@ img{display:block;}
 .collapsible{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.22,1,0.36,1);}
 .collapsible.open{max-height:2000px;}
 
+/* ── TAGS ────────────────────────────────────── */
 .tag{display:inline-flex;align-items:center;font-size:0.49rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:99px;padding:3px 9px;white-space:nowrap;line-height:1;background:rgba(27,94,47,0.07);color:var(--g500);border:1px solid rgba(27,94,47,0.16);}
 .tag-premium{color:var(--au200);border:1px solid rgba(212,168,74,0.5);background:linear-gradient(145deg,rgba(20,53,32,0.85),rgba(11,31,17,0.9));}
 .tag-strong{background:var(--g800);color:#fff;border:none;}
 .tag-soft{opacity:0.62;}
 .tag-season{background:rgba(201,149,42,0.1);color:var(--au400);border:1px solid rgba(201,149,42,0.3);}
 
+/* ── STANDARD CARD ───────────────────────────── */
 .card-list{display:flex;flex-direction:column;gap:var(--sp3);padding:0 var(--sp4);}
 .card{border-radius:var(--r-md);border:1px solid var(--border);background:#fff;display:flex;align-items:stretch;overflow:hidden;min-height:90px;box-shadow:0 1px 2px rgba(0,0,0,0.025);transition:transform 0.15s,background 0.15s;position:relative;}
 .card:active{transform:scale(0.97);background:rgba(27,93,47,0.025);}
@@ -131,6 +238,7 @@ img{display:block;}
 .card-price{font-size:0.95rem;font-weight:700;color:var(--g500);letter-spacing:-0.01em;}
 .price-sym{font-size:0.7em;font-weight:500;opacity:0.72;vertical-align:0.08em;margin-right:1px;}
 
+/* ── PORTRAIT CARD ───────────────────────────── */
 .h-scroll-row{display:flex;gap:var(--sp3);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 var(--sp4) var(--sp1);}
 .h-scroll-row::-webkit-scrollbar{display:none;}
 .card-portrait{flex:0 0 auto;width:140px;border-radius:var(--r-lg);border:1px solid var(--border);background:#fff;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:transform 0.15s;display:flex;flex-direction:column;}
@@ -143,10 +251,12 @@ img{display:block;}
 .card-portrait-price{font-size:0.82rem;font-weight:700;color:var(--g500);letter-spacing:-0.01em;margin-top:auto;padding-top:4px;}
 .card-portrait-badge{position:absolute;top:6px;left:6px;z-index:3;font-size:0.42rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:99px;padding:3px 8px;white-space:nowrap;line-height:1;}
 
+/* ── SECTION DIVIDER (inline, e.g. Live Theatre) */
 .section-divider{display:flex;align-items:center;gap:var(--sp3);margin:var(--sp5) var(--sp4) var(--sp4);}
 .section-divider-line{flex:1;height:1px;background:var(--border);}
 .section-divider-label{font-size:0.55rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
 
+/* ── VARIANT PRICING ─────────────────────────── */
 .variant-row{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
 .variant{display:flex;align-items:center;justify-content:space-between;width:100%;padding:6px 10px;border-radius:7px;background:transparent;}
 .variant-center{background:rgba(212,168,74,0.1);}
@@ -155,8 +265,10 @@ img{display:block;}
 .variant-price{font-size:0.88rem;font-weight:700;color:var(--g500);text-align:right;}
 .variant:not(.variant-center) .variant-price{opacity:0.72;}
 
+/* ── HOME TAG ────────────────────────────────── */
 .home-tag{position:absolute;top:10px;left:10px;z-index:5;padding:5px 12px;border-radius:99px;font-size:0.5rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--au100);background:linear-gradient(145deg,rgba(11,31,17,0.92),rgba(20,53,32,0.88));border:1px solid rgba(212,168,74,0.55);box-shadow:0 2px 10px rgba(0,0,0,0.25);}
 
+/* ── CRAFT CARD ──────────────────────────────── */
 .craft-card{background:linear-gradient(148deg,var(--g800) 0%,var(--g700) 50%,var(--g600) 100%);border-radius:var(--r-xl);padding:var(--sp6) var(--sp5);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.06);margin:0 var(--sp4) var(--sp4);}
 .craft-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(185,130,40,0.12),transparent 70%);pointer-events:none;}
 .craft-card::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(30,92,50,0.22),transparent 70%);pointer-events:none;}
@@ -176,54 +288,72 @@ img{display:block;}
 .craft-price{background:linear-gradient(135deg,var(--au400),var(--au200));color:var(--g800);font-size:0.88rem;font-weight:700;padding:8px 18px;border-radius:99px;box-shadow:0 4px 14px rgba(185,130,40,0.28);letter-spacing:-0.01em;}
 .craft-counter-note{font-size:0.58rem;color:rgba(255,255,255,0.38);text-align:center;margin-top:var(--sp4);font-style:italic;line-height:1.5;}
 
-.events-hero{background:var(--g800);padding:var(--sp8) var(--sp4) var(--sp6);position:relative;overflow:hidden;text-align:center;}
-.events-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,74,0.12),transparent 70%);pointer-events:none;}
-.events-hero::after {content:'';position:absolute;top:-40px;left:0;right:0;height:80px;background:linear-gradient(to bottom,rgba(255,255,255,0.08),transparent);pointer-events:none;}
-.events-hero>*{position:relative;z-index:1;}
+/* ══════════════════════════════════════════════
+   FIX #2 — EVENTS: unified gradient matching hero + craft
+   Was: var(--g800) = flat near-black
+   Now: same deep-to-mid green gradient as rest of dark sections
+══════════════════════════════════════════════ */
+.events-hero {
+  background: radial-gradient(ellipse 140% 80% at 85% -10%, rgba(212,168,74,0.18) 0%, transparent 55%),
+              radial-gradient(ellipse 100% 70% at 5% 30%, rgba(61,160,88,0.12) 0%, transparent 55%),
+              linear-gradient(158deg, #060f08 0%, #0b1f11 28%, #143520 62%, #1e5830 100%);
+  padding: var(--sp8) var(--sp4) var(--sp6);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.events-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,168,74,0.1), transparent 70%);
+  pointer-events: none;
+}
+/* Noise overlay to match hero texture */
+.events-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+.events-hero > * { position: relative; z-index: 1; }
+
 .events-eyebrow{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,208,128,0.55);margin-bottom:var(--sp2);font-weight:600;}
 .events-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:var(--sp3);}
 .events-title em{color:var(--au100);font-style:normal;}
 .events-sub{font-size:0.7rem;color:rgba(255,255,255,0.48);line-height:1.6;max-width:280px;margin:0 auto var(--sp5);}
 .events-occasions{display:flex;gap:var(--sp2);flex-wrap:wrap;justify-content:center;}
 .occasion-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.11);border-radius:99px;padding:7px 14px;font-size:0.65rem;font-weight:600;color:rgba(255,255,255,0.75);white-space:nowrap;}
-.events-offer-wrap{background:var(--g800);padding:var(--sp5) var(--sp4) var(--sp4);}
+
+/* Events offer block — keep dark but slightly lighter than before */
+.events-offer-wrap{background:rgba(11,31,17,0.95);padding:var(--sp5) var(--sp4) var(--sp4);}
 .events-offer-label{font-size:0.55rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,208,128,0.45);font-weight:700;text-align:center;margin-bottom:var(--sp3);}
 .events-offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2);}
 .events-offer-item{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:var(--r-md);padding:var(--sp3);text-align:center;}
 .events-offer-name{font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.78);line-height:1.3;}
 .events-offer-note{font-size:0.56rem;color:rgba(255,255,255,0.32);margin-top:3px;}
+
 .events-cta-card{background:linear-gradient(145deg,#fff,#faf5e8);border:1px solid var(--au-border);border-radius:var(--r-xl);margin:var(--sp5) var(--sp4) 0;padding:var(--sp5) var(--sp4);box-shadow:0 8px 28px rgba(0,0,0,0.1);}
 .events-cta-label{font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--au400);font-weight:700;margin-bottom:var(--sp2);}
 .events-cta-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:var(--sp2);line-height:1.25;}
 .events-cta-desc{font-size:0.67rem;color:var(--muted);line-height:1.55;margin-bottom:var(--sp5);}
 .events-btn-group{display:flex;flex-direction:column;gap:var(--sp2);}
-.events-btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:99px;padding:13px 20px;font-size:0.75rem;font-weight:700;letter-spacing:0.03em;text-decoration:none;transition:transform 0.15s;cursor:pointer;border:none;width:100%;}
+.events-btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:99px;padding:13px 20px;font-size:0.75rem;font-weight:700;letter-spacing:0.03em;text-decoration:none;transition:transform 0.15s;cursor:pointer;border:none;width:100%;font-family:'DM Sans',sans-serif;}
 .events-btn:active{transform:scale(0.97);}
 .events-btn-primary{background:linear-gradient(135deg,var(--g600),var(--g500));color:#fff;box-shadow:0 4px 16px rgba(27,94,47,0.3);}
 .events-btn-secondary{background:transparent;border:1.5px solid var(--au300);color:var(--au400);}
 .events-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
 .events-btn-primary svg{stroke:#fff;}
-.events-min-note{text-align:center;font-size:0.6rem;color:var(--muted);margin-top:var(--sp4);font-style:italic;padding:var(--sp2) var(--sp4) var(--sp2);}
+.events-min-note{text-align:center;font-size:0.6rem;color:var(--muted);margin-top:var(--sp4);font-style:italic;padding:var(--sp2) var(--sp4) var(--sp4);}
 
+/* ── FADE IN ─────────────────────────────────── */
 .fade-in{opacity:0;transform:translateY(12px);transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.22,1,0.36,1);}
 .fade-in.visible{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
-
-#events{border-bottom:none !important;margin-bottom:0;padding-bottom:0;margin-top:0;}
-#take-home {padding-bottom:0;}
-
-.section-blend {
-  height:60px;
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,1) 0%,
-    rgba(255,255,255,0.6) 40%,
-    rgba(255,255,255,0) 100%
-  );
-  margin-bottom:-60px;
-  position:relative;
-  z-index:1;
-}
 
 </style>
 </head>
@@ -231,29 +361,26 @@ img{display:block;}
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
+<!-- ── HERO ───────────────────────────────────── -->
 <header class="hero">
+  <!-- Social icons: Instagram left, WhatsApp right -->
   <div style="position:absolute;top:calc(env(safe-area-inset-top) + 12px);left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;z-index:10;">
-    <!-- Instagram left -->
     <a href="https://instagram.com/mauli_ahmedabad" target="_blank"
-      style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background 0.2s;"
-      onmouseenter="this.style.background='rgba(255,255,255,0.18)'"
-      onmouseleave="this.style.background='rgba(255,255,255,0.1)'">
+      style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5"/>
         <circle cx="12" cy="12" r="4"/>
         <circle cx="17.5" cy="6.5" r="1.2" fill="rgba(255,255,255,0.85)" stroke="none"/>
       </svg>
     </a>
-    <!-- WhatsApp right -->
     <a href="https://wa.me/917801879290" target="_blank"
-      style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background 0.2s;"
-      onmouseenter="this.style.background='rgba(255,255,255,0.18)'"
-      onmouseleave="this.style.background='rgba(255,255,255,0.1)'">
+      style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">
       <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 32 32">
         <path fill="rgba(255,255,255,0.85)" d="M16 2C8.28 2 2 8.28 2 16c0 2.49.66 4.82 1.8 6.84L2 30l7.38-1.78A13.93 13.93 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm0 25.5a11.45 11.45 0 0 1-5.83-1.59l-.42-.25-4.38 1.05 1.09-4.26-.27-.44A11.47 11.47 0 0 1 4.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.29-8.53c-.34-.17-2.03-.99-2.34-1.1-.31-.12-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.45-.53-2.76-1.69-1.02-.9-1.71-2.02-1.91-2.36-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.86-1.06-2.55-.28-.67-.56-.58-.77-.59-.2-.01-.43-.01-.66-.01-.23 0-.6.09-.91.43-.31.34-1.19 1.16-1.19 2.83s1.22 3.28 1.39 3.51c.17.23 2.4 3.67 5.82 5.14.81.35 1.45.56 1.94.72.82.26 1.56.22 2.15.13.65-.09 2.01-.82 2.29-1.62.29-.79.29-1.47.2-1.62-.09-.14-.32-.23-.66-.4z"/>
       </svg>
     </a>
   </div>
+
   <img class="hero-logo" src="images/tlogo.webp" alt="Mauli Family Paan House" onerror="this.style.opacity='0'">
   <div class="hero-since">Est. 1990 · Frizbee Food Park, Ahmedabad</div>
   <div class="hero-line"></div>
@@ -266,21 +393,20 @@ img{display:block;}
   </div>
 </header>
 
-<!-- CHANGE #1: Playfair numbers + brand-toned sub-labels -->
-
+<!-- ── ENTRY HOOK ──────────────────────────────── -->
 <div class="entry-hook">
   <div class="entry-hook-label">First time here?</div>
   <div class="entry-hook-title">What's your <em>mood?</em></div>
   <div class="entry-chips">
     <div class="entry-chip glass-dark" onclick="scrollToSection('craft')">Customize</div>
     <div class="entry-chip glass-dark" onclick="scrollToSection('after-dinner')">Digestive</div>
-    <div class="entry-chip glass-dark" onclick="scrollToSection('beverages')">Drinks</div>    
-    <div class="entry-chip glass-dark" onclick="scrollToSection('take-home')">Take Home</div>    
+    <div class="entry-chip glass-dark" onclick="scrollToSection('beverages')">Drinks</div>
+    <div class="entry-chip glass-dark" onclick="scrollToSection('take-home')">Take Home</div>
     <div class="entry-chip glass-dark" onclick="scrollToSection('events')">Book Events</div>
   </div>
 </div>
 
-<!-- CHANGE #8: Quick picks reordered -->
+<!-- ── QUICK PICKS ─────────────────────────────── -->
 <div class="rec-strip glass-warm">
   <span class="rec-label">Quick Picks</span>
   <a class="rec-chip" href="#royal"><img class="rec-chip-img" src="images/rampyari.webp" alt=""><span class="rec-chip-name">Rampyari Royale</span></a>
@@ -290,39 +416,86 @@ img{display:block;}
   <a class="rec-chip" href="#take-home"><img class="rec-chip-img" src="images/kesargulkand.webp" alt=""><span class="rec-chip-name">Kesar Gulkand</span></a>
 </div>
 
+<!-- ══════════════════════════════════════════════
+     FIX #1 — MODERN BOTTOM NAV
+     Pill-style floating card, clean stroke icons
+══════════════════════════════════════════════ -->
 <nav class="sticky-nav glass-white">
-  <div class="nav-scroll">
+  <div class="nav-inner">
+
     <button class="nav-btn active" onclick="navTo('after-dinner')">
-      <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2c0 5.523 4.477 10 10 10-1.657 3.857-5.514 6.5-10 6.5V22z"/></svg>
+      <!-- Leaf / digestive -->
+      <svg viewBox="0 0 24 24">
+        <path d="M20 4c-10 1-15 6-16 16 6-1 10-3 13-7 3-4 3-6 3-9z"/>
+        <path d="M4 20c2-4 5-7 10-9"/>
+      </svg>
       <span>Digestive</span>
     </button>
+
     <button class="nav-btn" onclick="navTo('sweet')">
-      <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><rect x="5" y="12" width="14" height="9" rx="1"/><path d="M12 8V21M8 8c0-2 1.5-4 4-4s4 2 4 4"/></svg>
+      <!-- Chocolate bar / treats -->
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="6" width="18" height="13" rx="2"/>
+        <line x1="3" y1="11" x2="21" y2="11"/>
+        <line x1="9" y1="11" x2="9" y2="19"/>
+        <line x1="15" y1="11" x2="15" y2="19"/>
+      </svg>
       <span>Treats</span>
     </button>
+
     <button class="nav-btn" onclick="navTo('royal')">
-      <svg viewBox="0 0 24 24"><path d="M3 18h18M5 18L3 8l4.5 4L12 4l4.5 8L21 8l-2 10H5z"/></svg>
+      <!-- Crown -->
+      <svg viewBox="0 0 24 24">
+        <path d="M3 18h18"/>
+        <path d="M3 8l4 5 5-8 5 8 4-5v10H3V8z"/>
+      </svg>
       <span>Premium</span>
     </button>
+
     <button class="nav-btn" onclick="navTo('beverages')">
-      <svg viewBox="0 0 24 24"><path d="M8 2h8l1 7H7L8 2z"/><path d="M7 9c0 5 2 8 5 8s5-3 5-8"/><path d="M10 17v3M14 17v3M8 20h8"/></svg>
+      <!-- Glass with straw -->
+      <svg viewBox="0 0 24 24">
+        <path d="M5 3h14l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 3z"/>
+        <path d="M3 3h18"/>
+        <line x1="14" y1="7" x2="12" y2="19"/>
+      </svg>
       <span>Drinks</span>
     </button>
+
     <button class="nav-btn" onclick="navTo('craft')">
-      <svg viewBox="0 0 24 24"><path d="M15 4l5 5-10 10H5v-5L15 4z"/><path d="M3 21l3-3M19 3l2 2"/></svg>
+      <!-- Pencil / craft -->
+      <svg viewBox="0 0 24 24">
+        <path d="M12 20h9"/>
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+      </svg>
       <span>Craft</span>
     </button>
+
     <button class="nav-btn" onclick="navTo('take-home')">
-      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <!-- Package / take away -->
+      <svg viewBox="0 0 24 24">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+        <line x1="12" y1="22.08" x2="12" y2="12"/>
+      </svg>
       <span>Take Away</span>
     </button>
+
     <button class="nav-btn" onclick="navTo('events')">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01"/></svg>
+      <!-- Calendar -->
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
       <span>Bookings</span>
     </button>
+
   </div>
 </nav>
 
+<!-- ── AFTER DINNER ────────────────────────────── -->
 <section id="after-dinner" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Start Here <div class="section-eyebrow-line"></div></div>
@@ -382,6 +555,7 @@ img{display:block;}
   </div>
 </section>
 
+<!-- ── TREATS ──────────────────────────────────── -->
 <section id="sweet" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Indulgent <div class="section-eyebrow-line"></div></div>
@@ -443,6 +617,7 @@ img{display:block;}
   </div>
 </section>
 
+<!-- ── SIGNATURE / PREMIUM ────────────────────── -->
 <section id="royal" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Premium <div class="section-eyebrow-line"></div></div>
@@ -484,13 +659,11 @@ img{display:block;}
       </div>
     </div>
   </div>
-
   <div class="section-divider">
     <div class="section-divider-line"></div>
     <span class="section-divider-label">Live Theatre</span>
     <div class="section-divider-line"></div>
   </div>
-
   <div class="card-list">
     <div class="card card-fire fade-in">
       <div class="card-img"><img src="images/fire.webp" alt="Fire Paan" loading="lazy"></div>
@@ -514,7 +687,7 @@ img{display:block;}
   </div>
 </section>
 
-<!-- CHANGE #2 + #3: Beverages -->
+<!-- ── BEVERAGES ───────────────────────────────── -->
 <section id="beverages" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Drinks <div class="section-eyebrow-line"></div></div>
@@ -522,7 +695,6 @@ img{display:block;}
     <p class="section-sub">A paan drink - only here, nowhere else.</p>
   </div>
   <div class="card-list">
-    <!-- CHANGE #3: Updated Paan Sparkle description -->
     <div class="card fade-in">
       <div class="card-img"><img src="images/sparkle.webp" alt="Paan Sparkle" loading="lazy"></div>
       <div class="card-body">
@@ -534,7 +706,6 @@ img{display:block;}
         </div>
       </div>
     </div>
-    <!-- CHANGE #2: New Gulkand Shake -->
     <div class="card fade-in">
       <div class="card-img"><img src="images/gulkandshake.webp" alt="Gulkand Shake" loading="lazy"></div>
       <div class="card-body">
@@ -549,6 +720,7 @@ img{display:block;}
   </div>
 </section>
 
+<!-- ── CRAFT YOUR PAAN ────────────────────────── -->
 <section id="craft" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Custom <div class="section-eyebrow-line"></div></div>
@@ -576,8 +748,8 @@ img{display:block;}
     </div>
     <p class="craft-counter-note">Tell us your last paan - we'll craft your next one.</p>
   </div>
+  <!-- Leaf types as portrait cards in grid -->
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 16px 24px;">
-    
     <div class="card-portrait" style="width:auto;">
       <div class="card-portrait-img">
         <img src="images/banarasileaf.webp" alt="Banarasi Leaf" loading="lazy">
@@ -588,7 +760,6 @@ img{display:block;}
         <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;font-style:italic;">Bold · Traditional</div>
       </div>
     </div>
-
     <div class="card-portrait" style="width:auto;">
       <div class="card-portrait-img">
         <img src="images/calcuttileaf.webp" alt="Calcutti Leaf" loading="lazy">
@@ -599,7 +770,6 @@ img{display:block;}
         <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;font-style:italic;">Mild · Tender</div>
       </div>
     </div>
-
     <div class="card-portrait" style="width:auto;">
       <div class="card-portrait-img">
         <img src="images/maghaileaf.webp" alt="Maghai Leaf" loading="lazy">
@@ -613,7 +783,7 @@ img{display:block;}
   </div>
 </section>
 
-<!-- CHANGE #4 #5 #6: Take Home — Paan Premix renamed, Maghai Premix added, descriptions updated -->
+<!-- ── TAKE HOME ───────────────────────────────── -->
 <section id="take-home" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Retail <div class="section-eyebrow-line"></div></div>
@@ -621,7 +791,6 @@ img{display:block;}
     <p class="section-sub">Bring the Mauli ritual home.</p>
   </div>
   <div class="h-scroll-row fade-in">
-
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/kesargulkand.webp" alt="Kesar Gulkand" loading="lazy" onerror="this.src='images/gulkandjar.png'">
@@ -637,7 +806,6 @@ img{display:block;}
         </div>
       </div>
     </div>
-
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/ayudigest.webp" alt="Ayu Digest" loading="lazy">
@@ -653,11 +821,9 @@ img{display:block;}
         </div>
       </div>
     </div>
-
-    <!-- CHANGE #4 + #6: New Maghai Premix -->
     <div class="card-portrait">
       <div class="card-portrait-img">
-        <img src="images/maghaipremix.webp" alt="Maghai Premix" loading="lazy" onerror="this.src='images/paan-premix.webp'">
+        <img src="images/maghaipremix.webp" alt="Maghai Premix" loading="lazy" onerror="this.src='images/paanpremix.webp'">
         <div class="home-tag">Royal Blend</div>
       </div>
       <div class="card-portrait-body">
@@ -670,8 +836,6 @@ img{display:block;}
         </div>
       </div>
     </div>
-
-    <!-- CHANGE #5 + #6: Sweet Premix → Paan Premix, mukhwass description -->
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/paanpremix.webp" alt="Paan Premix" loading="lazy">
@@ -686,15 +850,17 @@ img{display:block;}
           <div class="variant"><div class="variant-label">500g</div><div class="variant-price"><span class="price-sym">₹</span>549</div></div>
         </div>
       </div>
-    </div> 
+    </div>
   </div>
   <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.72rem;color:var(--text2);text-align:center;padding:var(--sp5) var(--sp4) var(--sp2);line-height:1.5;">"The paan that started in 1990 -<br>now yours to take home."</p>
   <p style="font-size:0.58rem;color:var(--muted);text-align:center;padding:0 var(--sp4) var(--sp2);letter-spacing:0.04em;">Packed fresh · Ask at counter</p>
 </section>
 
-<div class="section-blend"></div>
-
-<section id="events" class="section fade-in" style="padding:0;margin-top:0;border-top:none;">
+<!-- ══════════════════════════════════════════════
+     FIX #2 — EVENTS: uses hero gradient now, not flat dark
+     Removed .section-blend hack, padding cleaned up
+══════════════════════════════════════════════ -->
+<section id="events" class="section section-dark fade-in" style="padding:0;">
   <div class="events-hero">
     <div class="events-eyebrow">Catering &amp; Bulk Orders</div>
     <h2 class="events-title">Paan for your<br><em>every occasion</em></h2>
@@ -721,12 +887,15 @@ img{display:block;}
     <p class="events-cta-desc">Share your date, guest count, and occasion. We'll put together a menu and quote within 24 hours. No commitment needed to enquire.</p>
     <div class="events-btn-group">
       <a class="events-btn events-btn-primary" href="https://wa.me/917801879290?text=Hi%20Mauli%2C%20I%27m%20interested%20in%20paan%20catering%20for%20an%20event.%20Can%20you%20share%20details%3F" target="_blank">
-        <!-- CHANGE #7: Clean WhatsApp SVG icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="#fff" d="M16 2C8.28 2 2 8.28 2 16c0 2.49.66 4.82 1.8 6.84L2 30l7.38-1.78A13.93 13.93 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm0 25.5a11.45 11.45 0 0 1-5.83-1.59l-.42-.25-4.38 1.05 1.09-4.26-.27-.44A11.47 11.47 0 0 1 4.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.29-8.53c-.34-.17-2.03-.99-2.34-1.1-.31-.12-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.45-.53-2.76-1.69-1.02-.9-1.71-2.02-1.91-2.36-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.86-1.06-2.55-.28-.67-.56-.58-.77-.59-.2-.01-.43-.01-.66-.01-.23 0-.6.09-.91.43-.31.34-1.19 1.16-1.19 2.83s1.22 3.28 1.39 3.51c.17.23 2.4 3.67 5.82 5.14.81.35 1.45.56 1.94.72.82.26 1.56.22 2.15.13.65-.09 2.01-.82 2.29-1.62.29-.79.29-1.47.2-1.62-.09-.14-.32-.23-.66-.4z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32">
+          <path fill="#fff" d="M16 2C8.28 2 2 8.28 2 16c0 2.49.66 4.82 1.8 6.84L2 30l7.38-1.78A13.93 13.93 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm0 25.5a11.45 11.45 0 0 1-5.83-1.59l-.42-.25-4.38 1.05 1.09-4.26-.27-.44A11.47 11.47 0 0 1 4.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.29-8.53c-.34-.17-2.03-.99-2.34-1.1-.31-.12-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.45-.53-2.76-1.69-1.02-.9-1.71-2.02-1.91-2.36-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.86-1.06-2.55-.28-.67-.56-.58-.77-.59-.2-.01-.43-.01-.66-.01-.23 0-.6.09-.91.43-.31.34-1.19 1.16-1.19 2.83s1.22 3.28 1.39 3.51c.17.23 2.4 3.67 5.82 5.14.81.35 1.45.56 1.94.72.82.26 1.56.22 2.15.13.65-.09 2.01-.82 2.29-1.62.29-.79.29-1.47.2-1.62-.09-.14-.32-.23-.66-.4z"/>
+        </svg>
         WhatsApp us about your event
       </a>
       <a class="events-btn events-btn-secondary" href="tel:+917801879290">
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
         Call +91 78018 79290
       </a>
     </div>
@@ -735,12 +904,14 @@ img{display:block;}
 </section>
 
 <script>
+/* ── Scroll progress ── */
 const progressBar = document.getElementById('scrollProgress');
 window.addEventListener('scroll', () => {
   const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
   progressBar.style.width = Math.min(pct, 100) + '%';
 }, { passive: true });
 
+/* ── Nav ── */
 const anchors = ['after-dinner','sweet','royal','beverages','craft','take-home','events'];
 const navBtns = document.querySelectorAll('.nav-btn');
 let currentActiveIndex = 0;
@@ -790,6 +961,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 updateNav();
 
+/* ── Collapsible sections ── */
 function toggleSection(id, titleEl) {
   const list = document.getElementById(id);
   if (!list) return;
@@ -809,6 +981,7 @@ function toggleSection(id, titleEl) {
   }
 }
 
+/* ── Fade-in on scroll ── */
 const fadeEls = document.querySelectorAll('.fade-in');
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
