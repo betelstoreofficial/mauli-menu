@@ -83,6 +83,18 @@ img{display:block;}
 .rec-chip-img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:var(--surface);}
 .rec-chip-name{font-size:0.68rem;font-weight:600;color:var(--text);white-space:nowrap;}
 
+/* ═══════════════════════════════════════════
+   FIRST VISIT RECOMMENDATION — dismissible
+═══════════════════════════════════════════ */
+.first-visit-bar { position:sticky; top:0; z-index:150; background:linear-gradient(135deg,var(--g800),var(--g700)); border-bottom:1px solid rgba(212,168,74,0.2); padding:10px var(--sp4); display:flex; align-items:center; justify-content:space-between; gap:var(--sp3); transition:opacity 0.3s,transform 0.3s; }
+.first-visit-bar.hidden { opacity:0; pointer-events:none; transform:translateY(-100%); }
+.first-visit-inner { display:flex; align-items:center; gap:var(--sp2); flex:1; min-width:0; }
+.first-visit-dot { width:6px; height:6px; border-radius:50%; background:var(--au200); flex-shrink:0; }
+.first-visit-text { font-size:0.67rem; color:rgba(255,255,255,0.82); line-height:1.4; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.first-visit-text strong { color:var(--au100); font-weight:700; }
+.first-visit-dismiss { width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,0.08); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.first-visit-dismiss svg { width:12px; height:12px; stroke:rgba(255,255,255,0.55); fill:none; stroke-width:2.5; stroke-linecap:round; }
+
 /* ── BOTTOM NAV ──────────────────────────────── */
 .sticky-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:0 8px;padding-bottom:max(8px,env(safe-area-inset-bottom));}
 .nav-inner{display:flex;background:rgba(255,255,255,0.97);border:1px solid rgba(27,93,47,0.1);border-radius:20px;margin-bottom:8px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.06);}
@@ -398,6 +410,19 @@ img{display:block;}
   <a class="rec-chip" href="#beverages"><img class="rec-chip-img" src="images/gulkandshake.webp" alt=""><span class="rec-chip-name">Gulkand Shake</span></a>
   <a class="rec-chip" href="#sweet"><img class="rec-chip-img" src="images/nutella.webp" alt=""><span class="rec-chip-name">Choco Nutella</span></a>
   <a class="rec-chip" href="#take-home"><img class="rec-chip-img" src="images/kesargulkand.webp" alt=""><span class="rec-chip-name">Kesar Gulkand</span></a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FIRST VISIT RECOMMENDATION
+════════════════════════════════════════════ -->
+<div class="first-visit-bar" id="firstVisitBar">
+  <div class="first-visit-inner">
+    <div class="first-visit-dot"></div>
+    <div class="first-visit-text">First visit? Try <strong>Rampyari Royale + Paan Sparkle</strong> — our most-loved pairing.</div>
+  </div>
+  <button class="first-visit-dismiss" onclick="dismissFirstVisit()" aria-label="Dismiss">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -1112,6 +1137,16 @@ window.addEventListener('scroll', () => {
   const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
   progressBar.style.width = Math.min(pct, 100) + '%';
 }, { passive: true });
+
+/* ── First Visit bar ── */
+function dismissFirstVisit() {
+  const bar = document.getElementById('firstVisitBar');
+  bar.classList.add('hidden');
+  try { sessionStorage.setItem('fvd','1'); } catch(e){}
+}
+(function(){
+  try { if(sessionStorage.getItem('fvd')) dismissFirstVisit(); } catch(e){}
+})();
 
 /* ── Nav ── */
 const anchors = ['must-try','live-theatre','sweet','royal','after-dinner','beverages','craft','take-home','events'];
