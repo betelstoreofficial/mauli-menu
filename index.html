@@ -26,14 +26,12 @@
   --sp1:4px;--sp2:8px;--sp3:12px;--sp4:16px;--sp5:20px;
   --sp6:24px;--sp8:32px;--sp10:40px;
   --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;
-  /* FIX: consistent section-hero gradient, matches hero + craft */
-  --section-dark-bg: linear-gradient(148deg, #060f08 0%, #0b1f11 30%, #143520 65%, #1b4d2c 100%);
 }
 
 /* ── RESET ───────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;font-size:16px;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;padding-bottom:88px;-webkit-font-smoothing:antialiased;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;padding-bottom:96px;-webkit-font-smoothing:antialiased;}
 img{display:block;}
 
 /* ── SCROLL PROGRESS ─────────────────────────── */
@@ -43,10 +41,6 @@ img{display:block;}
 .glass-dark{background:rgba(11,25,17,0.88);border:1px solid rgba(255,255,255,0.1);}
 @supports(backdrop-filter:blur(1px)){
   .glass-dark{background:var(--glass-light-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border:1px solid var(--glass-light-border);box-shadow:var(--glass-light-shadow);}
-}
-.glass-white{background:rgba(255,255,255,0.96);border-top:1px solid rgba(255,255,255,0.9);box-shadow:0 -1px 0 rgba(27,93,47,0.06),0 -8px 32px rgba(0,0,0,0.08),inset 0 1px 0 #fff;}
-@supports(backdrop-filter:blur(1px)){
-  .glass-white{background:linear-gradient(180deg,rgba(255,255,255,0.92) 0%,rgba(245,250,246,0.88) 100%);backdrop-filter:saturate(220%) blur(28px);-webkit-backdrop-filter:saturate(220%) blur(28px);border-top:1px solid rgba(255,255,255,0.95);box-shadow:0 -1px 0 rgba(27,93,47,0.08),0 -12px 40px rgba(0,0,0,0.1),0 -4px 16px rgba(27,93,47,0.04),inset 0 1px 0 #fff,inset 0 0 0 0.5px rgba(255,255,255,0.6);}
 }
 .glass-warm{background:rgba(250,245,232,0.97);border-top:1px solid var(--au-border);border-bottom:1px solid var(--au-border);}
 @supports(backdrop-filter:blur(1px)){
@@ -89,115 +83,27 @@ img{display:block;}
 .rec-chip-img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:var(--surface);}
 .rec-chip-name{font-size:0.68rem;font-weight:600;color:var(--text);white-space:nowrap;}
 
-/* ══════════════════════════════════════════════
-   FIX #1 — MODERN BOTTOM NAV
-   Pill active indicator, clean line icons, no clipping
-══════════════════════════════════════════════ */
-.sticky-nav {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 200;
-  padding: 0 8px;
-  padding-bottom: max(8px, env(safe-area-inset-bottom));
-}
-.nav-inner {
-  display: flex;
-  background: rgba(255,255,255,0.97);
-  border: 1px solid rgba(27,93,47,0.1);
-  border-radius: 20px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.06);
-}
+/* ── BOTTOM NAV ──────────────────────────────── */
+.sticky-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:0 8px;padding-bottom:max(8px,env(safe-area-inset-bottom));}
+.nav-inner{display:flex;background:rgba(255,255,255,0.97);border:1px solid rgba(27,93,47,0.1);border-radius:20px;margin-bottom:8px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.06);}
 @supports(backdrop-filter:blur(1px)){
-  .nav-inner {
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: saturate(220%) blur(28px);
-    -webkit-backdrop-filter: saturate(220%) blur(28px);
-  }
+  .nav-inner{background:rgba(255,255,255,0.88);backdrop-filter:saturate(220%) blur(28px);-webkit-backdrop-filter:saturate(220%) blur(28px);}
 }
-.nav-btn {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  padding: 10px 2px 9px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  color: var(--muted);
-  font-size: 0.5rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  font-family: 'DM Sans', sans-serif;
-  transition: color 0.18s ease;
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-}
-.nav-btn:active { transform: scale(0.9); }
-/* Icon wrapper — clean 20×20 stroke icons */
-.nav-btn svg {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: stroke 0.18s ease;
-  flex-shrink: 0;
-}
-/* Active pill highlight */
-.nav-btn.active {
-  color: var(--g500);
-}
-.nav-btn.active::before {
-  content: '';
-  position: absolute;
-  inset: 5px 3px;
-  background: linear-gradient(145deg, rgba(27,94,47,0.13), rgba(27,94,47,0.07));
-  border-radius: 12px;
-  border: 1px solid rgba(27,94,47,0.18);
-}
-.nav-btn.active svg { stroke: var(--g500); }
-.nav-btn span { position: relative; z-index: 1; }
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 2px 9px;border:none;background:transparent;cursor:pointer;color:var(--muted);font-size:0.5rem;font-weight:600;letter-spacing:0.02em;font-family:'DM Sans',sans-serif;transition:color 0.18s ease;-webkit-tap-highlight-color:transparent;position:relative;}
+.nav-btn:active{transform:scale(0.9);}
+.nav-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke 0.18s ease;flex-shrink:0;}
+.nav-btn.active{color:var(--g500);}
+.nav-btn.active::before{content:'';position:absolute;inset:5px 3px;background:linear-gradient(145deg,rgba(27,94,47,0.13),rgba(27,94,47,0.07));border-radius:12px;border:1px solid rgba(27,94,47,0.18);}
+.nav-btn.active svg{stroke:var(--g500);}
+.nav-btn span{position:relative;z-index:1;}
 
-/* ══════════════════════════════════════════════
-   FIX #3 — SECTION DIVIDER: gold rule with label
-   Restored between every section
-══════════════════════════════════════════════ */
-.section {
-  padding: var(--sp5) 0 var(--sp6);
-  scroll-margin-top: 20px;
-  /* Classy bottom rule between white sections */
-  border-bottom: 1px solid transparent;
-  border-image: linear-gradient(to right, transparent, rgba(180,135,50,0.25) 20%, rgba(180,135,50,0.25) 80%, transparent) 1;
-  position: relative;
-}
-/* Extra ornamental divider row between sections */
-.section::after {
-  content: '◆';
-  position: absolute;
-  bottom: -9px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 7px;
-  color: rgba(180,135,50,0.35);
-  background: var(--bg);
-  padding: 0 6px;
-  line-height: 1;
-  letter-spacing: 0;
-  z-index: 1;
-}
-/* Dark-bg sections don't need the white ornament */
-.section-dark::after { display: none; }
-.section-dark { border-bottom: none; }
-
-.section:last-of-type::after { display: none; }
-.section:last-of-type { border-bottom: none; }
-
+/* ── SECTION DIVIDERS ────────────────────────── */
+.section{padding:var(--sp5) 0 var(--sp6);scroll-margin-top:20px;border-bottom:1px solid transparent;border-image:linear-gradient(to right,transparent,rgba(180,135,50,0.25) 20%,rgba(180,135,50,0.25) 80%,transparent) 1;position:relative;}
+.section::after{content:'◆';position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);font-size:7px;color:rgba(180,135,50,0.35);background:var(--bg);padding:0 6px;line-height:1;letter-spacing:0;z-index:1;}
+.section-dark::after{display:none;}
+.section-dark{border-bottom:none;}
+.section:last-of-type::after{display:none;}
+.section:last-of-type{border-bottom:none;}
 .section-header{padding:0 var(--sp4);margin-bottom:var(--sp4);}
 @keyframes sectionPulse{0%{background:rgba(27,93,47,0.03);}100%{background:transparent;}}
 .section.just-entered{animation:sectionPulse 0.5s ease forwards;}
@@ -219,6 +125,8 @@ img{display:block;}
 .tag-strong{background:var(--g800);color:#fff;border:none;}
 .tag-soft{opacity:0.62;}
 .tag-season{background:rgba(201,149,42,0.1);color:var(--au400);border:1px solid rgba(201,149,42,0.3);}
+.tag-fire{background:rgba(255,100,0,0.12);color:#e05500;border:1px solid rgba(255,100,0,0.25);}
+.tag-new{background:linear-gradient(135deg,#1b5e2f,#2a7a42);color:#fff;border:none;}
 
 /* ── STANDARD CARD ───────────────────────────── */
 .card-list{display:flex;flex-direction:column;gap:var(--sp3);padding:0 var(--sp4);}
@@ -251,7 +159,47 @@ img{display:block;}
 .card-portrait-price{font-size:0.82rem;font-weight:700;color:var(--g500);letter-spacing:-0.01em;margin-top:auto;padding-top:4px;}
 .card-portrait-badge{position:absolute;top:6px;left:6px;z-index:3;font-size:0.42rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:99px;padding:3px 8px;white-space:nowrap;line-height:1;}
 
-/* ── SECTION DIVIDER (inline, e.g. Live Theatre) */
+/* ── MUST TRY HERO CARDS ─────────────────────── */
+.must-try-row{display:flex;gap:var(--sp3);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 var(--sp4) var(--sp2);}
+.must-try-row::-webkit-scrollbar{display:none;}
+.must-try-card{flex:0 0 160px;border-radius:var(--r-xl);overflow:hidden;position:relative;box-shadow:0 4px 16px rgba(0,0,0,0.1);display:flex;flex-direction:column;background:var(--surface2);transition:transform 0.18s;}
+.must-try-card:active{transform:scale(0.97);}
+.must-try-img{width:100%;aspect-ratio:3/4;position:relative;overflow:hidden;flex-shrink:0;}
+.must-try-img img{width:100%;height:100%;object-fit:cover;}
+.must-try-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(7,20,9,0.88) 0%,rgba(7,20,9,0.3) 45%,transparent 70%);}
+.must-try-content{position:absolute;bottom:0;left:0;right:0;padding:var(--sp3);}
+.must-try-badge{display:inline-flex;align-items:center;font-size:0.42rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border-radius:99px;padding:3px 9px;margin-bottom:5px;white-space:nowrap;line-height:1;}
+.must-try-badge-gold{background:linear-gradient(135deg,var(--au300),var(--au200));color:var(--g800);}
+.must-try-badge-green{background:rgba(27,94,47,0.85);color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.15);}
+.must-try-badge-fire{background:rgba(200,72,0,0.85);color:#fff;}
+.must-try-badge-combo{background:rgba(11,31,17,0.85);color:var(--au100);border:1px solid rgba(212,168,74,0.4);}
+.must-try-name{font-family:'Playfair Display',serif;font-size:0.85rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:4px;}
+.must-try-benefit{font-size:0.58rem;color:rgba(255,255,255,0.6);line-height:1.4;}
+.must-try-price{font-size:0.8rem;font-weight:700;color:var(--au100);margin-top:4px;}
+
+/* ── COMBO ENGINE ────────────────────────────── */
+.combo-section{padding:var(--sp5) 0 var(--sp6);background:#fff;border-bottom:1px solid transparent;border-image:linear-gradient(to right,transparent,rgba(180,135,50,0.25) 20%,rgba(180,135,50,0.25) 80%,transparent) 1;position:relative;}
+.combo-section::after{content:'◆';position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);font-size:7px;color:rgba(180,135,50,0.35);background:#fff;padding:0 6px;line-height:1;z-index:1;}
+.combo-header{padding:0 var(--sp4);margin-bottom:var(--sp4);}
+.combo-row{display:flex;gap:var(--sp3);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 var(--sp4) var(--sp1);}
+.combo-row::-webkit-scrollbar{display:none;}
+.combo-card{flex:0 0 auto;width:200px;border-radius:var(--r-xl);border:1px solid var(--au-border);background:linear-gradient(145deg,#fff,var(--au-bg));box-shadow:0 3px 14px rgba(0,0,0,0.06);overflow:hidden;display:flex;flex-direction:column;}
+.combo-card-top{background:linear-gradient(145deg,var(--g700),var(--g600));padding:var(--sp3) var(--sp3) var(--sp2);position:relative;overflow:hidden;}
+.combo-card-top::after{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,74,0.18),transparent 70%);pointer-events:none;}
+.combo-card-label{font-size:0.48rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,208,128,0.6);font-weight:700;margin-bottom:4px;}
+.combo-card-name{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;color:#fff;line-height:1.2;position:relative;z-index:1;}
+.combo-card-usage{font-size:0.58rem;color:rgba(255,255,255,0.45);margin-top:3px;font-style:italic;position:relative;z-index:1;}
+.combo-card-body{padding:var(--sp3);flex:1;display:flex;flex-direction:column;gap:var(--sp2);}
+.combo-items{display:flex;flex-direction:column;gap:5px;}
+.combo-item{display:flex;align-items:center;gap:6px;}
+.combo-item-dot{width:5px;height:5px;border-radius:50%;background:var(--au300);flex-shrink:0;}
+.combo-item-name{font-size:0.65rem;color:var(--text2);font-weight:500;line-height:1.3;}
+.combo-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:var(--sp2);border-top:1px solid var(--au-border);}
+.combo-original{font-size:0.6rem;color:var(--muted);text-decoration:line-through;}
+.combo-price{font-size:1rem;font-weight:700;color:var(--g500);letter-spacing:-0.02em;}
+.combo-savings{font-size:0.5rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--au400);background:rgba(201,149,42,0.1);border:1px solid rgba(201,149,42,0.25);border-radius:99px;padding:2px 7px;}
+
+/* ── SECTION DIVIDER (inline) ────────────────── */
 .section-divider{display:flex;align-items:center;gap:var(--sp3);margin:var(--sp5) var(--sp4) var(--sp4);}
 .section-divider-line{flex:1;height:1px;background:var(--border);}
 .section-divider-label{font-size:0.55rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
@@ -288,55 +236,27 @@ img{display:block;}
 .craft-price{background:linear-gradient(135deg,var(--au400),var(--au200));color:var(--g800);font-size:0.88rem;font-weight:700;padding:8px 18px;border-radius:99px;box-shadow:0 4px 14px rgba(185,130,40,0.28);letter-spacing:-0.01em;}
 .craft-counter-note{font-size:0.58rem;color:rgba(255,255,255,0.38);text-align:center;margin-top:var(--sp4);font-style:italic;line-height:1.5;}
 
-/* ══════════════════════════════════════════════
-   FIX #2 — EVENTS: unified gradient matching hero + craft
-   Was: var(--g800) = flat near-black
-   Now: same deep-to-mid green gradient as rest of dark sections
-══════════════════════════════════════════════ */
-.events-hero {
-  background: radial-gradient(ellipse 140% 80% at 85% -10%, rgba(212,168,74,0.18) 0%, transparent 55%),
-              radial-gradient(ellipse 100% 70% at 5% 30%, rgba(61,160,88,0.12) 0%, transparent 55%),
-              linear-gradient(158deg, #060f08 0%, #0b1f11 28%, #143520 62%, #1e5830 100%);
-  padding: var(--sp8) var(--sp4) var(--sp6);
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-.events-hero::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 240px; height: 240px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212,168,74,0.1), transparent 70%);
-  pointer-events: none;
-}
-/* Noise overlay to match hero texture */
-.events-hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-}
-.events-hero > * { position: relative; z-index: 1; }
+/* ── UPSELL NUDGE ────────────────────────────── */
+.upsell-nudge{display:inline-flex;align-items:center;gap:5px;font-size:0.58rem;color:var(--au400);font-weight:600;font-style:italic;margin-top:4px;}
+.upsell-nudge svg{width:11px;height:11px;stroke:var(--au400);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
 
+/* ── EVENTS ──────────────────────────────────── */
+.events-hero{background:radial-gradient(ellipse 140% 80% at 85% -10%,rgba(212,168,74,0.18) 0%,transparent 55%),radial-gradient(ellipse 100% 70% at 5% 30%,rgba(61,160,88,0.12) 0%,transparent 55%),linear-gradient(158deg,#060f08 0%,#0b1f11 28%,#143520 62%,#1e5830 100%);padding:var(--sp8) var(--sp4) var(--sp6);position:relative;overflow:hidden;text-align:center;}
+.events-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,74,0.1),transparent 70%);pointer-events:none;}
+.events-hero::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");mix-blend-mode:overlay;}
+.events-hero>*{position:relative;z-index:1;}
 .events-eyebrow{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,208,128,0.55);margin-bottom:var(--sp2);font-weight:600;}
 .events-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:var(--sp3);}
 .events-title em{color:var(--au100);font-style:normal;}
 .events-sub{font-size:0.7rem;color:rgba(255,255,255,0.48);line-height:1.6;max-width:280px;margin:0 auto var(--sp5);}
 .events-occasions{display:flex;gap:var(--sp2);flex-wrap:wrap;justify-content:center;}
 .occasion-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.11);border-radius:99px;padding:7px 14px;font-size:0.65rem;font-weight:600;color:rgba(255,255,255,0.75);white-space:nowrap;}
-
-/* Events offer block — keep dark but slightly lighter than before */
 .events-offer-wrap{background:rgba(11,31,17,0.95);padding:var(--sp5) var(--sp4) var(--sp4);}
 .events-offer-label{font-size:0.55rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,208,128,0.45);font-weight:700;text-align:center;margin-bottom:var(--sp3);}
 .events-offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2);}
 .events-offer-item{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:var(--r-md);padding:var(--sp3);text-align:center;}
 .events-offer-name{font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.78);line-height:1.3;}
 .events-offer-note{font-size:0.56rem;color:rgba(255,255,255,0.32);margin-top:3px;}
-
 .events-cta-card{background:linear-gradient(145deg,#fff,#faf5e8);border:1px solid var(--au-border);border-radius:var(--r-xl);margin:var(--sp5) var(--sp4) 0;padding:var(--sp5) var(--sp4);box-shadow:0 8px 28px rgba(0,0,0,0.1);}
 .events-cta-label{font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--au400);font-weight:700;margin-bottom:var(--sp2);}
 .events-cta-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:var(--sp2);line-height:1.25;}
@@ -350,10 +270,74 @@ img{display:block;}
 .events-btn-primary svg{stroke:#fff;}
 .events-min-note{text-align:center;font-size:0.6rem;color:var(--muted);margin-top:var(--sp4);font-style:italic;padding:var(--sp2) var(--sp4) var(--sp4);}
 
+/* ── FAB BOOKING BUTTON ──────────────────────── */
+.fab{position:fixed;bottom:max(100px,calc(88px + env(safe-area-inset-bottom) + 12px));right:16px;z-index:190;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--au400),var(--au200));border:none;cursor:pointer;box-shadow:0 4px 18px rgba(185,130,40,0.45),0 1px 4px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;-webkit-tap-highlight-color:transparent;}
+.fab:active{transform:scale(0.92);box-shadow:0 2px 8px rgba(185,130,40,0.35);}
+.fab svg{width:22px;height:22px;stroke:var(--g800);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.fab-pulse{position:absolute;top:-3px;right:-3px;width:10px;height:10px;border-radius:50%;background:var(--g500);border:2px solid #fff;animation:fabPulse 2s ease-in-out infinite;}
+@keyframes fabPulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:0.6;}}
+
+/* ── BOOKING MODAL ───────────────────────────── */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0);pointer-events:none;transition:background 0.3s ease;}
+.modal-overlay.open{background:rgba(0,0,0,0.55);pointer-events:all;}
+.modal-sheet{position:fixed;bottom:0;left:0;right:0;z-index:501;background:#fff;border-radius:24px 24px 0 0;padding:0;max-height:90vh;overflow-y:auto;transform:translateY(100%);transition:transform 0.38s cubic-bezier(0.22,1,0.36,1);box-shadow:0 -8px 40px rgba(0,0,0,0.18);}
+.modal-sheet.open{transform:translateY(0);}
+.modal-handle{width:36px;height:4px;border-radius:99px;background:rgba(0,0,0,0.12);margin:12px auto 0;}
+.modal-header{padding:var(--sp4) var(--sp5) var(--sp3);}
+.modal-eyebrow{font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--au400);font-weight:700;margin-bottom:6px;}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:4px;}
+.modal-sub{font-size:0.68rem;color:var(--muted);line-height:1.55;}
+.modal-section{padding:var(--sp3) var(--sp5);}
+.modal-section-label{font-size:0.56rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text2);margin-bottom:var(--sp3);}
+.occasion-pills{display:flex;gap:var(--sp2);flex-wrap:wrap;}
+.occasion-pill{padding:8px 16px;border-radius:99px;border:1.5px solid var(--border);background:#fff;font-size:0.7rem;font-weight:600;color:var(--text2);cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;-webkit-tap-highlight-color:transparent;}
+.occasion-pill:active,.occasion-pill.selected{background:var(--g700);color:#fff;border-color:var(--g700);}
+.modal-offers{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2);}
+.modal-offer-item{border:1px solid var(--border);border-radius:var(--r-md);padding:var(--sp3);text-align:center;background:var(--surface);}
+.modal-offer-icon{margin:0 auto var(--sp2);width:32px;height:32px;border-radius:50%;background:rgba(27,93,47,0.08);display:flex;align-items:center;justify-content:center;}
+.modal-offer-icon svg{width:16px;height:16px;stroke:var(--g500);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.modal-offer-name{font-size:0.7rem;font-weight:700;color:var(--text);line-height:1.3;}
+.modal-offer-note{font-size:0.56rem;color:var(--muted);margin-top:2px;}
+.modal-cta-section{padding:var(--sp3) var(--sp5) calc(var(--sp8) + env(safe-area-inset-bottom));}
+.modal-btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:99px;padding:14px 20px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;transition:transform 0.15s;cursor:pointer;border:none;width:100%;font-family:'DM Sans',sans-serif;margin-bottom:var(--sp2);}
+.modal-btn:active{transform:scale(0.97);}
+.modal-btn-primary{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;box-shadow:0 4px 16px rgba(18,140,126,0.3);}
+.modal-btn-secondary{background:transparent;border:1.5px solid var(--au300);color:var(--au400);}
+.modal-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.modal-btn-primary svg{stroke:#fff;}
+.modal-divider{height:1px;background:var(--border);margin:0 var(--sp5) var(--sp3);}
+.modal-close{position:absolute;top:var(--sp4);right:var(--sp4);width:32px;height:32px;border-radius:50%;border:none;background:var(--surface2);cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;}
+.modal-close svg{width:16px;height:16px;stroke:var(--text2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
 /* ── FADE IN ─────────────────────────────────── */
 .fade-in{opacity:0;transform:translateY(12px);transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.22,1,0.36,1);}
 .fade-in.visible{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+
+/* ── QUICK PICKS ─────────────────────────────── */
+.rec-strip{padding:var(--sp3) var(--sp4);display:flex;align-items:center;gap:var(--sp3);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.rec-strip::-webkit-scrollbar{display:none;}
+.rec-label{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--au400);white-space:nowrap;flex-shrink:0;}
+.rec-chip{flex:0 0 auto;display:flex;align-items:center;gap:var(--sp2);background:#fff;border:1px solid var(--au-border);border-radius:99px;padding:5px 12px 5px 5px;cursor:pointer;text-decoration:none;transition:transform 0.15s;box-shadow:0 1px 4px rgba(0,0,0,0.05);}
+.rec-chip:active{transform:scale(0.96);}
+.rec-chip-img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:var(--surface);}
+.rec-chip-name{font-size:0.68rem;font-weight:600;color:var(--text);white-space:nowrap;}
+
+/* ── ENTRY HOOK ──────────────────────────────── */
+.entry-hook{background:linear-gradient(135deg,#0b1f11 0%,#143520 100%);padding:var(--sp4) var(--sp4) var(--sp5);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
+.entry-hook::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,74,0.1),transparent 70%);pointer-events:none;}
+.entry-hook-label{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,208,128,0.6);margin-bottom:var(--sp2);font-weight:600;}
+.entry-hook-title{font-family:'Playfair Display',serif;font-size:1rem;color:#fff;font-weight:700;margin-bottom:var(--sp3);line-height:1.25;}
+.entry-hook-title em{color:var(--au100);font-style:normal;}
+.entry-chips{display:flex;gap:var(--sp2);flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:2px;}
+.entry-chips::-webkit-scrollbar{display:none;}
+.entry-chip{flex:0 0 auto;display:inline-flex;align-items:center;border-radius:99px;padding:8px 16px;font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.85);cursor:pointer;transition:all 0.18s ease;white-space:nowrap;}
+.entry-chip:active{transform:scale(0.96);}
+
+/* ── SWIPE HINT ──────────────────────────────── */
+.swipe-hint{display:flex;align-items:center;gap:5px;padding:0 var(--sp4) var(--sp1);font-size:0.55rem;color:var(--muted);letter-spacing:0.06em;font-style:italic;}
+.swipe-hint svg{width:12px;height:12px;stroke:var(--muted);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;animation:swipeAnim 2s ease-in-out infinite;}
+@keyframes swipeAnim{0%,100%{transform:translateX(0);}40%{transform:translateX(4px);}70%{transform:translateX(-2px);}}
 
 </style>
 </head>
@@ -363,7 +347,6 @@ img{display:block;}
 
 <!-- ── HERO ───────────────────────────────────── -->
 <header class="hero">
-  <!-- Social icons: Instagram left, WhatsApp right -->
   <div style="position:absolute;top:calc(env(safe-area-inset-top) + 12px);left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;z-index:10;">
     <a href="https://instagram.com/mauli_ahmedabad" target="_blank"
       style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">
@@ -380,7 +363,6 @@ img{display:block;}
       </svg>
     </a>
   </div>
-
   <img class="hero-logo" src="images/tlogo.webp" alt="Mauli Family Paan House" onerror="this.style.opacity='0'">
   <div class="hero-since">Est. 1990 · Frizbee Food Park, Ahmedabad</div>
   <div class="hero-line"></div>
@@ -398,11 +380,13 @@ img{display:block;}
   <div class="entry-hook-label">First time here?</div>
   <div class="entry-hook-title">What's your <em>mood?</em></div>
   <div class="entry-chips">
+    <div class="entry-chip glass-dark" onclick="scrollToSection('must-try')">Best Picks</div>
+    <div class="entry-chip glass-dark" onclick="scrollToSection('combos')">Combos</div>
     <div class="entry-chip glass-dark" onclick="scrollToSection('craft')">Customize</div>
     <div class="entry-chip glass-dark" onclick="scrollToSection('after-dinner')">Digestive</div>
     <div class="entry-chip glass-dark" onclick="scrollToSection('beverages')">Drinks</div>
     <div class="entry-chip glass-dark" onclick="scrollToSection('take-home')">Take Home</div>
-    <div class="entry-chip glass-dark" onclick="scrollToSection('events')">Book Events</div>
+    <div class="entry-chip glass-dark" onclick="openModal()">Book Event</div>
   </div>
 </div>
 
@@ -416,157 +400,236 @@ img{display:block;}
   <a class="rec-chip" href="#take-home"><img class="rec-chip-img" src="images/kesargulkand.webp" alt=""><span class="rec-chip-name">Kesar Gulkand</span></a>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     FIX #1 — MODERN BOTTOM NAV
-     Pill-style floating card, clean stroke icons
-══════════════════════════════════════════════ -->
-<nav class="sticky-nav glass-white">
-  <div class="nav-inner">
-
-    <button class="nav-btn active" onclick="navTo('after-dinner')">
-      <!-- Leaf / digestive -->
-      <svg viewBox="0 0 24 24">
-        <path d="M20 4c-10 1-15 6-16 16 6-1 10-3 13-7 3-4 3-6 3-9z"/>
-        <path d="M4 20c2-4 5-7 10-9"/>
-      </svg>
-      <span>Digestive</span>
-    </button>
-
-    <button class="nav-btn" onclick="navTo('sweet')">
-      <!-- Chocolate bar / treats -->
-      <svg viewBox="0 0 24 24">
-        <rect x="3" y="6" width="18" height="13" rx="2"/>
-        <line x1="3" y1="11" x2="21" y2="11"/>
-        <line x1="9" y1="11" x2="9" y2="19"/>
-        <line x1="15" y1="11" x2="15" y2="19"/>
-      </svg>
-      <span>Treats</span>
-    </button>
-
-    <button class="nav-btn" onclick="navTo('royal')">
-      <!-- Crown -->
-      <svg viewBox="0 0 24 24">
-        <path d="M3 18h18"/>
-        <path d="M3 8l4 5 5-8 5 8 4-5v10H3V8z"/>
-      </svg>
-      <span>Premium</span>
-    </button>
-
-    <button class="nav-btn" onclick="navTo('beverages')">
-      <!-- Glass with straw -->
-      <svg viewBox="0 0 24 24">
-        <path d="M5 3h14l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 3z"/>
-        <path d="M3 3h18"/>
-        <line x1="14" y1="7" x2="12" y2="19"/>
-      </svg>
-      <span>Drinks</span>
-    </button>
-
-    <button class="nav-btn" onclick="navTo('craft')">
-      <!-- Pencil / craft -->
-      <svg viewBox="0 0 24 24">
-        <path d="M12 20h9"/>
-        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-      </svg>
-      <span>Craft</span>
-    </button>
-
-    <button class="nav-btn" onclick="navTo('take-home')">
-      <!-- Package / take away -->
-      <svg viewBox="0 0 24 24">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-        <line x1="12" y1="22.08" x2="12" y2="12"/>
-      </svg>
-      <span>Take Away</span>
-    </button>
-
-    <button class="nav-btn" onclick="navTo('events')">
-      <!-- Calendar -->
-      <svg viewBox="0 0 24 24">
-        <rect x="3" y="4" width="18" height="18" rx="2"/>
-        <line x1="16" y1="2" x2="16" y2="6"/>
-        <line x1="8" y1="2" x2="8" y2="6"/>
-        <line x1="3" y1="10" x2="21" y2="10"/>
-      </svg>
-      <span>Bookings</span>
-    </button>
-
-  </div>
-</nav>
-
-<!-- ── AFTER DINNER ────────────────────────────── -->
-<section id="after-dinner" class="section fade-in">
+<!-- ═══════════════════════════════════════════
+     1. MUST TRY AT MAULI
+════════════════════════════════════════════ -->
+<section id="must-try" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Start Here <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title open" onclick="toggleSection('afterDinnerList',this)">After Dinner</h2>
-    <p class="section-sub">Best enjoyed after meals - for a calm, digestive finish</p>
+    <h2 class="section-title static">Must Try at Mauli</h2>
+    <p class="section-sub">Our top picks - chosen by regulars, loved by first-timers</p>
   </div>
-  <div class="card-list collapsible open" id="afterDinnerList" style="max-height:none;">
-    <div class="card fade-in">
-      <div class="card-img"><img src="images/flavor.webp" alt="Flavour Splash" loading="lazy"></div>
-      <div class="card-body">
-        <div class="card-name">Flavour Splash</div>
-        <div class="card-desc">15 signature fruit crush flavours - choose your mood</div>
-        <div class="card-footer">
-          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div>
-          <span class="tag">Best Seller</span>
+  <div class="swipe-hint">
+    <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    Swipe to explore
+  </div>
+  <div class="must-try-row fade-in">
+
+    <!-- Rampyari Royale - Signature -->
+    <div class="must-try-card">
+      <div class="must-try-img">
+        <img src="images/rampyari.webp" alt="Rampyari Royale" loading="lazy">
+      </div>
+      <div class="must-try-content">
+        <div class="must-try-badge must-try-badge-gold">Bestseller</div>
+        <div class="must-try-name">Rampyari Royale</div>
+        <div class="must-try-benefit">Gulkand + kesar - the royal experience</div>
+        <div class="must-try-price"><span style="font-size:0.65em;opacity:0.7;">₹</span>120</div>
+      </div>
+    </div>
+
+    <!-- Choco Nutella - Dessert -->
+    <div class="must-try-card">
+      <div class="must-try-img">
+        <img src="images/nutella.webp" alt="Choco Nutella" loading="lazy">
+      </div>
+      <div class="must-try-content">
+        <div class="must-try-badge must-try-badge-green">Most Ordered</div>
+        <div class="must-try-name">Choco Nutella</div>
+        <div class="must-try-benefit">Dessert in a leaf - rich, creamy, indulgent</div>
+        <div class="must-try-price"><span style="font-size:0.65em;opacity:0.7;">₹</span>150</div>
+      </div>
+    </div>
+
+    <!-- Fire Paan - Experience -->
+    <div class="must-try-card">
+      <div class="must-try-img">
+        <img src="images/fire.webp" alt="Fire Paan" loading="lazy">
+      </div>
+      <div class="must-try-content">
+        <div class="must-try-badge must-try-badge-fire">Experience</div>
+        <div class="must-try-name">Fire Paan</div>
+        <div class="must-try-benefit">Flaming theatre - the fire doesnt burn</div>
+        <div class="must-try-price"><span style="font-size:0.65em;opacity:0.7;">₹</span>150</div>
+      </div>
+    </div>
+
+    <!-- After Meal Combo - Combo preview -->
+    <div class="must-try-card" onclick="scrollToSection('combos')" style="cursor:pointer;">
+      <div class="must-try-img">
+        <img src="images/gulkand.webp" alt="After Meal Combo" loading="lazy">
+      </div>
+      <div class="must-try-content">
+        <div class="must-try-badge must-try-badge-combo">Save ₹11</div>
+        <div class="must-try-name">After Meal Combo</div>
+        <div class="must-try-benefit">Rampyari Royale + Gulkand Classic - best after dinner</div>
+        <div class="must-try-price"><span style="font-size:0.65em;opacity:0.7;">₹</span>189<span style="font-size:0.6em;opacity:0.5;text-decoration:line-through;font-weight:400;">₹180</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     2. RECOMMENDED COMBOS
+════════════════════════════════════════════ -->
+<div id="combos" class="combo-section fade-in" style="scroll-margin-top:20px;">
+  <div class="combo-header">
+    <div class="section-eyebrow">Save More <div class="section-eyebrow-line"></div></div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:800;color:var(--text);letter-spacing:-0.02em;line-height:1.15;">Recommended Combos</div>
+    <div style="font-size:0.67rem;color:var(--muted);margin-top:3px;font-style:italic;">Curated for the best Mauli experience</div>
+  </div>
+  <div class="combo-row">
+
+    <!-- After Meal Combo -->
+    <div class="combo-card">
+      <div class="combo-card-top">
+        <div class="combo-card-label">Digestive</div>
+        <div class="combo-card-name">After Meal Combo</div>
+        <div class="combo-card-usage">Ideal right after meals</div>
+      </div>
+      <div class="combo-card-body">
+        <div class="combo-items">
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Rampyari Royale</div></div>
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Gulkand Classic</div></div>
+        </div>
+        <div class="combo-card-footer">
+          <div>
+            <div class="combo-original">₹200</div>
+            <div class="combo-price"><span class="price-sym">₹</span>189</div>
+          </div>
+          <div class="combo-savings">Save ₹11</div>
         </div>
       </div>
     </div>
-    <div class="card fade-in">
-      <div class="card-img"><img src="images/gulkand.webp" alt="Gulkand Classic" loading="lazy"></div>
-      <div class="card-body">
-        <div class="card-name">Gulkand Classic</div>
-        <div class="card-desc">Cooling kesar gulkand, softened by a rose syrup finish</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div></div>
+
+    <!-- Couple Combo -->
+    <div class="combo-card">
+      <div class="combo-card-top">
+        <div class="combo-card-label">For Two</div>
+        <div class="combo-card-name">Couple Combo</div>
+        <div class="combo-card-usage">Date night after dinner</div>
       </div>
-    </div>
-    <div class="card fade-in">
-      <div class="card-img"><img src="images/jelly.webp" alt="Jelly Jewel" loading="lazy"></div>
-      <div class="card-body">
-        <div class="card-name">Jelly Jewel</div>
-        <div class="card-desc">Sweet jelly notes folded into our digestive premix</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div></div>
-      </div>
-    </div>
-    <div class="card fade-in">
-      <div class="card-img"><img src="images/chutney.webp" alt="Chutney Burst" loading="lazy"></div>
-      <div class="card-body">
-        <div class="card-name">Chutney Burst</div>
-        <div class="card-desc">Tangy chutneys, signature premix, silver varkh - palate cleanser</div>
-        <div class="card-footer">
-          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div>
-          <span class="tag tag-soft">Non Sweet</span>
+      <div class="combo-card-body">
+        <div class="combo-items">
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Rampyari Royale</div></div>
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Flavour Splash</div></div>
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Paan Sparkle (1)</div></div>
+        </div>
+        <div class="combo-card-footer">
+          <div>
+            <div class="combo-original">₹340</div>
+            <div class="combo-price"><span class="price-sym">₹</span>299</div>
+          </div>
+          <div class="combo-savings">Save ₹41</div>
         </div>
       </div>
     </div>
-    <div class="card fade-in">
-      <div class="card-img"><img src="images/meetha-gulab.webp" alt="Mauli Classic" loading="lazy"></div>
+
+    <!-- Experience Combo -->
+    <div class="combo-card">
+      <div class="combo-card-top">
+        <div class="combo-card-label">Theatre</div>
+        <div class="combo-card-name">Experience Combo</div>
+        <div class="combo-card-usage">The full Mauli moment</div>
+      </div>
+      <div class="combo-card-body">
+        <div class="combo-items">
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Fire Paan</div></div>
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Lotus Biscoff Paan</div></div>
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Paan Sparkle (1)</div></div>
+        </div>
+        <div class="combo-card-footer">
+          <div>
+            <div class="combo-original">₹420</div>
+            <div class="combo-price"><span class="price-sym">₹</span>370</div>
+          </div>
+          <div class="combo-savings">Save ₹50</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Group Share Combo -->
+    <div class="combo-card">
+      <div class="combo-card-top">
+        <div class="combo-card-label">For the Table</div>
+        <div class="combo-card-name">Group Sharing</div>
+        <div class="combo-card-usage">Best for 3–4 people</div>
+      </div>
+      <div class="combo-card-body">
+        <div class="combo-items">
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Rampyari Royale</div></div>
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Choco Nutella</div></div>
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Royal Dry Fruit</div></div>
+          <div class="combo-item"><div class="combo-item-dot"></div><div class="combo-item-name">Gulkand Shake (1)</div></div>
+        </div>
+        <div class="combo-card-footer">
+          <div>
+            <div class="combo-original">₹570</div>
+            <div class="combo-price"><span class="price-sym">₹</span>499</div>
+          </div>
+          <div class="combo-savings">Save ₹71</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     3. LIVE THEATRE
+════════════════════════════════════════════ -->
+<section id="live-theatre" class="section fade-in">
+  <div class="section-header">
+    <div class="section-eyebrow">Showstopper <div class="section-eyebrow-line"></div></div>
+    <h2 class="section-title static">Live Theatre</h2>
+    <p class="section-sub">Paan as a performance - watch it made</p>
+  </div>
+  <div class="card-list">
+    <div class="card card-fire fade-in">
+      <div class="card-img"><img src="images/fire.webp" alt="Fire Paan" loading="lazy"></div>
       <div class="card-body">
-        <div class="card-name">Mauli Classic</div>
-        <div class="card-desc">Signature premix paan, rose syrup drizzle - the gentlest start</div>
+        <div class="card-name">Fire Paan</div>
+        <div class="card-desc">The legendary flaming paan ritual - a moment of theatre</div>
         <div class="card-footer">
-          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>60</div></div>
-          <span class="tag tag-soft">Light</span>
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div>
+          <span class="tag tag-fire">Worth trying once</span>
+        </div>
+        <div class="upsell-nudge">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Pairs well with Paan Sparkle
+        </div>
+      </div>
+    </div>
+    <div class="card card-ice fade-in">
+      <div class="card-img"><img src="images/icecream.webp" alt="Ice Cream Paan" loading="lazy"></div>
+      <div class="card-body">
+        <div class="card-name">Ice Cream Paan</div>
+        <div class="card-desc">Paan's warmth meets a fresh scoop of ice cream</div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div></div>
+        <div class="upsell-nudge">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Upgrade to Experience Combo above
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── TREATS ──────────────────────────────────── -->
+<!-- ═══════════════════════════════════════════
+     4. TREATS
+════════════════════════════════════════════ -->
 <section id="sweet" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Indulgent <div class="section-eyebrow-line"></div></div>
     <h2 class="section-title static">Treats</h2>
-    <p class="section-sub">Dessert replacement · Sweet craving for choco lovers</p>
+    <p class="section-sub">Dessert replacement · For choco lovers</p>
   </div>
   <div class="h-scroll-row fade-in">
     <div class="card-portrait">
       <div class="card-portrait-img">
         <img src="images/nutella.webp" alt="Choco Nutella" loading="lazy">
-        <div class="card-portrait-badge tag-strong">Best Seller</div>
+        <div class="card-portrait-badge tag-strong">Best seller</div>
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Choco Nutella</div>
@@ -617,10 +680,12 @@ img{display:block;}
   </div>
 </section>
 
-<!-- ── SIGNATURE / PREMIUM ────────────────────── -->
+<!-- ═══════════════════════════════════════════
+     5. SIGNATURE / PREMIUM
+════════════════════════════════════════════ -->
 <section id="royal" class="section fade-in">
   <div class="section-header">
-    <div class="section-eyebrow">Premium <div class="section-eyebrow-line"></div></div>
+    <div class="section-eyebrow">Heritage <div class="section-eyebrow-line"></div></div>
     <h2 class="section-title open" onclick="toggleSection('signatureList',this)">Signature</h2>
     <p class="section-sub">Heritage recipes - each made to order</p>
   </div>
@@ -634,13 +699,17 @@ img{display:block;}
           <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div>
           <span class="tag tag-premium">Perfect after meals</span>
         </div>
+        <div class="upsell-nudge">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Best with Paan Sparkle
+        </div>
       </div>
     </div>
     <div class="card fade-in">
       <div class="card-img"><img src="images/maghai.webp" alt="Royal Maghai" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Royal Maghai</div>
-        <div class="card-desc">Authentic Maghai Jodi Paan, heritage premix, various chutneys, silver varakh - 2 pcs</div>
+        <div class="card-desc">Authentic Maghai Jodi Paan, heritage premix, various chutneys, silver varakh – 2 pcs</div>
         <div class="card-footer">
           <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>120</div></div>
           <span class="tag">Special Cravings</span>
@@ -659,35 +728,77 @@ img{display:block;}
       </div>
     </div>
   </div>
-  <div class="section-divider">
-    <div class="section-divider-line"></div>
-    <span class="section-divider-label">Live Theatre</span>
-    <div class="section-divider-line"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     6. AFTER DINNER
+════════════════════════════════════════════ -->
+<section id="after-dinner" class="section fade-in">
+  <div class="section-header">
+    <div class="section-eyebrow">Digestive <div class="section-eyebrow-line"></div></div>
+    <h2 class="section-title open" onclick="toggleSection('afterDinnerList',this)">After Dinner</h2>
+    <p class="section-sub">Best enjoyed after meals - for a calm, digestive finish</p>
   </div>
-  <div class="card-list">
-    <div class="card card-fire fade-in">
-      <div class="card-img"><img src="images/fire.webp" alt="Fire Paan" loading="lazy"></div>
+  <div class="card-list collapsible open" id="afterDinnerList" style="max-height:none;">
+    <div class="card fade-in">
+      <div class="card-img"><img src="images/chutney.webp" alt="Chutney Burst" loading="lazy"></div>
       <div class="card-body">
-        <div class="card-name">Fire Paan</div>
-        <div class="card-desc">The legendary flaming paan ritual - a moment of theatre</div>
+        <div class="card-name">Chutney Burst</div>
+        <div class="card-desc">Tangy chutneys, signature premix, silver varkh - palate cleanser</div>
         <div class="card-footer">
-          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div>
-          <span class="tag tag-season">Worth trying once</span>
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div>
+          <span class="tag tag-soft">Non Sweet</span>
         </div>
       </div>
     </div>
-    <div class="card card-ice fade-in">
-      <div class="card-img"><img src="images/icecream.webp" alt="Ice Cream Paan" loading="lazy"></div>
+    <div class="card fade-in">
+      <div class="card-img"><img src="images/flavor.webp" alt="Flavour Splash" loading="lazy"></div>
       <div class="card-body">
-        <div class="card-name">Ice Cream Paan</div>
-        <div class="card-desc">Paan's warmth meets a fresh scoop of ice cream</div>
-        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div></div>
+        <div class="card-name">Flavour Splash</div>
+        <div class="card-desc">15 signature fruit crush flavours - choose your mood</div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>100</div></div>
+          <span class="tag">Best Seller</span>
+        </div>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <div class="card-img"><img src="images/gulkand.webp" alt="Gulkand Classic" loading="lazy"></div>
+      <div class="card-body">
+        <div class="card-name">Gulkand Classic</div>
+        <div class="card-desc">Cooling kesar gulkand, softened by a rose syrup finish</div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>80</div></div></div>
+        <div class="upsell-nudge">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Pairs well with Ayu Digest
+        </div>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <div class="card-img"><img src="images/jelly.webp" alt="Jelly Jewel" loading="lazy"></div>
+      <div class="card-body">
+        <div class="card-name">Jelly Jewel</div>
+        <div class="card-desc">Sweet jelly notes folded into our digestive premix</div>
+        <div class="card-footer"><div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>70</div></div></div>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <div class="card-img"><img src="images/meetha-gulab.webp" alt="Mauli Classic" loading="lazy"></div>
+      <div class="card-body">
+        <div class="card-name">Mauli Classic</div>
+        <div class="card-desc">Signature premix paan, rose syrup drizzle - the gentlest start</div>
+        <div class="card-footer">
+          <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>60</div></div>
+          <span class="tag tag-soft">Light</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── BEVERAGES ───────────────────────────────── -->
+<!-- ═══════════════════════════════════════════
+     7. DRINKS
+════════════════════════════════════════════ -->
 <section id="beverages" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Drinks <div class="section-eyebrow-line"></div></div>
@@ -713,14 +824,16 @@ img{display:block;}
         <div class="card-desc">Refreshing shake with gulkand, rose, dry fruits, Ayu Digest and seeds</div>
         <div class="card-footer">
           <div class="card-price-row"><div class="veg"></div><div class="card-price"><span class="price-sym">₹</span>150</div></div>
-          <span class="tag">New</span>
+          <span class="tag tag-new">New</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CRAFT YOUR PAAN ────────────────────────── -->
+<!-- ═══════════════════════════════════════════
+     8. CRAFT YOUR PAAN
+════════════════════════════════════════════ -->
 <section id="craft" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Custom <div class="section-eyebrow-line"></div></div>
@@ -729,7 +842,7 @@ img{display:block;}
   </div>
   <div class="craft-card fade-in">
     <div class="craft-eyebrow">Fully Customisable · Starting at</div>
-    <div class="craft-title">Build Your Own<br>Paan</div>
+    <div class="craft-title">Make Your Own<br>Paan</div>
     <div class="craft-rule">Choose any combination - Leaf, Chutney, Filling, Flavour, &amp; Topping.<br><strong>Drawn from 18 condiments and 16 Ayurvedic herbs.</strong></div>
     <div class="craft-steps">
       <div class="craft-step"><span class="craft-step-n">1</span><span class="craft-step-txt">Choose Leaf</span></div>
@@ -748,7 +861,6 @@ img{display:block;}
     </div>
     <p class="craft-counter-note">Tell us your last paan - we'll craft your next one.</p>
   </div>
-  <!-- Leaf types as portrait cards in grid -->
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 16px 24px;">
     <div class="card-portrait" style="width:auto;">
       <div class="card-portrait-img">
@@ -783,12 +895,19 @@ img{display:block;}
   </div>
 </section>
 
-<!-- ── TAKE HOME ───────────────────────────────── -->
+<!-- ═══════════════════════════════════════════
+     9. TAKE HOME
+════════════════════════════════════════════ -->
 <section id="take-home" class="section fade-in">
   <div class="section-header">
     <div class="section-eyebrow">Retail <div class="section-eyebrow-line"></div></div>
-    <h2 class="section-title static">Home</h2>
-    <p class="section-sub">Bring the Mauli ritual home.</p>
+    <h2 class="section-title static">Take Home</h2>
+    <p class="section-sub">Take the Mauli experience home.</p>
+  </div>
+  <!-- Most bought badges -->
+  <div style="display:flex;gap:8px;padding:0 16px 12px;flex-wrap:wrap;">
+    <span style="font-size:0.56rem;font-weight:700;color:var(--au400);background:rgba(201,149,42,0.08);border:1px solid rgba(201,149,42,0.22);border-radius:99px;padding:3px 10px;letter-spacing:0.06em;">Most Bought: Kesar Gulkand 500g</span>
+    <span style="font-size:0.56rem;font-weight:700;color:var(--au400);background:rgba(201,149,42,0.08);border:1px solid rgba(201,149,42,0.22);border-radius:99px;padding:3px 10px;letter-spacing:0.06em;">Gift Pick: Ayu Digest 50g</span>
   </div>
   <div class="h-scroll-row fade-in">
     <div class="card-portrait">
@@ -828,7 +947,7 @@ img{display:block;}
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Maghai Premix</div>
-        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;margin-bottom:4px;font-style:italic;">For paan or as mukhwass</div>
+        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;margin-bottom:4px;font-style:italic;">For paan or as mukhwas</div>
         <div class="variant-row">
           <div class="variant"><div class="variant-label">100g</div><div class="variant-price"><span class="price-sym">₹</span>149</div></div>
           <div class="variant variant-center"><div class="variant-label">250g</div><div class="variant-price"><span class="price-sym">₹</span>299</div></div>
@@ -843,7 +962,7 @@ img{display:block;}
       </div>
       <div class="card-portrait-body">
         <div class="card-portrait-name">Paan Premix</div>
-        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;margin-bottom:4px;font-style:italic;">For paan or as mukhwass</div>
+        <div style="font-size:0.58rem;color:var(--muted);line-height:1.4;margin-bottom:4px;font-style:italic;">For paan or as mukhwas</div>
         <div class="variant-row">
           <div class="variant"><div class="variant-label">100g</div><div class="variant-price"><span class="price-sym">₹</span>149</div></div>
           <div class="variant variant-center"><div class="variant-label">250g</div><div class="variant-price"><span class="price-sym">₹</span>299</div></div>
@@ -855,53 +974,136 @@ img{display:block;}
   <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.72rem;color:var(--text2);text-align:center;padding:var(--sp5) var(--sp4) var(--sp2);line-height:1.5;">"The paan that started in 1990 -<br>now yours to take home."</p>
   <p style="font-size:0.58rem;color:var(--muted);text-align:center;padding:0 var(--sp4) var(--sp2);letter-spacing:0.04em;">Packed fresh · Ask at counter</p>
 </section>
-
 <!-- ══════════════════════════════════════════════
-     FIX #2 — EVENTS: uses hero gradient now, not flat dark
-     Removed .section-blend hack, padding cleaned up
+      BOTTOM NAV
 ══════════════════════════════════════════════ -->
-<section id="events" class="section section-dark fade-in" style="padding:0;">
-  <div class="events-hero">
-    <div class="events-eyebrow">Catering &amp; Bulk Orders</div>
-    <h2 class="events-title">Paan for your<br><em>every occasion</em></h2>
-    <p class="events-sub">Weddings, corporate gatherings, family functions, birthday parties - we bring Mauli to you.</p>
-    <div class="events-occasions">
-      <div class="occasion-chip">💍 Weddings</div>
-      <div class="occasion-chip">🎂 Birthdays</div>
-      <div class="occasion-chip">🏢 Corporate</div>
-      <div class="occasion-chip">🎉 Functions</div>
-    </div>
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="navTo('must-try')">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span>Best</span>
+    </button>
+    <button class="nav-btn" onclick="navTo('live-theatre')">
+      <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+      <span>Theatre</span>
+    </button>
+    <button class="nav-btn" onclick="navTo('sweet')">
+      <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><line x1="3" y1="11" x2="21" y2="11"/><line x1="9" y1="11" x2="9" y2="19"/><line x1="15" y1="11" x2="15" y2="19"/></svg>
+      <span>Treats</span>
+    </button>
+    <button class="nav-btn" onclick="navTo('after-dinner')">
+      <svg viewBox="0 0 24 24"><path d="M20 4c-10 1-15 6-16 16 6-1 10-3 13-7 3-4 3-6 3-9z"/><path d="M4 20c2-4 5-7 10-9"/></svg>
+      <span>Digestive</span>
+    </button>
+    <button class="nav-btn" onclick="navTo('beverages')">
+      <svg viewBox="0 0 24 24"><path d="M5 3h14l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 3z"/><path d="M3 3h18"/><line x1="14" y1="7" x2="12" y2="19"/></svg>
+      <span>Drinks</span>
+    </button>
+    <button class="nav-btn" onclick="navTo('take-home')">
+      <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      <span>Take Home</span>
+    </button>
+    
   </div>
-  <div class="events-offer-wrap">
-    <div class="events-offer-label">What we offer</div>
-    <div class="events-offer-grid">
-      <div class="events-offer-item"><div class="events-offer-name">Live Paan Counter</div><div class="events-offer-note">At your venue</div></div>
-      <div class="events-offer-item"><div class="events-offer-name">Pre-packed Boxes</div><div class="events-offer-note">Gifting &amp; favours</div></div>
-      <div class="events-offer-item"><div class="events-offer-name">Custom Menu</div><div class="events-offer-note">Pick your items</div></div>
-      <div class="events-offer-item"><div class="events-offer-name">Take-Home Products</div><div class="events-offer-note">Premix, Gulkand &amp; more</div></div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     FAB - Events Booking
+════════════════════════════════════════════ -->
+<button class="fab" onclick="openModal()" aria-label="Book an event">
+  <div class="fab-pulse"></div>
+  <svg viewBox="0 0 24 24">
+    <rect x="3" y="4" width="18" height="18" rx="2"/>
+    <line x1="16" y1="2" x2="16" y2="6"/>
+    <line x1="8" y1="2" x2="8" y2="6"/>
+    <line x1="3" y1="10" x2="21" y2="10"/>
+    <line x1="8" y1="14" x2="8" y2="14" stroke-width="2.5"/>
+    <line x1="12" y1="14" x2="12" y2="14" stroke-width="2.5"/>
+    <line x1="16" y1="14" x2="16" y2="14" stroke-width="2.5"/>
+    <line x1="8" y1="18" x2="8" y2="18" stroke-width="2.5"/>
+    <line x1="12" y1="18" x2="12" y2="18" stroke-width="2.5"/>
+  </svg>
+</button>
+
+<!-- ═══════════════════════════════════════════
+     BOOKING MODAL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="modal-sheet" id="modalSheet">
+  <div style="position:relative;">
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-eyebrow">Catering &amp; Events</div>
+      <div class="modal-title">Paan for your occasion</div>
+      <div class="modal-sub">Weddings, corporate events, and private gatherings - we bring Mauli to you.</div>
     </div>
-  </div>
-  <div class="events-cta-card">
-    <div class="events-cta-label">Get in touch</div>
-    <h3 class="events-cta-title">Tell us about your event - we'll handle the paan.</h3>
-    <p class="events-cta-desc">Share your date, guest count, and occasion. We'll put together a menu and quote within 24 hours. No commitment needed to enquire.</p>
-    <div class="events-btn-group">
-      <a class="events-btn events-btn-primary" href="https://wa.me/917801879290?text=Hi%20Mauli%2C%20I%27m%20interested%20in%20paan%20catering%20for%20an%20event.%20Can%20you%20share%20details%3F" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32">
+
+    <div class="modal-section">
+      <div class="modal-section-label">What's the occasion?</div>
+      <div class="occasion-pills">
+        <button class="occasion-pill" onclick="selectOccasion(this)">Wedding</button>
+        <button class="occasion-pill" onclick="selectOccasion(this)">Birthday</button>
+        <button class="occasion-pill" onclick="selectOccasion(this)">Corporate</button>
+        <button class="occasion-pill" onclick="selectOccasion(this)">Function</button>
+        <button class="occasion-pill" onclick="selectOccasion(this)">Other</button>
+      </div>
+    </div>
+
+    <div class="modal-divider"></div>
+
+    <div class="modal-section">
+      <div class="modal-section-label">What we offer</div>
+      <div class="modal-offers">
+        <div class="modal-offer-item">
+          <div class="modal-offer-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="modal-offer-name">Live Paan Counter</div>
+          <div class="modal-offer-note">At your venue</div>
+        </div>
+        <div class="modal-offer-item">
+          <div class="modal-offer-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div class="modal-offer-name">Pre-packed Boxes</div>
+          <div class="modal-offer-note">Gifting &amp; favours</div>
+        </div>
+        <div class="modal-offer-item">
+          <div class="modal-offer-icon">
+            <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </div>
+          <div class="modal-offer-name">Custom Menu</div>
+          <div class="modal-offer-note">Curated for your event</div>
+        </div>
+        <div class="modal-offer-item">
+          <div class="modal-offer-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4c-10 1-15 6-16 16 6-1 10-3 13-7 3-4 3-6 3-9z"/></svg>
+          </div>
+          <div class="modal-offer-name">Take-Home Products</div>
+          <div class="modal-offer-note">Gulkand, premix &amp; more</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-divider"></div>
+
+    <div class="modal-cta-section">
+      <a class="modal-btn modal-btn-primary" id="waLink" href="https://wa.me/917801879290?text=Hi%20Mauli%2C%20I%27m%20interested%20in%20paan%20catering%20for%20an%20event.%20Can%20you%20share%20details%3F" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="18" height="18">
           <path fill="#fff" d="M16 2C8.28 2 2 8.28 2 16c0 2.49.66 4.82 1.8 6.84L2 30l7.38-1.78A13.93 13.93 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm0 25.5a11.45 11.45 0 0 1-5.83-1.59l-.42-.25-4.38 1.05 1.09-4.26-.27-.44A11.47 11.47 0 0 1 4.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.29-8.53c-.34-.17-2.03-.99-2.34-1.1-.31-.12-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.45-.53-2.76-1.69-1.02-.9-1.71-2.02-1.91-2.36-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.86-1.06-2.55-.28-.67-.56-.58-.77-.59-.2-.01-.43-.01-.66-.01-.23 0-.6.09-.91.43-.31.34-1.19 1.16-1.19 2.83s1.22 3.28 1.39 3.51c.17.23 2.4 3.67 5.82 5.14.81.35 1.45.56 1.94.72.82.26 1.56.22 2.15.13.65-.09 2.01-.82 2.29-1.62.29-.79.29-1.47.2-1.62-.09-.14-.32-.23-.66-.4z"/>
         </svg>
         WhatsApp us about your event
       </a>
-      <a class="events-btn events-btn-secondary" href="tel:+917801879290">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-        </svg>
+      <a class="modal-btn modal-btn-secondary" href="tel:+917801879290">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Call +91 78018 79290
       </a>
     </div>
   </div>
-  <p class="events-min-note">Minimum 50 paans for catering · Advance booking recommended</p>
-</section>
+</div>
 
 <script>
 /* ── Scroll progress ── */
@@ -912,7 +1114,8 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ── Nav ── */
-const anchors = ['after-dinner','sweet','royal','beverages','craft','take-home','events'];
+const anchors = ['must-try','live-theatre','sweet','royal','after-dinner','beverages','craft','take-home','events'];
+const navAnchors = ['must-try','live-theatre','sweet','after-dinner','beverages','take-home','events'];
 const navBtns = document.querySelectorAll('.nav-btn');
 let currentActiveIndex = 0;
 let isScrollingToSection = false;
@@ -922,7 +1125,7 @@ function scrollToSection(id) {
   if (!el) return;
   isScrollingToSection = true;
   el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  const idx = anchors.indexOf(id);
+  const idx = navAnchors.indexOf(id);
   if (idx !== -1) setActive(idx);
   setTimeout(() => { isScrollingToSection = false; }, 900);
 }
@@ -932,27 +1135,26 @@ function setActive(idx) {
   if (idx === currentActiveIndex && navBtns[idx]?.classList.contains('active')) return;
   currentActiveIndex = idx;
   navBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
-  const section = document.getElementById(anchors[idx]);
+  const section = document.getElementById(navAnchors[idx]);
   if (section) {
     section.classList.remove('just-entered');
     void section.offsetWidth;
     section.classList.add('just-entered');
   }
-  navBtns[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 }
 
 function updateNav() {
   if (isScrollingToSection) return;
   const offset = 100;
   let closestIndex = 0, minDistance = Infinity;
-  anchors.forEach((id, i) => {
+  navAnchors.forEach((id, i) => {
     const el = document.getElementById(id);
     if (!el) return;
     const d = Math.abs(el.getBoundingClientRect().top - offset);
     if (d < minDistance) { minDistance = d; closestIndex = i; }
   });
   if (window.scrollY < 60) closestIndex = 0;
-  if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 5) closestIndex = anchors.length - 1;
+  if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 5) closestIndex = navAnchors.length - 1;
   setActive(closestIndex);
 }
 let ticking = false;
@@ -989,6 +1191,34 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.06 });
 fadeEls.forEach(el => obs.observe(el));
+
+/* ── Modal ── */
+const overlay = document.getElementById('modalOverlay');
+const sheet = document.getElementById('modalSheet');
+
+function openModal() {
+  overlay.classList.add('open');
+  sheet.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  sheet.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function selectOccasion(el) {
+  document.querySelectorAll('.occasion-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  const occasion = el.textContent;
+  const waLink = document.getElementById('waLink');
+  const msg = encodeURIComponent(`Hi Mauli, I'm interested in paan catering for a ${occasion}. Can you share details and pricing?`);
+  waLink.href = `https://wa.me/917801879290?text=${msg}`;
+}
+
+/* Close modal on ESC */
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>
 </html>
